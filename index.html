@@ -26,42 +26,40 @@
       color: #333;
     }
     
-    /* Encabezado: sin altura fija */
+    /* Encabezado con aspecto 16:9 */
     header {
-      /* no height set */
-    }
-    
-    /* Contenedor que encierra el GIF y lo hace responsive */
-    .gif-container {
       position: relative;
-      display: block;
-    }
-    
-    .gif-container img {
-      display: block;
       width: 100%;
-      height: auto;
+      aspect-ratio: 16 / 9; /* This ensures the header stays 16:9 */
+      overflow: hidden;
     }
     
-    /* Overlay que cubre solo la imagen */
-    .gif-container .overlay {
+    header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* or 'contain' if you want the entire GIF visible */
+    }
+    
+    /* Overlay cubre la imagen sin exceder su tamaño */
+    header .overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
     }
     
     /* Contenido centrado sobre el GIF */
-    .gif-container .header-content {
+    header .header-content {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 1;
-      color: var(--blanco);
+      z-index: 2;
       text-align: center;
+      color: var(--blanco);
       padding: 20px;
     }
     
@@ -126,13 +124,11 @@
 </head>
 <body>
   <header>
-    <div class="gif-container">
-      <img src="mig.gif" alt="Miguel's animated GIF">
-      <div class="overlay"></div>
-      <div class="header-content">
-        <h1>Miguel Cox Caballero</h1>
-        <p>Ingeniero Informático | Desarrollador</p>
-      </div>
+    <img src="mig.gif" alt="Miguel's animated GIF">
+    <div class="overlay"></div>
+    <div class="header-content">
+      <h1>Miguel Cox Caballero</h1>
+      <p>Ingeniero Informático | Desarrollador</p>
     </div>
   </header>
   
