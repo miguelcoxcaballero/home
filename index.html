@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Miguel Cox Caballero</title>
   <style>
-    /* Variables de colores */
+    /* Paleta de colores */
     :root {
       --blanco: #ffffff;
       --gris-claro: #f4f4f4;
@@ -13,162 +13,185 @@
       --oro: #ffd700;
     }
     
-    /* Estilos generales */
-    body {
+    /* Reset básico */
+    * {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--gris-claro);
       color: #333;
-    }
-    
-    .container {
-      position: relative;
-      width: 80%;
-      margin: 20px auto;
-      background: var(--blanco);
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    
-    /* Detalles decorativos sutiles en el contenedor */
-    .container::before {
-      content: "";
-      position: absolute;
-      width: 200px;
-      height: 2px;
-      background: var(--verde-oscuro);
-      top: 50%;
-      left: 0;
-      opacity: 0.3;
-    }
-    .container::after {
-      content: "";
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background: var(--oro);
-      border-radius: 50%;
-      bottom: 10px;
-      right: 10px;
-      opacity: 0.2;
+      line-height: 1.6;
     }
     
     /* Encabezado */
     header {
+      background-color: var(--blanco);
+      padding: 40px 20px;
       position: relative;
-      background: var(--blanco);
-      padding: 20px;
-      text-align: center;
       overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+    
     /* Detalles decorativos sutiles en el encabezado */
     header::before,
     header::after {
       content: "";
       position: absolute;
-      width: 80px;
-      height: 80px;
-      opacity: 0.15;
-    }
-    header::before {
-      background: var(--verde-oscuro);
-      top: -20px;
-      left: -20px;
-    }
-    header::after {
       background: var(--oro);
-      bottom: -20px;
-      right: -20px;
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+    
+    header::before {
+      width: 150px;
+      height: 150px;
+      top: -50px;
+      left: -50px;
+    }
+    
+    header::after {
+      width: 100px;
+      height: 100px;
+      bottom: -30px;
+      right: -30px;
     }
     
     .header-content {
-      position: relative;
-      z-index: 1;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-    }
-    .profile-pic {
-      width: 300px;
-      height: auto;
-      object-fit: cover;
-      /* Se muestra solo la mitad de la imagen */
-      clip-path: inset(0 50% 0 0);
-      border-radius: 10px;
-      margin: 10px;
-    }
-    .header-text {
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-    header p {
-      margin: 5px 0 0;
-      font-size: 1.1em;
+      position: relative;
+      z-index: 1;
     }
     
-    /* Secciones de contenido */
-    section {
-      margin: 20px 0;
+    .profile-pic {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      clip-path: inset(0 50% 0 0); /* Efecto "a media cara" */
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 10px;
     }
-    h2 {
+    
+    .header-text {
+      max-width: 500px;
+      text-align: center;
+      margin: 10px;
+    }
+    
+    .header-text h1 {
+      font-size: 2.8rem;
       color: var(--verde-oscuro);
+      margin-bottom: 10px;
+    }
+    
+    .header-text p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+    
+    /* Contenedor principal */
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: var(--blanco);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Línea decorativa sutil en main */
+    main::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: 4px;
+      background: var(--verde-oscuro);
+      opacity: 0.2;
+    }
+    
+    section {
+      margin-bottom: 40px;
+    }
+    
+    section h2 {
+      font-size: 2rem;
+      color: var(--verde-oscuro);
+      margin-bottom: 10px;
       border-bottom: 2px solid var(--oro);
       display: inline-block;
       padding-bottom: 5px;
     }
     
-    /* Desplegables animados */
+    section p {
+      font-size: 1rem;
+      margin-top: 10px;
+      color: #444;
+    }
+    
+    /* Secciones desplegables elegantes */
     details {
       background: var(--blanco);
       border: 1px solid #ddd;
       border-left: 5px solid var(--verde-oscuro);
-      padding: 10px;
-      margin: 10px 0;
       border-radius: 5px;
-      transition: border-left-color 0.3s;
+      margin: 20px 0;
+      padding: 15px;
+      transition: border-color 0.3s ease;
     }
+    
     details[open] {
       border-left-color: var(--oro);
     }
     
-    /* Estilos para el summary y su flecha animada */
     summary {
-      font-size: 1.2em;
+      font-size: 1.4rem;
       font-weight: bold;
       cursor: pointer;
-      outline: none;
-      list-style: none;
       position: relative;
-      padding-right: 25px;
+      padding-right: 30px;
+      list-style: none;
     }
+    
     summary::marker {
       display: none;
     }
+    
+    /* Flecha animada */
     summary::after {
-      content: '▼';
+      content: "▼";
       position: absolute;
       right: 0;
+      top: 50%;
+      transform: translateY(-50%);
       transition: transform 0.3s ease;
-    }
-    details[open] summary::after {
-      transform: rotate(180deg);
+      font-size: 1rem;
+      color: var(--verde-oscuro);
     }
     
-    /* Animación de aparición para el contenido desplegado */
-    details[open] > *:not(summary) {
-      animation: fadeIn 0.4s ease forwards;
+    details[open] summary::after {
+      transform: translateY(-50%) rotate(180deg);
     }
+    
+    /* Animación de aparición para el contenido desplegable */
+    details > *:not(summary) {
+      animation: fadeIn 0.4s ease-out;
+    }
+    
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(10px);
       }
       to {
         opacity: 1;
@@ -179,29 +202,53 @@
     ul {
       list-style: none;
       padding-left: 20px;
+      margin-top: 10px;
     }
+    
     ul li {
-      margin: 5px 0;
+      margin: 8px 0;
       position: relative;
+      padding-left: 20px;
     }
+    
     ul li::before {
       content: "";
       position: absolute;
-      left: -20px;
+      left: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background: var(--oro);
       border-radius: 50%;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+      }
+      
+      .profile-pic {
+        width: 220px;
+        height: 220px;
+      }
+      
+      .header-text h1 {
+        font-size: 2.2rem;
+      }
+      
+      main {
+        margin: 20px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="header-content">
-      <!-- Reemplaza "ruta/a/tu/imagen.jpg" por la ruta real de tu foto -->
-      <img src="ruta/a/tu/imagen.jpg" alt="Miguel Cox Caballero" class="profile-pic" />
+      <!-- Cambia 'ruta/a/tu/imagen.jpg' por la ruta real de tu fotografía -->
+      <img src="ruta/a/tu/imagen.jpg" alt="Miguel Cox Caballero" class="profile-pic">
       <div class="header-text">
         <h1>Miguel Cox Caballero</h1>
         <p>Desarrollador Web | Diseñador</p>
@@ -209,34 +256,36 @@
     </div>
   </header>
   
-  <div class="container">
-    <section>
+  <main>
+    <section id="about">
       <h2>Acerca de mí</h2>
       <p>
-        Bienvenido a mi página personal. Soy Miguel Cox Caballero, apasionado por la tecnología y el diseño web.
-        Explora mis estudios y algunos de mis proyectos destacados a continuación.
+        Bienvenido a mi espacio personal. Soy Miguel Cox Caballero, apasionado por la tecnología y el diseño. 
+        Con una trayectoria en desarrollo web, busco siempre la innovación y la elegancia en cada proyecto.
       </p>
     </section>
     
-    <section>
+    <section id="education">
       <details>
         <summary>Estudios</summary>
         <ul>
           <li>Licenciatura en Ingeniería Informática - Universidad XYZ (2015-2019)</li>
           <li>Curso de Desarrollo Web - Instituto ABC (2020)</li>
+          <li>Certificación en UX/UI Design - Plataforma DEF (2021)</li>
         </ul>
       </details>
     </section>
     
-    <section>
+    <section id="portfolio">
       <details>
         <summary>Portfolio</summary>
         <ul>
-          <li><strong>Proyecto A:</strong> Breve descripción del proyecto A.</li>
-          <li><strong>Proyecto B:</strong> Breve descripción del proyecto B.</li>
+          <li><strong>Proyecto A:</strong> Diseño y desarrollo de una plataforma e-commerce.</li>
+          <li><strong>Proyecto B:</strong> Creación de una aplicación móvil de servicios.</li>
+          <li><strong>Proyecto C:</strong> Desarrollo de una web interactiva para eventos.</li>
         </ul>
       </details>
     </section>
-  </div>
+  </main>
 </body>
 </html>
