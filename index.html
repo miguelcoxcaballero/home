@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Miguel Cox Caballero</title>
   <style>
-    /* Colores principales y secundarios */
+    /* Variables de colores */
     :root {
       --blanco: #ffffff;
       --gris-claro: #f4f4f4;
@@ -28,11 +28,11 @@
       margin: 20px auto;
       background: var(--blanco);
       padding: 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       overflow: hidden;
     }
     
-    /* Decoración animada en el contenedor */
+    /* Detalles decorativos sutiles en el contenedor */
     .container::before {
       content: "";
       position: absolute;
@@ -40,11 +40,9 @@
       height: 2px;
       background: var(--verde-oscuro);
       top: 50%;
-      left: -150px;
-      transform: rotate(45deg);
-      animation: slideIn 5s ease-in-out infinite alternate;
+      left: 0;
+      opacity: 0.3;
     }
-    
     .container::after {
       content: "";
       position: absolute;
@@ -52,20 +50,9 @@
       height: 50px;
       background: var(--oro);
       border-radius: 50%;
-      bottom: -25px;
-      right: -25px;
-      opacity: 0.5;
-      animation: pulse 3s infinite;
-    }
-    
-    @keyframes slideIn {
-      from { left: -150px; }
-      to { left: 100%; }
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+      bottom: 10px;
+      right: 10px;
+      opacity: 0.2;
     }
     
     /* Encabezado */
@@ -76,75 +63,60 @@
       text-align: center;
       overflow: hidden;
     }
-    
-    /* Formas abstractas animadas en el encabezado */
+    /* Detalles decorativos sutiles en el encabezado */
     header::before,
     header::after {
       content: "";
       position: absolute;
-      width: 100px;
-      height: 100px;
-      opacity: 0.3;
-      animation: rotateShape 10s linear infinite;
+      width: 80px;
+      height: 80px;
+      opacity: 0.15;
     }
-    
     header::before {
       background: var(--verde-oscuro);
-      top: -50px;
-      left: -50px;
-      transform: rotate(45deg);
+      top: -20px;
+      left: -20px;
     }
-    
     header::after {
       background: var(--oro);
-      bottom: -50px;
-      right: -50px;
-      transform: rotate(-45deg);
-    }
-    
-    @keyframes rotateShape {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      bottom: -20px;
+      right: -20px;
     }
     
     .header-content {
       position: relative;
-      z-index: 1; /* Para que el contenido quede por encima de las formas decorativas */
+      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
     }
-    
     .profile-pic {
       width: 300px;
       height: auto;
       object-fit: cover;
-      clip-path: inset(0 50% 0 0); /* Muestra solo la mitad de la imagen */
+      /* Se muestra solo la mitad de la imagen */
+      clip-path: inset(0 50% 0 0);
       border-radius: 10px;
       margin: 10px;
     }
-    
     .header-text {
       padding: 20px;
       text-align: center;
     }
-    
     header h1 {
       margin: 0;
       font-size: 2.5em;
     }
-    
     header p {
       margin: 5px 0 0;
       font-size: 1.1em;
     }
     
-    /* Secciones */
+    /* Secciones de contenido */
     section {
       margin: 20px 0;
     }
-    
     h2 {
       color: var(--verde-oscuro);
       border-bottom: 2px solid var(--oro);
@@ -152,7 +124,7 @@
       padding-bottom: 5px;
     }
     
-    /* Secciones desplegables (Estudios y Portfolio) */
+    /* Desplegables animados */
     details {
       background: var(--blanco);
       border: 1px solid #ddd;
@@ -162,33 +134,56 @@
       border-radius: 5px;
       transition: border-left-color 0.3s;
     }
-    
     details[open] {
       border-left-color: var(--oro);
     }
     
+    /* Estilos para el summary y su flecha animada */
     summary {
       font-size: 1.2em;
       font-weight: bold;
       cursor: pointer;
       outline: none;
+      list-style: none;
+      position: relative;
+      padding-right: 25px;
+    }
+    summary::marker {
+      display: none;
+    }
+    summary::after {
+      content: '▼';
+      position: absolute;
+      right: 0;
+      transition: transform 0.3s ease;
+    }
+    details[open] summary::after {
+      transform: rotate(180deg);
     }
     
-    summary:hover {
-      color: var(--verde-oscuro);
+    /* Animación de aparición para el contenido desplegado */
+    details[open] > *:not(summary) {
+      animation: fadeIn 0.4s ease forwards;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     
     ul {
       list-style: none;
       padding-left: 20px;
     }
-    
     ul li {
       margin: 5px 0;
       position: relative;
     }
-    
-    /* Línea decorativa en cada ítem */
     ul li::before {
       content: "";
       position: absolute;
@@ -205,7 +200,7 @@
 <body>
   <header>
     <div class="header-content">
-      <!-- Reemplaza "ruta/a/tu/imagen.jpg" con la ruta real de tu fotografía -->
+      <!-- Reemplaza "ruta/a/tu/imagen.jpg" por la ruta real de tu foto -->
       <img src="ruta/a/tu/imagen.jpg" alt="Miguel Cox Caballero" class="profile-pic" />
       <div class="header-text">
         <h1>Miguel Cox Caballero</h1>
