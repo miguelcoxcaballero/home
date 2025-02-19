@@ -27,71 +27,40 @@
       line-height: 1.6;
     }
     
-    /* Encabezado */
+    /* Encabezado reestructurado en dos columnas */
     header {
-      background-color: var(--blanco);
-      padding: 40px 20px;
-      position: relative;
+      display: flex;
+      min-height: 350px;
       overflow: hidden;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
-    /* Detalles decorativos sutiles en el encabezado */
-    header::before,
-    header::after {
-      content: "";
-      position: absolute;
-      background: var(--oro);
-      opacity: 0.1;
-      border-radius: 50%;
+    /* Columna izquierda: fondo con el gif (se muestra solo la parte izquierda, efecto "a media cara") */
+    .header-left {
+      flex: 1;
+      background: url("mig.gif") no-repeat left center;
+      background-size: cover;
     }
     
-    header::before {
-      width: 150px;
-      height: 150px;
-      top: -50px;
-      left: -50px;
-    }
-    
-    header::after {
-      width: 100px;
-      height: 100px;
-      bottom: -30px;
-      right: -30px;
-    }
-    
-    .header-content {
+    /* Columna derecha: contenido textual */
+    .header-right {
+      flex: 1;
+      background-color: var(--blanco);
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .profile-pic {
-      width: 280px;
-      height: 280px;
-      object-fit: cover;
-      clip-path: inset(0 50% 0 0); /* Efecto "a media cara" */
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      margin: 10px;
-    }
-    
-    .header-text {
-      max-width: 500px;
+      align-items: center;
+      padding: 20px;
       text-align: center;
-      margin: 10px;
     }
     
-    .header-text h1 {
+    .header-right h1 {
       font-size: 2.8rem;
       color: var(--verde-oscuro);
       margin-bottom: 10px;
     }
     
-    .header-text p {
+    .header-right p {
       font-size: 1.2rem;
       color: #555;
     }
@@ -225,16 +194,18 @@
     
     /* Responsive */
     @media (max-width: 768px) {
-      .header-content {
+      header {
         flex-direction: column;
       }
       
-      .profile-pic {
-        width: 220px;
-        height: 220px;
+      .header-left,
+      .header-right {
+        flex: none;
+        width: 100%;
+        min-height: 250px;
       }
       
-      .header-text h1 {
+      .header-right h1 {
         font-size: 2.2rem;
       }
       
@@ -246,13 +217,10 @@
 </head>
 <body>
   <header>
-    <div class="header-content">
-      <!-- Se utiliza el gif mig.gif -->
-      <img src="mig.gif" alt="Miguel Cox Caballero" class="profile-pic">
-      <div class="header-text">
-        <h1>Miguel Cox Caballero</h1>
-        <p>Desarrollador Web | Diseñador</p>
-      </div>
+    <div class="header-left"></div>
+    <div class="header-right">
+      <h1>Miguel Cox Caballero</h1>
+      <p>Desarrollador Web | Diseñador</p>
     </div>
   </header>
   
@@ -260,7 +228,7 @@
     <section id="about">
       <h2>Acerca de mí</h2>
       <p>
-        Bienvenido a mi espacio personal. Soy Miguel Cox Caballero, apasionado por la tecnología y el diseño. 
+        Bienvenido a mi espacio personal. Soy Miguel Cox Caballero, apasionado por la tecnología y el diseño.
         Con una trayectoria en desarrollo web, busco siempre la innovación y la elegancia en cada proyecto.
       </p>
     </section>
