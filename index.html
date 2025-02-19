@@ -24,45 +24,45 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--gris-claro);
       color: #333;
-      line-height: 1.6;
     }
     
-    /* Encabezado reestructurado en dos columnas */
+    /* Encabezado con fondo adaptable */
     header {
-      display: flex;
-      min-height: 350px;
-      overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    /* Columna izquierda: fondo con el gif (se muestra solo la parte izquierda, efecto "a media cara") */
-    .header-left {
-      flex: 1;
-      background: url("mig.gif") no-repeat left center;
+      position: relative;
+      height: 100vh;
+      background: url("mig.gif") no-repeat center center;
       background-size: cover;
-    }
-    
-    /* Columna derecha: contenido textual */
-    .header-right {
-      flex: 1;
-      background-color: var(--blanco);
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 20px;
+      justify-content: center;
       text-align: center;
+      color: var(--blanco);
     }
     
-    .header-right h1 {
-      font-size: 2.8rem;
-      color: var(--verde-oscuro);
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 0;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+    
+    .header-content h1 {
+      font-size: 3rem;
       margin-bottom: 10px;
     }
     
-    .header-right p {
-      font-size: 1.2rem;
-      color: #555;
+    .header-content p {
+      font-size: 1.5rem;
     }
     
     /* Contenedor principal */
@@ -73,24 +73,6 @@
       background: var(--blanco);
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       border-radius: 8px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Línea decorativa sutil en main */
-    main::before {
-      content: "";
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 60px;
-      height: 4px;
-      background: var(--verde-oscuro);
-      opacity: 0.2;
-    }
-    
-    section {
-      margin-bottom: 40px;
     }
     
     section h2 {
@@ -106,66 +88,6 @@
       font-size: 1rem;
       margin-top: 10px;
       color: #444;
-    }
-    
-    /* Secciones desplegables elegantes */
-    details {
-      background: var(--blanco);
-      border: 1px solid #ddd;
-      border-left: 5px solid var(--verde-oscuro);
-      border-radius: 5px;
-      margin: 20px 0;
-      padding: 15px;
-      transition: border-color 0.3s ease;
-    }
-    
-    details[open] {
-      border-left-color: var(--oro);
-    }
-    
-    summary {
-      font-size: 1.4rem;
-      font-weight: bold;
-      cursor: pointer;
-      position: relative;
-      padding-right: 30px;
-      list-style: none;
-    }
-    
-    summary::marker {
-      display: none;
-    }
-    
-    /* Flecha animada */
-    summary::after {
-      content: "▼";
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: transform 0.3s ease;
-      font-size: 1rem;
-      color: var(--verde-oscuro);
-    }
-    
-    details[open] summary::after {
-      transform: translateY(-50%) rotate(180deg);
-    }
-    
-    /* Animación de aparición para el contenido desplegable */
-    details > *:not(summary) {
-      animation: fadeIn 0.4s ease-out;
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
     
     ul {
@@ -191,68 +113,42 @@
       background: var(--oro);
       border-radius: 50%;
     }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-      }
-      
-      .header-left,
-      .header-right {
-        flex: none;
-        width: 100%;
-        min-height: 250px;
-      }
-      
-      .header-right h1 {
-        font-size: 2.2rem;
-      }
-      
-      main {
-        margin: 20px;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-left"></div>
-    <div class="header-right">
+    <div class="header-content">
       <h1>Miguel Cox Caballero</h1>
-      <p>Desarrollador Web | Diseñador</p>
+      <p>Ingeniero Informático | Desarrollador</p>
     </div>
   </header>
   
   <main>
     <section id="about">
       <h2>Acerca de mí</h2>
-      <p>
-        Bienvenido a mi espacio personal. Soy Miguel Cox Caballero, apasionado por la tecnología y el diseño.
-        Con una trayectoria en desarrollo web, busco siempre la innovación y la elegancia en cada proyecto.
-      </p>
+      <p>Estudiante de Ingeniería Informática en la Universidad de Murcia con 10 años de educación bilingüe y experiencia en proyectos tecnológicos innovadores.</p>
     </section>
     
-    <section id="education">
-      <details>
-        <summary>Estudios</summary>
-        <ul>
-          <li>Licenciatura en Ingeniería Informática - Universidad XYZ (2015-2019)</li>
-          <li>Curso de Desarrollo Web - Instituto ABC (2020)</li>
-          <li>Certificación en UX/UI Design - Plataforma DEF (2021)</li>
-        </ul>
-      </details>
+    <section id="achievements">
+      <h2>Logros Personales</h2>
+      <ul>
+        <li>Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
+        <li>Oro en la Olimpiada de Arquitectura Sostenible.</li>
+        <li>3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
+        <li>Fabricación de una antena casera premiada en IDIES.</li>
+        <li>Diseño y construcción de una impresora 3D y un dron autónomo.</li>
+        <li>Participación en Erasmus K229 y Save Mother Earth en Liechtenstein.</li>
+      </ul>
     </section>
     
-    <section id="portfolio">
-      <details>
-        <summary>Portfolio</summary>
-        <ul>
-          <li><strong>Proyecto A:</strong> Diseño y desarrollo de una plataforma e-commerce.</li>
-          <li><strong>Proyecto B:</strong> Creación de una aplicación móvil de servicios.</li>
-          <li><strong>Proyecto C:</strong> Desarrollo de una web interactiva para eventos.</li>
-        </ul>
-      </details>
+    <section id="languages">
+      <h2>Idiomas</h2>
+      <ul>
+        <li>Español: Nativo</li>
+        <li>Inglés: C2 (Cambridge CPE, 15 años)</li>
+        <li>Francés: B1 (EOI, 6 años)</li>
+        <li>Alemán: A1 (EOI, 1 año)</li>
+      </ul>
     </section>
   </main>
 </body>
