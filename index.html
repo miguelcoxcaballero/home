@@ -26,21 +26,21 @@
       color: #333;
     }
     
-    /* Encabezado con aspecto 16:9 */
+    /* Encabezado con aspect-ratio 16:9 */
     header {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9; /* This ensures the header stays 16:9 */
+      aspect-ratio: 16 / 9;
       overflow: hidden;
     }
     
     header img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* or 'contain' if you want the entire GIF visible */
+      object-fit: cover;
     }
     
-    /* Overlay cubre la imagen sin exceder su tamaño */
+    /* Overlay sobre la imagen */
     header .overlay {
       position: absolute;
       top: 0;
@@ -51,25 +51,26 @@
       z-index: 1;
     }
     
-    /* Contenido centrado sobre el GIF */
+    /* Contenido del header: centrado horizontalmente, desplazado hacia abajo */
     header .header-content {
       position: absolute;
-      top: 50%;
+      top: 60%; /* se desplaza hacia abajo */
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%); /* solo se centra horizontalmente */
       z-index: 2;
       text-align: center;
       color: var(--blanco);
       padding: 20px;
     }
     
-    .header-content h1 {
-      font-size: 3rem;
+    /* Tamaño de texto adaptable */
+    header .header-content h1 {
+      font-size: clamp(1.5rem, 4vw, 3rem);
       margin-bottom: 10px;
     }
     
-    .header-content p {
-      font-size: 1.5rem;
+    header .header-content p {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
     }
     
     /* Contenedor principal */
