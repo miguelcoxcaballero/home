@@ -1,91 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px gray;
-        }
-        header {
-            text-align: center;
-            padding: 20px;
-            background: #333;
-            color: white;
-        }
-        section {
-            margin: 20px 0;
-        }
-        h2 {
-            color: #333;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            background: #ddd;
-            margin: 5px 0;
-            padding: 10px;
-            border-left: 5px solid #333;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miguel Cox Caballero</title>
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      box-shadow: 0px 0px 10px gray;
+    }
+    
+    /* Encabezado con sombra */
+    header {
+      background: #333;
+      color: white;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Contenedor interno del encabezado */
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1000px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+    
+    /* Imagen de perfil: se muestra solo la mitad */
+    .profile-pic {
+      width: 300px;
+      height: auto;
+      /* Con clip-path se recorta la imagen para mostrar solo la mitad izquierda */
+      clip-path: inset(0 50% 0 0);
+      object-fit: cover;
+    }
+    
+    .header-text {
+      padding: 20px;
+      text-align: center;
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    
+    header p {
+      margin: 5px 0 0;
+    }
+    
+    /* Secciones desplegables */
+    details {
+      background: #eee;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      outline: none;
+    }
+    
+    ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+    
+    ul li {
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>John Doe</h1>
-        <p>Software Developer | Web Designer | Freelancer</p>
-    </header>
-    <div class="container">
-        <section>
-            <h2>About Me</h2>
-            <p>A passionate developer with experience in building web applications and solving problems using modern technologies.</p>
-        </section>
-        <section>
-            <h2>Education</h2>
-            <ul>
-                <li>Bachelor’s in Computer Science - XYZ University (2020-2024)</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Experience</h2>
-            <ul>
-                <li>Frontend Developer at ABC Tech (2023-Present)</li>
-                <li>Intern at Web Solutions (2022-2023)</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Skills</h2>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>React, Node.js</li>
-                <li>Python, Django</li>
-                <li>Git, Docker</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Projects</h2>
-            <ul>
-                <li><strong>Portfolio Website:</strong> A personal website showcasing my work.</li>
-                <li><strong>E-commerce App:</strong> A full-stack application for online shopping.</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Contact</h2>
-            <p>Email: johndoe@example.com</p>
-            <p>LinkedIn: linkedin.com/in/johndoe</p>
-        </section>
+  <header>
+    <div class="header-content">
+      <!-- Reemplaza "ruta/a/tu/imagen.jpg" por la ruta real de tu foto -->
+      <img src="ruta/a/tu/imagen.jpg" alt="Miguel Cox Caballero" class="profile-pic" />
+      <div class="header-text">
+        <h1>Miguel Cox Caballero</h1>
+        <p>Desarrollador Web | Diseñador</p>
+      </div>
     </div>
+  </header>
+  
+  <div class="container">
+    <section>
+      <h2>Acerca de mí</h2>
+      <p>
+        Bienvenido a mi página personal. Soy Miguel Cox Caballero, apasionado por la tecnología y el diseño web.
+        Aquí encontrarás información sobre mis estudios y algunos de mis proyectos destacados.
+      </p>
+    </section>
+    
+    <section>
+      <details>
+        <summary>Estudios</summary>
+        <ul>
+          <li>Licenciatura en Ingeniería Informática - Universidad XYZ (2015-2019)</li>
+          <li>Curso de Desarrollo Web - Instituto ABC (2020)</li>
+        </ul>
+      </details>
+    </section>
+    
+    <section>
+      <details>
+        <summary>Portfolio</summary>
+        <ul>
+          <li>
+            <strong>Proyecto A:</strong> Descripción breve del proyecto A.
+          </li>
+          <li>
+            <strong>Proyecto B:</strong> Descripción breve del proyecto B.
+          </li>
+        </ul>
+      </details>
+    </section>
+  </div>
 </body>
 </html>
