@@ -5,47 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Miguel Cox Caballero</title>
   <style>
+    /* Colores principales y secundarios */
+    :root {
+      --blanco: #ffffff;
+      --gris-claro: #f4f4f4;
+      --verde-oscuro: #006400;
+      --oro: #ffd700;
+    }
+    
     /* Estilos generales */
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      background-color: var(--gris-claro);
+      color: #333;
     }
     
     .container {
+      position: relative;
       width: 80%;
       margin: 20px auto;
-      background: white;
+      background: var(--blanco);
       padding: 20px;
-      box-shadow: 0px 0px 10px gray;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
     }
     
-    /* Encabezado con sombra */
+    /* Decoración animada en el contenedor */
+    .container::before {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 2px;
+      background: var(--verde-oscuro);
+      top: 50%;
+      left: -150px;
+      transform: rotate(45deg);
+      animation: slideIn 5s ease-in-out infinite alternate;
+    }
+    
+    .container::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: var(--oro);
+      border-radius: 50%;
+      bottom: -25px;
+      right: -25px;
+      opacity: 0.5;
+      animation: pulse 3s infinite;
+    }
+    
+    @keyframes slideIn {
+      from { left: -150px; }
+      to { left: 100%; }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    /* Encabezado */
     header {
-      background: #333;
-      color: white;
+      position: relative;
+      background: var(--blanco);
       padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      overflow: hidden;
     }
     
-    /* Contenedor interno del encabezado */
+    /* Formas abstractas animadas en el encabezado */
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      opacity: 0.3;
+      animation: rotateShape 10s linear infinite;
+    }
+    
+    header::before {
+      background: var(--verde-oscuro);
+      top: -50px;
+      left: -50px;
+      transform: rotate(45deg);
+    }
+    
+    header::after {
+      background: var(--oro);
+      bottom: -50px;
+      right: -50px;
+      transform: rotate(-45deg);
+    }
+    
+    @keyframes rotateShape {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
     .header-content {
+      position: relative;
+      z-index: 1; /* Para que el contenido quede por encima de las formas decorativas */
       display: flex;
       align-items: center;
       justify-content: center;
-      max-width: 1000px;
-      margin: auto;
       flex-wrap: wrap;
     }
     
-    /* Imagen de perfil: se muestra solo la mitad */
     .profile-pic {
       width: 300px;
       height: auto;
-      /* Con clip-path se recorta la imagen para mostrar solo la mitad izquierda */
-      clip-path: inset(0 50% 0 0);
       object-fit: cover;
+      clip-path: inset(0 50% 0 0); /* Muestra solo la mitad de la imagen */
+      border-radius: 10px;
+      margin: 10px;
     }
     
     .header-text {
@@ -60,15 +137,34 @@
     
     header p {
       margin: 5px 0 0;
+      font-size: 1.1em;
     }
     
-    /* Secciones desplegables */
+    /* Secciones */
+    section {
+      margin: 20px 0;
+    }
+    
+    h2 {
+      color: var(--verde-oscuro);
+      border-bottom: 2px solid var(--oro);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    
+    /* Secciones desplegables (Estudios y Portfolio) */
     details {
-      background: #eee;
+      background: var(--blanco);
+      border: 1px solid #ddd;
+      border-left: 5px solid var(--verde-oscuro);
       padding: 10px;
       margin: 10px 0;
-      border: 1px solid #ccc;
       border-radius: 5px;
+      transition: border-left-color 0.3s;
+    }
+    
+    details[open] {
+      border-left-color: var(--oro);
     }
     
     summary {
@@ -78,6 +174,10 @@
       outline: none;
     }
     
+    summary:hover {
+      color: var(--verde-oscuro);
+    }
+    
     ul {
       list-style: none;
       padding-left: 20px;
@@ -85,13 +185,27 @@
     
     ul li {
       margin: 5px 0;
+      position: relative;
+    }
+    
+    /* Línea decorativa en cada ítem */
+    ul li::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      background: var(--oro);
+      border-radius: 50%;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="header-content">
-      <!-- Reemplaza "ruta/a/tu/imagen.jpg" por la ruta real de tu foto -->
+      <!-- Reemplaza "ruta/a/tu/imagen.jpg" con la ruta real de tu fotografía -->
       <img src="ruta/a/tu/imagen.jpg" alt="Miguel Cox Caballero" class="profile-pic" />
       <div class="header-text">
         <h1>Miguel Cox Caballero</h1>
@@ -105,7 +219,7 @@
       <h2>Acerca de mí</h2>
       <p>
         Bienvenido a mi página personal. Soy Miguel Cox Caballero, apasionado por la tecnología y el diseño web.
-        Aquí encontrarás información sobre mis estudios y algunos de mis proyectos destacados.
+        Explora mis estudios y algunos de mis proyectos destacados a continuación.
       </p>
     </section>
     
@@ -123,12 +237,8 @@
       <details>
         <summary>Portfolio</summary>
         <ul>
-          <li>
-            <strong>Proyecto A:</strong> Descripción breve del proyecto A.
-          </li>
-          <li>
-            <strong>Proyecto B:</strong> Descripción breve del proyecto B.
-          </li>
+          <li><strong>Proyecto A:</strong> Breve descripción del proyecto A.</li>
+          <li><strong>Proyecto B:</strong> Breve descripción del proyecto B.</li>
         </ul>
       </details>
     </section>
