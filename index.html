@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:wght@300;400;500&display=swap"
     rel="stylesheet"
   />
 
@@ -19,27 +19,31 @@
     --------------------------------------------------------------*/
     :root {
       /* Paleta principal */
-      --dark-green: #1F3321;    /* Fondo oscuro de bloques */
-      --gold: #FFD700;          /* Dorado para bullets y detalles */
-      --white: #FFFFFF;         /* Blanco */
-      --text-color: #333;       /* Texto base */
-      --bg-start: #E9F5EE;      /* Degradado inferior */
-      --bg-end: #F8F9FA;        /* Degradado superior */
+      --bg-start: #E9F5EE;     /* Degradado (parte superior) */
+      --bg-end: #F8F9FA;       /* Degradado (parte inferior) */
+      --text-color: #333;      /* Texto base */
+      --white: #FFFFFF;
+      --gold: #FFD700;         /* Detalles dorados */
+      
+      /* Bloques con 95% negro y 5% verde muy oscuro */
+      --block-bg: linear-gradient(
+        90deg,
+        #000000 95%,  /* 95% negro */
+        #031003 100%  /* último 5% verde muy oscuro */
+      );
 
       /* Tipografías */
-      --heading-font: 'Playfair Display', serif; /* Títulos fancy */
-      --body-font: 'Poppins', sans-serif;        /* Texto cuerpo */
+      --heading-font: 'Cinzel Decorative', serif; /* Títulos fancy */
+      --body-font: 'Poppins', sans-serif;         /* Texto del cuerpo */
 
       /* Misc */
       --border-radius: 6px;
       --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-
-      /* Duración de animaciones */
-      --fade-duration: 0.6s;
+      --fade-duration: 0.6s; /* Duración para las animaciones */
     }
 
     /*--------------------------------------------------------------
-      RESET BÁSICO
+      RESETEO BÁSICO
     --------------------------------------------------------------*/
     * {
       margin: 0;
@@ -53,7 +57,7 @@
       font-family: var(--body-font);
       background: linear-gradient(to bottom, var(--bg-start), var(--bg-end));
       color: var(--text-color);
-      overflow-x: hidden; /* Previene scroll horizontal en móviles */
+      overflow-x: hidden; /* Evita scroll horizontal en móviles */
     }
 
     /*--------------------------------------------------------------
@@ -75,12 +79,12 @@
     }
 
     /*--------------------------------------------------------------
-      HEADER (4:3) + OVERLAY + TITULOS
+      ENCABEZADO (4:3)
     --------------------------------------------------------------*/
     header {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 3; /* Ajusta al GIF 4:3 */
+      aspect-ratio: 4 / 3; /* Se ajusta al GIF 4:3 */
       overflow: hidden;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
@@ -105,30 +109,25 @@
       z-index: 1;
     }
 
+    /* TITULAR CENTRADO y GRANDE */
     .header-content {
       position: absolute;
-      bottom: 15%; /* Ajusta para colocar más arriba/abajo el texto */
+      bottom: 15%; /* Ajusta para subir o bajar el texto */
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
       text-align: center;
-      width: 90%;
       animation: fadeInUp 0.8s ease forwards;
       color: var(--white);
+      max-width: 90%;
     }
-
     .header-content h1 {
       font-family: var(--heading-font);
       font-weight: 700;
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-size: clamp(2.5rem, 6vw, 4rem); /* Muy grande en pantallas grandes */
       margin-bottom: 0.4rem;
-      white-space: nowrap; /* Evita quiebres de línea */
-    }
-
-    .header-content p {
-      font-family: var(--body-font);
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      font-weight: 400;
+      white-space: normal; /* Permite que el texto salte de línea si es necesario */
+      word-wrap: break-word;
     }
 
     /*--------------------------------------------------------------
@@ -141,46 +140,43 @@
     }
 
     /*--------------------------------------------------------------
-      SECCIONES
+      SECCIONES (BLOQUES CON 95% NEGRO / 5% VERDE MUY OSCURO)
     --------------------------------------------------------------*/
     section {
-      background-color: var(--dark-green); /* Bloques con fondo verde oscuro */
+      background: var(--block-bg);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
       padding: 1.5rem;
       margin-bottom: 2rem;
     }
-
     section h2 {
       font-family: var(--heading-font);
+      font-size: 1.8rem;
       color: var(--gold);  /* Título en dorado */
-      font-size: 1.6rem;
       margin-bottom: 1rem;
       border-bottom: 2px solid var(--gold);
       display: inline-block;
       padding-bottom: 0.3rem;
     }
-
     section p,
     section ul {
       font-family: var(--body-font);
       font-size: 1rem;
       line-height: 1.6;
-      color: var(--white); /* Texto en blanco sobre fondo verde oscuro */
+      color: var(--white);
     }
 
+    /* LISTAS CON BALAS DORADAS */
     ul {
       list-style: none;
       margin-top: 1rem;
       padding-left: 2rem;
     }
-
     ul li {
       position: relative;
       margin-bottom: 0.6rem;
       padding-left: 1.5rem;
     }
-
     ul li::before {
       content: "";
       position: absolute;
@@ -189,7 +185,7 @@
       transform: translateY(-50%);
       width: 8px;
       height: 8px;
-      background-color: var(--gold); /* Punto dorado */
+      background-color: var(--gold);
       border-radius: 50%;
     }
 
@@ -234,7 +230,7 @@
         bottom: 12%;
       }
       .header-content h1 {
-        font-size: clamp(1.6rem, 4vw, 2.2rem);
+        font-size: clamp(2rem, 8vw, 3rem);
       }
     }
 
@@ -243,10 +239,7 @@
         bottom: 10%;
       }
       .header-content h1 {
-        font-size: clamp(1.4rem, 5vw, 2rem);
-      }
-      .header-content p {
-        font-size: clamp(0.9rem, 4vw, 1rem);
+        font-size: clamp(1.8rem, 9vw, 2.8rem);
       }
     }
   </style>
@@ -254,12 +247,12 @@
 <body>
 
   <header>
-    <!-- GIF 4:3 -->
-    <img src="mig.gif" alt="Miguel's animated GIF (4:3)">
+    <!-- GIF 4:3 (722×542) -->
+    <img src="mig.gif" alt="Miguel's animated GIF 4:3" />
     <div class="overlay"></div>
     <div class="header-content">
+      <!-- SOLO EL NOMBRE, MÁS GRANDE, CENTRADO Y SIN RECORTES -->
       <h1>Miguel Cox Caballero</h1>
-      <p>Ingeniero Informático | Desarrollador</p>
     </div>
   </header>
   
