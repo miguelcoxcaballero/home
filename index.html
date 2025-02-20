@@ -30,7 +30,7 @@
     header {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 16 / 9; 
       overflow: hidden;
     }
     
@@ -54,9 +54,9 @@
     /* Contenido del header: centrado horizontalmente, desplazado hacia abajo */
     header .header-content {
       position: absolute;
-      top: 60%; /* se desplaza hacia abajo */
+      top: 60%; /* ajusta según prefieras */
       left: 50%;
-      transform: translateX(-50%); /* solo se centra horizontalmente */
+      transform: translateX(-50%);
       z-index: 2;
       text-align: center;
       color: var(--blanco);
@@ -129,6 +129,7 @@
     <div class="overlay"></div>
     <div class="header-content">
       <h1>Miguel Cox Caballero</h1>
+      <p>Ingeniero Informático | Desarrollador</p>
     </div>
   </header>
   
@@ -159,6 +160,26 @@
         <li>Alemán: A1 (EOI, 1 año)</li>
       </ul>
     </section>
+
+    <!-- Sección de Proyectos -->
+    <section id="proyectos">
+      <h2>Proyectos</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo"
+             target="_blank" rel="noopener noreferrer">
+            Guiado de drone por visión computacional
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/miguelcoxcaballero/TypeTest"
+             target="_blank" rel="noopener noreferrer">
+            TypeTest
+          </a>
+        </li>
+      </ul>
+    </section>
+
   </main>
 </body>
 </html>
