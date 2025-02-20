@@ -2,43 +2,44 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Miguel Cox Caballero</title>
 
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap"
     rel="stylesheet"
-  >
-  
+  />
+
   <style>
     /*--------------------------------------------------------------
       PALETA DE COLORES & TIPOGRAFÍAS
     --------------------------------------------------------------*/
     :root {
-      /* Colores */
-      --dark-green: #064635;     /* Verde oscuro protagonista */
-      --gold: #ffd700;           /* Dorado para acentos (bullet points) */
-      --bg-color: #F8F9FA;       /* Fondo general */
-      --white: #ffffff;
-      --text-color: #333333;
+      /* Paleta principal */
+      --dark-green: #1F3321;    /* Fondo oscuro de bloques */
+      --gold: #FFD700;          /* Dorado para bullets y detalles */
+      --white: #FFFFFF;         /* Blanco */
+      --text-color: #333;       /* Texto base */
+      --bg-start: #E9F5EE;      /* Degradado inferior */
+      --bg-end: #F8F9FA;        /* Degradado superior */
 
       /* Tipografías */
-      --heading-font: 'Montserrat', sans-serif;
-      --body-font: 'Poppins', sans-serif;
+      --heading-font: 'Playfair Display', serif; /* Títulos fancy */
+      --body-font: 'Poppins', sans-serif;        /* Texto cuerpo */
 
-      /* Otros */
+      /* Misc */
       --border-radius: 6px;
       --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-      /* Animaciones */
+      /* Duración de animaciones */
       --fade-duration: 0.6s;
     }
 
     /*--------------------------------------------------------------
-      RESETEO BÁSICO
+      RESET BÁSICO
     --------------------------------------------------------------*/
     * {
       margin: 0;
@@ -50,7 +51,7 @@
     }
     body {
       font-family: var(--body-font);
-      background-color: var(--bg-color);
+      background: linear-gradient(to bottom, var(--bg-start), var(--bg-end));
       color: var(--text-color);
       overflow-x: hidden; /* Previene scroll horizontal en móviles */
     }
@@ -74,24 +75,26 @@
     }
 
     /*--------------------------------------------------------------
-      ENCABEZADO (4:3) + OVERLAY + TEXTO
+      HEADER (4:3) + OVERLAY + TITULOS
     --------------------------------------------------------------*/
     header {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 3; /* 4:3 */
+      aspect-ratio: 4 / 3; /* Ajusta al GIF 4:3 */
       overflow: hidden;
-      margin-bottom: 2rem;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
+      margin-bottom: 2rem;
     }
+
     header img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
+
     .overlay {
       position: absolute;
       top: 0; 
@@ -101,23 +104,27 @@
       background-color: rgba(0, 0, 0, 0.35);
       z-index: 1;
     }
+
     .header-content {
       position: absolute;
-      bottom: 10%;   /* Se coloca más cerca de la parte inferior */
+      bottom: 15%; /* Ajusta para colocar más arriba/abajo el texto */
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
-      color: var(--white);
       text-align: center;
-      width: 90%;    /* Pequeño margen para no pegar texto a bordes */
+      width: 90%;
       animation: fadeInUp 0.8s ease forwards;
+      color: var(--white);
     }
+
     .header-content h1 {
       font-family: var(--heading-font);
       font-weight: 700;
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
-      margin-bottom: 0.5rem;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      margin-bottom: 0.4rem;
+      white-space: nowrap; /* Evita quiebres de línea */
     }
+
     .header-content p {
       font-family: var(--body-font);
       font-size: clamp(1rem, 2.5vw, 1.2rem);
@@ -134,10 +141,10 @@
     }
 
     /*--------------------------------------------------------------
-      SECCIONES (BLOQUES)
+      SECCIONES
     --------------------------------------------------------------*/
     section {
-      background-color: var(--white);
+      background-color: var(--dark-green); /* Bloques con fondo verde oscuro */
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
       padding: 1.5rem;
@@ -146,34 +153,35 @@
 
     section h2 {
       font-family: var(--heading-font);
-      color: var(--dark-green);
+      color: var(--gold);  /* Título en dorado */
       font-size: 1.6rem;
       margin-bottom: 1rem;
-      border-bottom: 2px solid var(--dark-green);
+      border-bottom: 2px solid var(--gold);
       display: inline-block;
       padding-bottom: 0.3rem;
     }
 
-    section p {
+    section p,
+    section ul {
       font-family: var(--body-font);
       font-size: 1rem;
-      margin-top: 0.8rem;
       line-height: 1.6;
+      color: var(--white); /* Texto en blanco sobre fondo verde oscuro */
     }
 
-    section ul {
+    ul {
       list-style: none;
       margin-top: 1rem;
       padding-left: 2rem;
     }
-    section ul li {
+
+    ul li {
       position: relative;
       margin-bottom: 0.6rem;
       padding-left: 1.5rem;
-      font-size: 1rem;
-      line-height: 1.5;
     }
-    section ul li::before {
+
+    ul li::before {
       content: "";
       position: absolute;
       left: 0;
@@ -181,7 +189,7 @@
       transform: translateY(-50%);
       width: 8px;
       height: 8px;
-      background-color: var(--gold); /* Bala dorada */
+      background-color: var(--gold); /* Punto dorado */
       border-radius: 50%;
     }
 
@@ -189,13 +197,13 @@
       ENLACES
     --------------------------------------------------------------*/
     a {
-      color: var(--dark-green);
+      color: var(--gold);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
       transition: color 0.3s ease, transform 0.3s ease;
     }
     a:hover {
-      color: var(--gold);
+      color: var(--white);
       transform: translateY(-2px);
     }
 
@@ -223,20 +231,19 @@
         margin-bottom: 1.5rem;
       }
       .header-content {
-        bottom: 8%; 
-        width: 95%;
+        bottom: 12%;
       }
       .header-content h1 {
-        font-size: clamp(1.4rem, 5vw, 2rem);
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
       }
     }
 
     @media (max-width: 480px) {
       .header-content {
-        bottom: 5%;
+        bottom: 10%;
       }
       .header-content h1 {
-        font-size: clamp(1.3rem, 6vw, 1.8rem);
+        font-size: clamp(1.4rem, 5vw, 2rem);
       }
       .header-content p {
         font-size: clamp(0.9rem, 4vw, 1rem);
@@ -247,6 +254,7 @@
 <body>
 
   <header>
+    <!-- GIF 4:3 -->
     <img src="mig.gif" alt="Miguel's animated GIF (4:3)">
     <div class="overlay"></div>
     <div class="header-content">
