@@ -3,39 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Miguel Cox Caballero</title>
+  <title>Miguel Cox Caballero - Scroll Transition</title>
 
-  <!-- Tipografía para el cuerpo (Poppins). 
-       Goudy Old Style se usará si está instalada en el sistema. -->
+  <!-- Fuente para el cuerpo (Poppins). 
+       Goudy Old Style se usará si está instalada en el sistema -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" 
     rel="stylesheet"
   />
 
   <style>
-    /*--------------------------------------------------------------
-      PALETA DE COLORES (Únicamente la proporcionada + white)
-    --------------------------------------------------------------*/
     :root {
-      --black: #000001;          /* Fondo principal */
-      --white: #FFFFFF;          /* Texto base */
-      --castleton-green: #00563F;/* Fondo secciones y rectángulo */
-      --cyber-yellow: #FED502;   /* Balas de lista */
-      --vivid-tangelo: #F37433;  /* Color coral para títulos (excepto el nombre) */
-      
+      /* Colores de tu paleta */
+      --black: #000001;
+      --white: #FFFFFF;
+      --castleton-green: #00563F;
+      --cyber-yellow: #FED502;
+      --vivid-tangelo: #F37433;
+      --mahogany: #C44004; /* Barra roja */
+
       /* Tipografías */
       --title-font: "Goudy Old Style", "Times New Roman", serif;
       --body-font: 'Poppins', sans-serif;
-      
+
       --border-radius: 6px;
-      --fade-duration: 0.6s;
+
+      /* Tamaños */
+      --big-title-size: 3rem;    /* Bloque verde */
+      --bar-title-size: 1.8rem; /* Título pequeño en la barra */
     }
 
-    /*--------------------------------------------------------------
-      RESETEO
-    --------------------------------------------------------------*/
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
@@ -46,41 +46,45 @@
     }
     body {
       background-color: var(--black);
-      font-family: var(--body-font);
       color: var(--white);
+      font-family: var(--body-font);
       overflow-x: hidden;
-      padding-bottom: 3rem; /* Espacio extra al final para visualizar bien los bloques */
+      padding-bottom: 3rem; /* espacio adicional al final */
     }
 
-    /*--------------------------------------------------------------
-      ANIMACIONES
-    --------------------------------------------------------------*/
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Barra roja fija arriba */
+    .scroll-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0; /* se expandirá con JS */
+      background-color: var(--mahogany);
+      z-index: 100;
+      display: flex;
+      align-items: center; /* centrar el título verticalmente */
+      padding: 0 1rem;
+      overflow: hidden; /* oculta el texto cuando height=0 */
+      transition: height 0.3s ease; 
     }
-    .fade-in-up {
+    /* Título pequeño en la barra (inicia invisible: opacity=0) */
+    .scroll-bar h1 {
+      font-family: var(--title-font);
+      font-size: var(--bar-title-size);
+      font-weight: 700;
+      margin: 0;
       opacity: 0;
-      animation: fadeInUp var(--fade-duration) ease forwards;
+      transition: none; /* controlado vía JS */
     }
 
-    /*--------------------------------------------------------------
-      HEADER (4:3) - Imagen + Overlay
-    --------------------------------------------------------------*/
     header {
       position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
+      margin-bottom: 2rem;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
-      margin-bottom: 2rem;
     }
     header img {
       width: 100%;
@@ -90,54 +94,45 @@
     }
     .overlay {
       position: absolute;
-      top: 0; 
-      left: 0;
+      top: 0; left: 0;
       width: 100%; 
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0,0,0,0.4);
       z-index: 1;
     }
 
-    /* Contenedor del nombre, alineado a la derecha */
+    /* Bloque verde, con TÍTULO GRANDE */
     .header-content {
       position: absolute;
       bottom: 15%; 
       right: 5%;
       z-index: 2;
       text-align: right;
-      animation: fadeInUp 0.8s ease forwards;
       max-width: 90%;
-      color: var(--white);
     }
-    /* Rectángulo redondeado con fondo Castleton Green a 70% opacidad */
-    .header-content .title-box {
-      background-color: rgba(0, 86, 63, 0.7);
+    .title-box {
+      background-color: rgba(0, 86, 63, 0.7); /* Castleton Green al 70% */
       border-radius: var(--border-radius);
       padding: 0.5rem 1rem;
       display: inline-block;
+      opacity: 1; /* fade-out con JS */
+      transition: none;
     }
-    .header-content h1 {
+    .title-box h1 {
       font-family: var(--title-font);
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: var(--big-title-size);
       font-weight: 700;
-      color: var(--white);
+      margin: 0;
       white-space: normal;
       word-break: break-word;
-      margin: 0;
     }
 
-    /*--------------------------------------------------------------
-      CONTENEDOR PRINCIPAL
-    --------------------------------------------------------------*/
+    /* Contenido principal */
     main {
       max-width: 1100px;
       width: 95%;
       margin: 0 auto 2rem;
     }
-
-    /*--------------------------------------------------------------
-      SECCIONES (FONDO Castleton Green)
-    --------------------------------------------------------------*/
     section {
       background-color: var(--castleton-green);
       border-radius: var(--border-radius);
@@ -154,15 +149,10 @@
       display: inline-block;
       padding-bottom: 0.3rem;
     }
-    section p,
-    section ul {
-      font-family: var(--body-font);
+    section p, section ul {
       font-size: 1rem;
       line-height: 1.6;
-      color: var(--white);
     }
-
-    /* LISTAS: Balas en Cyber Yellow */
     ul {
       list-style: none;
       margin-top: 1rem;
@@ -185,9 +175,15 @@
       border-radius: 50%;
     }
 
-    /*--------------------------------------------------------------
-      ENLACES
-    --------------------------------------------------------------*/
+    footer {
+      background-color: var(--castleton-green);
+      padding: 1rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--vivid-tangelo);
+    }
+
+    /* ENLACES en amarillo sin subrayado */
     a {
       color: var(--cyber-yellow);
       text-decoration: none;
@@ -196,83 +192,30 @@
     }
     a:hover {
       color: var(--white);
-      transform: translateY(-2px);
-    }
-
-    /*--------------------------------------------------------------
-      ANIMACIÓN ESCALONADA PARA SECCIONES
-    --------------------------------------------------------------*/
-    #about.fade-in-up {
-      animation-delay: 0.2s;
-    }
-    #achievements.fade-in-up {
-      animation-delay: 0.4s;
-    }
-    #languages.fade-in-up {
-      animation-delay: 0.6s;
-    }
-    #proyectos.fade-in-up {
-      animation-delay: 0.8s;
-    }
-
-    /*--------------------------------------------------------------
-      FOOTER
-    --------------------------------------------------------------*/
-    footer {
-      background-color: var(--castleton-green);
-      padding: 1rem 0;
-      text-align: center;
-      font-family: var(--body-font);
-      font-size: 0.9rem;
-      color: var(--white);
-      border-top: 1px solid var(--vivid-tangelo);
-    }
-    footer a {
-      color: var(--vivid-tangelo);
       text-decoration: none;
-      font-weight: 600;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /*--------------------------------------------------------------
-      MEDIA QUERIES (RESPONSIVE)
-    --------------------------------------------------------------*/
-    @media (max-width: 768px) {
-      .header-content {
-        bottom: 12%;
-        right: 3%;
-      }
-      .header-content h1 {
-        font-size: clamp(2rem, 8vw, 3rem);
-      }
-    }
-    @media (max-width: 480px) {
-      .header-content {
-        bottom: 10%;
-        right: 5%;
-      }
-      .header-content h1 {
-        font-size: clamp(1.8rem, 9vw, 2.8rem);
-      }
+      transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
 
+  <!-- Barra roja fija con título pequeño -->
+  <div class="scroll-bar" id="scrollBar">
+    <h1 id="barTitle">Miguel Cox Caballero</h1>
+  </div>
+
   <header>
-    <img src="mig.gif" alt="Miguel's animated GIF 4:3">
+    <img src="mig.gif" alt="Miguel Cox Caballero - GIF 4:3">
     <div class="overlay"></div>
-    <div class="header-content">
-      <div class="title-box">
+    <div class="header-content" id="headerContent">
+      <div class="title-box" id="titleBox">
         <h1>Miguel Cox Caballero</h1>
       </div>
     </div>
   </header>
-  
+
   <main>
-    <section id="about" class="fade-in-up">
+    <section id="about">
       <h2>Acerca de mí</h2>
       <p>
         Estudiante de Ingeniería Informática en la Universidad de Murcia con 
@@ -281,7 +224,7 @@
       </p>
     </section>
     
-    <section id="achievements" class="fade-in-up">
+    <section id="achievements">
       <h2>Logros Personales</h2>
       <ul>
         <li>Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
@@ -293,7 +236,7 @@
       </ul>
     </section>
     
-    <section id="languages" class="fade-in-up">
+    <section id="languages">
       <h2>Idiomas</h2>
       <ul>
         <li>Español: Nativo</li>
@@ -303,7 +246,7 @@
       </ul>
     </section>
 
-    <section id="proyectos" class="fade-in-up">
+    <section id="proyectos">
       <h2>Proyectos</h2>
       <ul>
         <li>
@@ -333,7 +276,7 @@
       </ul>
     </section>
   </main>
-  
+
   <footer>
     <p>© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
     <p>Sígueme en Instagram: 
@@ -343,5 +286,43 @@
     </p>
   </footer>
 
+  <script>
+    const scrollBar = document.getElementById('scrollBar');
+    const barTitle  = document.getElementById('barTitle');
+
+    const headerContent = document.getElementById('headerContent'); // bloque
+    const titleBox      = document.getElementById('titleBox');      // fondo verde
+    // la animación: se hace un fade-out y sube en Y a la vez
+
+    // umbral de scroll (px) para completar la transición
+    const THRESHOLD = 400; 
+
+    // la barra crecerá hasta ~3rem = ~48px
+    const BAR_MAX_HEIGHT = 48;
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      let progress = scrollY / THRESHOLD;
+      if (progress < 0) progress = 0;
+      if (progress > 1) progress = 1;
+
+      // 1) Bloque verde -> sube + fade-out
+      // bottom: 15% -> 70%
+      const startBottom = 15;
+      const endBottom   = 70;
+      const currentBottom = startBottom + (endBottom - startBottom) * progress;
+      headerContent.style.bottom = currentBottom + '%';
+
+      // opacidad: 1 -> 0
+      titleBox.style.opacity = 1 - progress;
+
+      // 2) Barra roja sube en altura: 0 -> 48px
+      const currentBarHeight = BAR_MAX_HEIGHT * progress;
+      scrollBar.style.height = currentBarHeight + 'px';
+
+      // 3) El título pequeño en la barra hace fade-in: 0 -> 1
+      barTitle.style.opacity = progress;
+    });
+  </script>
 </body>
 </html>
