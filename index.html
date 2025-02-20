@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Miguel Cox Caballero - Scroll Transition</title>
 
-  <!-- Fuente para el cuerpo (Poppins). Goudy Old Style se usará si está instalada en el sistema -->
+  <!-- Fuente para el cuerpo (Poppins). 
+       Goudy Old Style se usará si está instalada en el sistema -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link 
@@ -73,7 +74,7 @@
       width: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
-      margin-bottom: 4rem; /* Increased gap between header and content */
+      margin-bottom: 4rem; /* Larger gap between header and content */
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
     }
@@ -92,10 +93,10 @@
       z-index: 1;
     }
 
-    /* Lowered green box */
+    /* Green block with title */
     .header-content {
       position: absolute;
-      bottom: 2%;  /* Changed to 2% so it starts lower */
+      bottom: 2%;  /* Lowered further */
       right: 5%;
       z-index: 2;
       text-align: right;
@@ -142,26 +143,22 @@
       font-size: 1rem;
       line-height: 1.6;
     }
-    ul {
+
+    /* Languages: Remove bullet points and add images */
+    #languages ul {
       list-style: none;
       margin-top: 1rem;
-      padding-left: 2rem;
+      padding-left: 0;
     }
-    ul li {
-      position: relative;
+    #languages li {
+      display: flex;
+      align-items: center;
       margin-bottom: 0.6rem;
-      padding-left: 1.5rem;
     }
-    ul li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      background-color: var(--cyber-yellow);
-      border-radius: 50%;
+    .lang-icon {
+      width: 20px;
+      height: auto;
+      margin-right: 0.5rem;
     }
 
     footer {
@@ -232,13 +229,26 @@
       </ul>
     </section>
     
+    <!-- Languages section modified to use images instead of bullet points -->
     <section id="languages">
       <h2>Idiomas</h2>
       <ul>
-        <li>Español: Nativo</li>
-        <li>Inglés: C2 (Cambridge CPE, 15 años)</li>
-        <li>Francés: B1 (EOI, 6 años)</li>
-        <li>Alemán: A1 (EOI, 1 año)</li>
+        <li>
+          <img src="es.png" alt="Español" class="lang-icon">
+          Español: Nativo
+        </li>
+        <li>
+          <img src="uk.png" alt="Inglés" class="lang-icon">
+          Inglés: C2 (Cambridge CPE, 15 años)
+        </li>
+        <li>
+          <img src="fr.png" alt="Francés" class="lang-icon">
+          Francés: B1 (EOI, 6 años)
+        </li>
+        <li>
+          <img src="de.png" alt="Alemán" class="lang-icon">
+          Alemán: A1 (EOI, 1 año)
+        </li>
       </ul>
     </section>
 
@@ -295,8 +305,8 @@
       let progress = scrollY / THRESHOLD;
       progress = Math.min(Math.max(progress, 0), 1);
 
-      // Move green block upward: bottom from 2% to 70%
-      const startBottom = 2; // now starting at 2%
+      // Green block moves upward: bottom from 2% to 70%
+      const startBottom = 2;
       const endBottom = 70;
       const currentBottom = startBottom + (endBottom - startBottom) * progress;
       headerContent.style.bottom = currentBottom + '%';
