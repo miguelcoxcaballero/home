@@ -8,34 +8,33 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;600&display=swap" 
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500&display=swap"
     rel="stylesheet"
   >
-
+  
   <style>
     /*--------------------------------------------------------------
-      PALETA DE COLORES Y TIPOGRAFÍAS
+      PALETA DE COLORES & TIPOGRAFÍAS
     --------------------------------------------------------------*/
     :root {
-      --bg-gradient: linear-gradient(135deg, #A1FFCE 0%, #FAFFD1 100%);
-      --section-bg-1: #FFF4E3;
-      --section-bg-2: #E3F6FF;
-      --section-bg-3: #F8E3FF;
-      --section-bg-4: #E3FFE7;
-      --headline-font: 'Lobster', cursive;
+      /* Colores */
+      --dark-green: #064635;     /* Verde oscuro protagonista */
+      --gold: #ffd700;           /* Dorado para acentos (bullet points) */
+      --bg-color: #F8F9FA;       /* Fondo general */
+      --white: #ffffff;
+      --text-color: #333333;
+
+      /* Tipografías */
+      --heading-font: 'Montserrat', sans-serif;
       --body-font: 'Poppins', sans-serif;
 
-      --color-heading: #333;
-      --color-text: #555;
-      --accent-color: #ffd700;  /* oro */
-      --accent-color-2: #006400; /* verde oscuro */
+      /* Otros */
+      --border-radius: 6px;
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-      --border-radius: 10px;
-      --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-
-      /* Duraciones de animación */
-      --fade-duration: 0.8s;
+      /* Animaciones */
+      --fade-duration: 0.6s;
     }
 
     /*--------------------------------------------------------------
@@ -46,16 +45,14 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     html, body {
       height: 100%;
     }
-
     body {
       font-family: var(--body-font);
-      background: var(--bg-gradient);
-      color: var(--color-text);
-      overflow-x: hidden; /* Evita scroll horizontal en móviles */
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden; /* Previene scroll horizontal en móviles */
     }
 
     /*--------------------------------------------------------------
@@ -64,123 +61,147 @@
     @keyframes fadeInUp {
       0% {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(20px);
       }
       100% {
         opacity: 1;
         transform: translateY(0);
       }
     }
-
-    /* Clase reutilizable para animar la entrada */
     .fade-in-up {
       opacity: 0;
       animation: fadeInUp var(--fade-duration) ease forwards;
     }
 
     /*--------------------------------------------------------------
-      HEADER (16:9) + ANIMACIONES + TIPOGRAFÍA
+      ENCABEZADO (4:3) + OVERLAY + TEXTO
     --------------------------------------------------------------*/
     header {
       position: relative;
       width: 100%;
-      aspect-ratio: 16/9;
+      aspect-ratio: 4 / 3; /* 4:3 */
       overflow: hidden;
+      margin-bottom: 2rem;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
-      margin-bottom: 30px;
     }
-
     header img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-
     .overlay {
       position: absolute;
-      top: 0;
+      top: 0; 
       left: 0;
-      width: 100%;
+      width: 100%; 
       height: 100%;
-      background: rgba(0, 0, 0, 0.35);
+      background-color: rgba(0, 0, 0, 0.35);
       z-index: 1;
     }
-
     .header-content {
       position: absolute;
-      top: 60%; /* desplaza el texto hacia abajo */
+      bottom: 10%;   /* Se coloca más cerca de la parte inferior */
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
-      color: #fff;
+      color: var(--white);
       text-align: center;
-      padding: 20px;
-      animation: fadeInUp 1s ease forwards;
+      width: 90%;    /* Pequeño margen para no pegar texto a bordes */
+      animation: fadeInUp 0.8s ease forwards;
     }
-
     .header-content h1 {
-      font-family: var(--headline-font);
-      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
       margin-bottom: 0.5rem;
     }
-
     .header-content p {
-      font-size: clamp(1rem, 3vw, 1.4rem);
-      font-weight: 300;
-      margin-top: 0.2rem;
+      font-family: var(--body-font);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 400;
     }
 
     /*--------------------------------------------------------------
-      CONTENEDOR PRINCIPAL Y BLOQUES (SECTIONS)
+      CONTENEDOR PRINCIPAL
     --------------------------------------------------------------*/
     main {
+      max-width: 1100px;
       width: 95%;
-      max-width: 1200px;
-      margin: 0 auto 40px;
+      margin: 0 auto 2rem;
     }
 
+    /*--------------------------------------------------------------
+      SECCIONES (BLOQUES)
+    --------------------------------------------------------------*/
     section {
-      background-color: #fff; /* por defecto, puedes cambiarlo en cada sección */
+      background-color: var(--white);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
-      margin-bottom: 30px;
-      padding: 20px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     section h2 {
-      font-family: var(--headline-font);
-      color: var(--color-heading);
-      font-size: 2rem;
-      margin-bottom: 15px;
+      font-family: var(--heading-font);
+      color: var(--dark-green);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--dark-green);
       display: inline-block;
-      border-bottom: 3px solid var(--accent-color);
-      padding-bottom: 5px;
+      padding-bottom: 0.3rem;
     }
 
-    section p, section ul {
+    section p {
+      font-family: var(--body-font);
       font-size: 1rem;
-      color: var(--color-text);
+      margin-top: 0.8rem;
+      line-height: 1.6;
     }
 
-    /* Diferenciamos cada sección con un fondo distinto */
-    #about {
-      background-color: var(--section-bg-1);
+    section ul {
+      list-style: none;
+      margin-top: 1rem;
+      padding-left: 2rem;
     }
-    #achievements {
-      background-color: var(--section-bg-2);
+    section ul li {
+      position: relative;
+      margin-bottom: 0.6rem;
+      padding-left: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.5;
     }
-    #languages {
-      background-color: var(--section-bg-3);
-    }
-    #proyectos {
-      background-color: var(--section-bg-4);
+    section ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background-color: var(--gold); /* Bala dorada */
+      border-radius: 50%;
     }
 
-    /* Animamos cada sección con un ligero retardo incremental 
-       para que vayan apareciendo sucesivamente */
+    /*--------------------------------------------------------------
+      ENLACES
+    --------------------------------------------------------------*/
+    a {
+      color: var(--dark-green);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    a:hover {
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /*--------------------------------------------------------------
+      ANIMACIÓN ESCALONADA PARA SECCIONES
+    --------------------------------------------------------------*/
     #about.fade-in-up {
       animation-delay: 0.2s;
     }
@@ -195,72 +216,30 @@
     }
 
     /*--------------------------------------------------------------
-      LISTAS CON PUNTOS DORADOS
-    --------------------------------------------------------------*/
-    ul {
-      list-style: none;
-      padding-left: 20px;
-      margin-top: 10px;
-    }
-
-    ul li {
-      margin: 8px 0;
-      position: relative;
-      padding-left: 25px;
-    }
-
-    ul li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 10px;
-      height: 10px;
-      background: var(--accent-color);
-      border-radius: 50%;
-    }
-
-    /*--------------------------------------------------------------
-      ENLACES
-    --------------------------------------------------------------*/
-    a {
-      color: var(--accent-color-2);
-      text-decoration: none;
-      transition: color 0.3s, transform 0.3s;
-      font-weight: 600;
-    }
-    a:hover {
-      color: var(--accent-color);
-      transform: scale(1.03);
-    }
-
-    /*--------------------------------------------------------------
-      RESPONSIVE (TABLETS & MÓVILES)
+      MEDIA QUERIES (RESPONSIVE)
     --------------------------------------------------------------*/
     @media (max-width: 768px) {
-      .header-content {
-        top: 55%;
-      }
       section {
-        margin-bottom: 20px;
-        padding: 15px;
+        margin-bottom: 1.5rem;
       }
-      section h2 {
-        font-size: 1.6rem;
+      .header-content {
+        bottom: 8%; 
+        width: 95%;
+      }
+      .header-content h1 {
+        font-size: clamp(1.4rem, 5vw, 2rem);
       }
     }
 
     @media (max-width: 480px) {
       .header-content {
-        top: 50%;
-        padding: 10px;
+        bottom: 5%;
       }
       .header-content h1 {
-        font-size: clamp(1.6rem, 6vw, 2.5rem);
+        font-size: clamp(1.3rem, 6vw, 1.8rem);
       }
       .header-content p {
-        font-size: clamp(0.9rem, 4vw, 1.2rem);
+        font-size: clamp(0.9rem, 4vw, 1rem);
       }
     }
   </style>
@@ -268,7 +247,7 @@
 <body>
 
   <header>
-    <img src="mig.gif" alt="Miguel's animated GIF">
+    <img src="mig.gif" alt="Miguel's animated GIF (4:3)">
     <div class="overlay"></div>
     <div class="header-content">
       <h1>Miguel Cox Caballero</h1>
