@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Miguel Cox Caballero - Scroll Transition</title>
 
-  <!-- Fuente para el cuerpo (Poppins). 
-       Goudy Old Style se usará si está instalada en el sistema -->
+  <!-- Fuente para el cuerpo (Poppins). Goudy Old Style se usará si está instalada en el sistema -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link 
@@ -74,7 +73,7 @@
       width: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
-      margin-bottom: 4rem;
+      margin-bottom: 4rem; /* Increased gap between header and content */
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
     }
@@ -93,10 +92,10 @@
       z-index: 1;
     }
 
-    /* Lower the green box further */
+    /* Lowered green box */
     .header-content {
       position: absolute;
-      bottom: 5%;  /* Changed from 15% to 5% */
+      bottom: 2%;  /* Changed to 2% so it starts lower */
       right: 5%;
       z-index: 2;
       text-align: right;
@@ -187,10 +186,10 @@
     }
 
     @media (max-width: 768px) {
-      .header-content { bottom: 4%; right: 3%; }
+      .header-content { bottom: 2%; right: 3%; }
     }
     @media (max-width: 480px) {
-      .header-content { bottom: 3%; right: 5%; }
+      .header-content { bottom: 2%; right: 5%; }
     }
   </style>
 </head>
@@ -287,17 +286,17 @@
 
     // Transition threshold in pixels
     const THRESHOLD = 400;
-    const BAR_SPEED_MULT = 2; // Full bar appears with less scroll (200px)
+    const BAR_SPEED_MULT = 2; // full bar appears at scrollY=200 if THRESHOLD is 400
     const BAR_MAX_HEIGHT = 48; // in pixels (~3rem)
-    const TEXT_START = 0.3; // text fade-in starts at 30%
+    const TEXT_START = 0.3; // text fade-in starts at 30% progress
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       let progress = scrollY / THRESHOLD;
       progress = Math.min(Math.max(progress, 0), 1);
 
-      // Move green block upward: bottom from 5% to 70%
-      const startBottom = 5;
+      // Move green block upward: bottom from 2% to 70%
+      const startBottom = 2; // now starting at 2%
       const endBottom = 70;
       const currentBottom = startBottom + (endBottom - startBottom) * progress;
       headerContent.style.bottom = currentBottom + '%';
@@ -305,7 +304,7 @@
       // Fade out green block
       titleBox.style.opacity = 1 - progress;
 
-      // Red bar grows faster: full height with less scroll
+      // Red bar grows faster
       let barProgress = progress * BAR_SPEED_MULT;
       barProgress = Math.min(barProgress, 1);
       const currentBarHeight = BAR_MAX_HEIGHT * barProgress;
