@@ -4,126 +4,269 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Miguel Cox Caballero</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;600&display=swap" 
+    rel="stylesheet"
+  >
+
   <style>
-    /* Paleta de colores */
+    /*--------------------------------------------------------------
+      PALETA DE COLORES Y TIPOGRAFÍAS
+    --------------------------------------------------------------*/
     :root {
-      --blanco: #ffffff;
-      --gris-claro: #f4f4f4;
-      --verde-oscuro: #006400;
-      --oro: #ffd700;
+      --bg-gradient: linear-gradient(135deg, #A1FFCE 0%, #FAFFD1 100%);
+      --section-bg-1: #FFF4E3;
+      --section-bg-2: #E3F6FF;
+      --section-bg-3: #F8E3FF;
+      --section-bg-4: #E3FFE7;
+      --headline-font: 'Lobster', cursive;
+      --body-font: 'Poppins', sans-serif;
+
+      --color-heading: #333;
+      --color-text: #555;
+      --accent-color: #ffd700;  /* oro */
+      --accent-color-2: #006400; /* verde oscuro */
+
+      --border-radius: 10px;
+      --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
+      /* Duraciones de animación */
+      --fade-duration: 0.8s;
     }
-    
-    /* Reset básico */
+
+    /*--------------------------------------------------------------
+      RESETEO BÁSICO
+    --------------------------------------------------------------*/
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--gris-claro);
-      color: #333;
+
+    html, body {
+      height: 100%;
     }
-    
-    /* Encabezado con aspect-ratio 16:9 */
+
+    body {
+      font-family: var(--body-font);
+      background: var(--bg-gradient);
+      color: var(--color-text);
+      overflow-x: hidden; /* Evita scroll horizontal en móviles */
+    }
+
+    /*--------------------------------------------------------------
+      ANIMACIONES
+    --------------------------------------------------------------*/
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Clase reutilizable para animar la entrada */
+    .fade-in-up {
+      opacity: 0;
+      animation: fadeInUp var(--fade-duration) ease forwards;
+    }
+
+    /*--------------------------------------------------------------
+      HEADER (16:9) + ANIMACIONES + TIPOGRAFÍA
+    --------------------------------------------------------------*/
     header {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9; 
+      aspect-ratio: 16/9;
       overflow: hidden;
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 30px;
     }
-    
+
     header img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
-    
-    /* Overlay sobre la imagen */
-    header .overlay {
+
+    .overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.35);
       z-index: 1;
     }
-    
-    /* Contenido del header: centrado horizontalmente, desplazado hacia abajo */
-    header .header-content {
+
+    .header-content {
       position: absolute;
-      top: 60%; /* ajusta según prefieras */
+      top: 60%; /* desplaza el texto hacia abajo */
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
+      color: #fff;
       text-align: center;
-      color: var(--blanco);
       padding: 20px;
+      animation: fadeInUp 1s ease forwards;
     }
-    
-    /* Tamaño de texto adaptable */
-    header .header-content h1 {
-      font-size: clamp(1.5rem, 4vw, 3rem);
-      margin-bottom: 10px;
+
+    .header-content h1 {
+      font-family: var(--headline-font);
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
     }
-    
-    header .header-content p {
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
+
+    .header-content p {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      font-weight: 300;
+      margin-top: 0.2rem;
     }
-    
-    /* Contenedor principal */
+
+    /*--------------------------------------------------------------
+      CONTENEDOR PRINCIPAL Y BLOQUES (SECTIONS)
+    --------------------------------------------------------------*/
     main {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 20px;
-      background: var(--blanco);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
+      width: 95%;
+      max-width: 1200px;
+      margin: 0 auto 40px;
     }
-    
+
+    section {
+      background-color: #fff; /* por defecto, puedes cambiarlo en cada sección */
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+
     section h2 {
+      font-family: var(--headline-font);
+      color: var(--color-heading);
       font-size: 2rem;
-      color: var(--verde-oscuro);
-      margin-bottom: 10px;
-      border-bottom: 2px solid var(--oro);
+      margin-bottom: 15px;
       display: inline-block;
+      border-bottom: 3px solid var(--accent-color);
       padding-bottom: 5px;
     }
-    
-    section p {
+
+    section p, section ul {
       font-size: 1rem;
-      margin-top: 10px;
-      color: #444;
+      color: var(--color-text);
     }
-    
+
+    /* Diferenciamos cada sección con un fondo distinto */
+    #about {
+      background-color: var(--section-bg-1);
+    }
+    #achievements {
+      background-color: var(--section-bg-2);
+    }
+    #languages {
+      background-color: var(--section-bg-3);
+    }
+    #proyectos {
+      background-color: var(--section-bg-4);
+    }
+
+    /* Animamos cada sección con un ligero retardo incremental 
+       para que vayan apareciendo sucesivamente */
+    #about.fade-in-up {
+      animation-delay: 0.2s;
+    }
+    #achievements.fade-in-up {
+      animation-delay: 0.4s;
+    }
+    #languages.fade-in-up {
+      animation-delay: 0.6s;
+    }
+    #proyectos.fade-in-up {
+      animation-delay: 0.8s;
+    }
+
+    /*--------------------------------------------------------------
+      LISTAS CON PUNTOS DORADOS
+    --------------------------------------------------------------*/
     ul {
       list-style: none;
       padding-left: 20px;
       margin-top: 10px;
     }
-    
+
     ul li {
       margin: 8px 0;
       position: relative;
-      padding-left: 20px;
+      padding-left: 25px;
     }
-    
+
     ul li::before {
       content: "";
       position: absolute;
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      background: var(--oro);
+      width: 10px;
+      height: 10px;
+      background: var(--accent-color);
       border-radius: 50%;
+    }
+
+    /*--------------------------------------------------------------
+      ENLACES
+    --------------------------------------------------------------*/
+    a {
+      color: var(--accent-color-2);
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+      font-weight: 600;
+    }
+    a:hover {
+      color: var(--accent-color);
+      transform: scale(1.03);
+    }
+
+    /*--------------------------------------------------------------
+      RESPONSIVE (TABLETS & MÓVILES)
+    --------------------------------------------------------------*/
+    @media (max-width: 768px) {
+      .header-content {
+        top: 55%;
+      }
+      section {
+        margin-bottom: 20px;
+        padding: 15px;
+      }
+      section h2 {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-content {
+        top: 50%;
+        padding: 10px;
+      }
+      .header-content h1 {
+        font-size: clamp(1.6rem, 6vw, 2.5rem);
+      }
+      .header-content p {
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
     <img src="mig.gif" alt="Miguel's animated GIF">
     <div class="overlay"></div>
@@ -134,12 +277,18 @@
   </header>
   
   <main>
-    <section id="about">
+    <!-- Sección "Acerca de mí" -->
+    <section id="about" class="fade-in-up">
       <h2>Acerca de mí</h2>
-      <p>Estudiante de Ingeniería Informática en la Universidad de Murcia con 10 años de educación bilingüe y experiencia en proyectos tecnológicos innovadores.</p>
+      <p>
+        Estudiante de Ingeniería Informática en la Universidad de Murcia con 
+        10 años de educación bilingüe y experiencia en proyectos tecnológicos 
+        innovadores.
+      </p>
     </section>
     
-    <section id="achievements">
+    <!-- Sección "Logros Personales" -->
+    <section id="achievements" class="fade-in-up">
       <h2>Logros Personales</h2>
       <ul>
         <li>Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
@@ -151,7 +300,8 @@
       </ul>
     </section>
     
-    <section id="languages">
+    <!-- Sección "Idiomas" -->
+    <section id="languages" class="fade-in-up">
       <h2>Idiomas</h2>
       <ul>
         <li>Español: Nativo</li>
@@ -161,8 +311,8 @@
       </ul>
     </section>
 
-    <!-- Sección de Proyectos -->
-    <section id="proyectos">
+    <!-- Sección "Proyectos" -->
+    <section id="proyectos" class="fade-in-up">
       <h2>Proyectos</h2>
       <ul>
         <li>
@@ -179,7 +329,7 @@
         </li>
       </ul>
     </section>
-
   </main>
+
 </body>
 </html>
