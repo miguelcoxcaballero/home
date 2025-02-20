@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Miguel Cox Caballero</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (para el cuerpo, Poppins) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
     rel="stylesheet"
   />
 
@@ -18,32 +18,28 @@
       PALETA DE COLORES & TIPOGRAFÍAS
     --------------------------------------------------------------*/
     :root {
-      /* Paleta principal */
-      --bg-start: #E9F5EE;     /* Degradado (parte superior) */
-      --bg-end: #F8F9FA;       /* Degradado (parte inferior) */
-      --text-color: #333;      /* Texto base */
-      --white: #FFFFFF;
-      --gold: #FFD700;         /* Detalles dorados */
-      
-      /* Bloques con 95% negro y 5% verde muy oscuro */
-      --block-bg: linear-gradient(
-        90deg,
-        #000000 95%,  /* 95% negro */
-        #031003 100%  /* último 5% verde muy oscuro */
-      );
+      /* Fondo general casi negro */
+      --body-bg: #111;
+
+      /* Bloques en verde muy oscuro */
+      --section-bg: #1F3321;
+
+      /* Texto y detalles */
+      --text-color: #FFFFFF;
+      --bullet-color: #FFD700; /* Dorado para bullets */
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
       /* Tipografías */
-      --heading-font: 'Cinzel Decorative', serif; /* Títulos fancy */
-      --body-font: 'Poppins', sans-serif;         /* Texto del cuerpo */
+      --title-font: "Goudy Old Style", "Times New Roman", serif;
+      --body-font: 'Poppins', sans-serif;
 
-      /* Misc */
+      /* Tamaño de bordes y animaciones */
       --border-radius: 6px;
-      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --fade-duration: 0.6s; /* Duración para las animaciones */
+      --fade-duration: 0.6s;
     }
 
     /*--------------------------------------------------------------
-      RESETEO BÁSICO
+      RESET BÁSICO
     --------------------------------------------------------------*/
     * {
       margin: 0;
@@ -54,9 +50,9 @@
       height: 100%;
     }
     body {
+      background-color: var(--body-bg); /* Fondo casi negro */
       font-family: var(--body-font);
-      background: linear-gradient(to bottom, var(--bg-start), var(--bg-end));
-      color: var(--text-color);
+      color: #ccc; /* Color base si hicieras textos en body */
       overflow-x: hidden; /* Evita scroll horizontal en móviles */
     }
 
@@ -79,19 +75,18 @@
     }
 
     /*--------------------------------------------------------------
-      ENCABEZADO (4:3)
+      HEADER (4:3)
     --------------------------------------------------------------*/
     header {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 3; /* Se ajusta al GIF 4:3 */
+      aspect-ratio: 4 / 3; /* Se ajusta al GIF 4:3 (722x542) */
       overflow: hidden;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
       margin-bottom: 2rem;
     }
-
     header img {
       width: 100%;
       height: 100%;
@@ -99,6 +94,7 @@
       display: block;
     }
 
+    /* Overlay semitransparente */
     .overlay {
       position: absolute;
       top: 0; 
@@ -109,25 +105,27 @@
       z-index: 1;
     }
 
-    /* TITULAR CENTRADO y GRANDE */
+    /* TITULAR A LA DERECHA Y MUCHO MÁS GRANDE */
     .header-content {
       position: absolute;
-      bottom: 15%; /* Ajusta para subir o bajar el texto */
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: 15%; 
+      right: 5%;
+      left: auto;
+      transform: none; 
       z-index: 2;
-      text-align: center;
+      text-align: right; /* El texto se alinea a la derecha */
       animation: fadeInUp 0.8s ease forwards;
-      color: var(--white);
+      color: var(--text-color);
       max-width: 90%;
     }
+
     .header-content h1 {
-      font-family: var(--heading-font);
-      font-weight: 700;
+      font-family: var(--title-font);
       font-size: clamp(2.5rem, 6vw, 4rem); /* Muy grande en pantallas grandes */
+      font-weight: 700;
+      white-space: normal;   /* Permite varias líneas sin recorte */
+      word-break: break-word;/* Rompe palabra si es muy larga */
       margin-bottom: 0.4rem;
-      white-space: normal; /* Permite que el texto salte de línea si es necesario */
-      word-wrap: break-word;
     }
 
     /*--------------------------------------------------------------
@@ -140,30 +138,30 @@
     }
 
     /*--------------------------------------------------------------
-      SECCIONES (BLOQUES CON 95% NEGRO / 5% VERDE MUY OSCURO)
+      SECCIONES (BLOQUES CON FONDO VERDE OSCURO)
     --------------------------------------------------------------*/
     section {
-      background: var(--block-bg);
+      background-color: var(--section-bg);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
       padding: 1.5rem;
       margin-bottom: 2rem;
     }
     section h2 {
-      font-family: var(--heading-font);
+      font-family: var(--title-font);
       font-size: 1.8rem;
-      color: var(--gold);  /* Título en dorado */
+      color: var(--bullet-color);  /* Título en dorado */
       margin-bottom: 1rem;
-      border-bottom: 2px solid var(--gold);
+      border-bottom: 2px solid var(--bullet-color);
       display: inline-block;
       padding-bottom: 0.3rem;
     }
-    section p,
+    section p, 
     section ul {
       font-family: var(--body-font);
       font-size: 1rem;
       line-height: 1.6;
-      color: var(--white);
+      color: var(--text-color);
     }
 
     /* LISTAS CON BALAS DORADAS */
@@ -185,7 +183,7 @@
       transform: translateY(-50%);
       width: 8px;
       height: 8px;
-      background-color: var(--gold);
+      background-color: var(--bullet-color);
       border-radius: 50%;
     }
 
@@ -193,13 +191,13 @@
       ENLACES
     --------------------------------------------------------------*/
     a {
-      color: var(--gold);
+      color: var(--bullet-color);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease, transform 0.3s ease;
     }
     a:hover {
-      color: var(--white);
+      color: var(--text-color);
       transform: translateY(-2px);
     }
 
@@ -223,10 +221,8 @@
       MEDIA QUERIES (RESPONSIVE)
     --------------------------------------------------------------*/
     @media (max-width: 768px) {
-      section {
-        margin-bottom: 1.5rem;
-      }
       .header-content {
+        right: 3%;
         bottom: 12%;
       }
       .header-content h1 {
@@ -236,7 +232,9 @@
 
     @media (max-width: 480px) {
       .header-content {
+        right: 5%;
         bottom: 10%;
+        max-width: 90%;
       }
       .header-content h1 {
         font-size: clamp(1.8rem, 9vw, 2.8rem);
@@ -251,7 +249,7 @@
     <img src="mig.gif" alt="Miguel's animated GIF 4:3" />
     <div class="overlay"></div>
     <div class="header-content">
-      <!-- SOLO EL NOMBRE, MÁS GRANDE, CENTRADO Y SIN RECORTES -->
+      <!-- Nombre más grande y a la derecha -->
       <h1>Miguel Cox Caballero</h1>
     </div>
   </header>
