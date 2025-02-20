@@ -16,34 +16,28 @@
 
   <style>
     :root {
-      /* Colores */
+      /* Colors */
       --black: #000001;
       --white: #FFFFFF;
       --castleton-green: #00563F;
       --cyber-yellow: #FED502;
       --vivid-tangelo: #F37433;
-      --mahogany: #C44004; /* Barra roja */
+      --mahogany: #C44004; /* Red bar */
 
-      /* Tipografías */
+      /* Fonts */
       --title-font: "Goudy Old Style", "Times New Roman", serif;
       --body-font: 'Poppins', sans-serif;
 
       --border-radius: 6px;
 
-      /* Tamaños */
-      --big-title-size: 3rem;    /* Título grande en el bloque verde */
-      --bar-title-size: 1.8rem;  /* Título pequeño en la barra roja */
+      /* Sizes */
+      --big-title-size: 3rem;     /* Big title in green block */
+      --bar-title-size: 1.8rem;     /* Small title in the bar */
     }
 
     /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
       background-color: var(--black);
       color: var(--white);
@@ -52,7 +46,7 @@
       padding-bottom: 3rem;
     }
 
-    /* Barra roja fija */
+    /* Fixed red bar */
     .scroll-bar {
       position: fixed;
       top: 0;
@@ -80,7 +74,7 @@
       width: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
-      margin-bottom: 4rem; /* Espacio grande entre header y primer bloque */
+      margin-bottom: 4rem;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
     }
@@ -92,15 +86,14 @@
     }
     .overlay {
       position: absolute;
-      top: 0; 
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
-    /* Bloque verde con el título */
+    /* Green block with title */
     .header-content {
       position: absolute;
       bottom: 2%;  
@@ -125,13 +118,11 @@
       word-break: break-word;
     }
 
-    /* Contenido principal */
     main {
       max-width: 1100px;
       width: 95%;
       margin: 0 auto 2rem;
     }
-
     section {
       background-color: var(--castleton-green);
       border-radius: var(--border-radius);
@@ -148,16 +139,16 @@
       display: inline-block;
       padding-bottom: 0.3rem;
     }
-
-    /* Restaura los bullets y márgenes para todas las UL salvo #languages */
     section p, section ul {
       font-size: 1rem;
       line-height: 1.6;
     }
+
+    /* Restore bullet points for lists except in #languages */
     section ul {
       list-style: none;
       margin-top: 1rem;
-      padding-left: 2rem; /* Restaurado para lograr el sangrado */
+      padding-left: 2rem;
     }
     section ul li {
       position: relative;
@@ -176,22 +167,20 @@
       border-radius: 50%;
     }
 
-    /* Solo #languages: reemplaza bullets con imágenes de banderas */
+    /* #languages: use flag icons instead of bullets */
     #languages ul {
-      list-style: none;       /* Quita bullets solo en idiomas */
+      list-style: none;
       margin-top: 1rem;
-      padding-left: 0;        /* Sin sangrado en idiomas */
+      padding-left: 0;
     }
     #languages li {
       display: flex;
       align-items: center;
       margin-bottom: 0.6rem;
-      position: static;       /* Para que no se usen los ::before */
-      padding-left: 0;        
+      position: static;
+      padding-left: 0;
     }
-    #languages li::before {
-      content: none; /* Desactiva pseudo-elemento en #languages */
-    }
+    #languages li::before { content: none; }
     .lang-icon {
       width: 20px;
       height: auto;
@@ -206,7 +195,7 @@
       border-top: 1px solid var(--vivid-tangelo);
     }
 
-    /* Enlaces en amarillo sin subrayado */
+    /* Links in yellow without underline */
     a {
       color: var(--cyber-yellow);
       text-decoration: none;
@@ -220,22 +209,16 @@
     }
 
     @media (max-width: 768px) {
-      .header-content {
-        bottom: 2%;
-        right: 3%;
-      }
+      .header-content { bottom: 2%; right: 3%; }
     }
     @media (max-width: 480px) {
-      .header-content {
-        bottom: 2%;
-        right: 5%;
-      }
+      .header-content { bottom: 2%; right: 5%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Barra roja fija -->
+  <!-- Fixed red bar -->
   <div class="scroll-bar" id="scrollBar">
     <h1 id="barTitle">Miguel Cox Caballero</h1>
   </div>
@@ -272,7 +255,6 @@
       </ul>
     </section>
     
-    <!-- Sección "Idiomas" con banderas en lugar de bullets -->
     <section id="languages">
       <h2>Idiomas</h2>
       <ul>
@@ -332,37 +314,38 @@
   </footer>
 
   <script>
-    const scrollBar  = document.getElementById('scrollBar');
-    const barTitle   = document.getElementById('barTitle');
+    const scrollBar = document.getElementById('scrollBar');
+    const barTitle = document.getElementById('barTitle');
     const headerContent = document.getElementById('headerContent');
-    const titleBox   = document.getElementById('titleBox');
+    const titleBox = document.getElementById('titleBox');
 
-    // Transición del scroll
+    // Transition threshold in pixels
     const THRESHOLD = 400;
-    const BAR_SPEED_MULT = 2; // La barra llega a su altura máxima con menos scroll
-    const BAR_MAX_HEIGHT = 48; // en px (~3rem)
-    const TEXT_START = 0.3;    // El texto en la barra comienza a aparecer al 30% de scroll
+    const BAR_SPEED_MULT = 2; // full bar appears with less scroll
+    const BAR_MAX_HEIGHT = 48; // in pixels (~3rem)
+    const TEXT_START = 0.2; // Now text fade-in starts at 20% progress
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       let progress = scrollY / THRESHOLD;
       progress = Math.min(Math.max(progress, 0), 1);
 
-      // Mover bloque verde hacia arriba: bottom de 2% a 70%
+      // Green block moves upward: bottom from 2% to 70%
       const startBottom = 2;
       const endBottom = 70;
       const currentBottom = startBottom + (endBottom - startBottom) * progress;
       headerContent.style.bottom = currentBottom + '%';
 
-      // fade-out del bloque verde
+      // Fade out green block
       titleBox.style.opacity = 1 - progress;
 
-      // Barra roja crece más rápido
+      // Red bar grows faster
       let barProgress = progress * BAR_SPEED_MULT;
       barProgress = Math.min(barProgress, 1);
-      scrollBar.style.height = (BAR_MAX_HEIGHT * barProgress) + 'px';
+      const currentBarHeight = BAR_MAX_HEIGHT * barProgress;
+      scrollBar.style.height = currentBarHeight + 'px';
 
-      // Texto en la barra aparece con retardo
+      // Text in red bar fades in with delay; now using TEXT_START = 0.2
       let textProgress = (progress - TEXT_START) / (1 - TEXT_START);
       textProgress = Math.min(Math.max(textProgress, 0), 1);
       barTitle.style.opacity = textProgress;
