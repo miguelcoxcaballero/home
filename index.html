@@ -31,8 +31,8 @@
       --border-radius: 6px;
 
       /* Tamaños */
-      --big-title-size: 3rem;    /* Bloque verde */
-      --bar-title-size: 1.8rem; /* Título pequeño en la barra */
+      --big-title-size: 3rem;     /* Bloque verde */
+      --bar-title-size: 1.8rem;   /* Título pequeño en la barra */
     }
 
     /* Reset */
@@ -74,7 +74,7 @@
       font-weight: 700;
       margin: 0;
       opacity: 0;
-      transition: none; /* controlado vía JS */
+      transition: none; /* lo controlamos por JS */
     }
 
     header {
@@ -116,7 +116,6 @@
       padding: 0.5rem 1rem;
       display: inline-block;
       opacity: 1; /* fade-out con JS */
-      transition: none;
     }
     .title-box h1 {
       font-family: var(--title-font);
@@ -287,18 +286,27 @@
   </footer>
 
   <script>
-    const scrollBar = document.getElementById('scrollBar');
-    const barTitle  = document.getElementById('barTitle');
+    const scrollBar  = document.getElementById('scrollBar');
+    const barTitle   = document.getElementById('barTitle');
 
-    const headerContent = document.getElementById('headerContent'); // bloque
-    const titleBox      = document.getElementById('titleBox');      // fondo verde
-    // la animación: se hace un fade-out y sube en Y a la vez
+    const headerContent = document.getElementById('headerContent');
+    const titleBox      = document.getElementById('titleBox');
 
-    // umbral de scroll (px) para completar la transición
-    const THRESHOLD = 400; 
+    // Umbral en px para la transición
+    const THRESHOLD = 400;
 
-    // la barra crecerá hasta ~3rem = ~48px
+    // Barra final ~3rem => 48px
     const BAR_MAX_HEIGHT = 48;
+
+    // Velocidad extra para la barra
+    const BAR_SPEED_MULT = 1.5; // crece más deprisa
+
+    // Desfase para el fade-in del texto
+    // Por ejemplo, que empiece a aparecer a partir de un 30% 
+    // y termine en 100%. 
+    const TEXT_START = 0.3; 
+    // TEXT_START=0.3 => si progress <0.3 => opacidad=0 
+    // => si progress=1 => opacidad=1
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
@@ -306,22 +314,29 @@
       if (progress < 0) progress = 0;
       if (progress > 1) progress = 1;
 
-      // 1) Bloque verde -> sube + fade-out
-      // bottom: 15% -> 70%
-      const startBottom = 15;
+      // Bloque verde sube y hace fade-out
+      const startBottom = 15; 
       const endBottom   = 70;
       const currentBottom = startBottom + (endBottom - startBottom) * progress;
       headerContent.style.bottom = currentBottom + '%';
+      titleBox.style.opacity = 1 - progress; // fade-out
 
-      // opacidad: 1 -> 0
-      titleBox.style.opacity = 1 - progress;
+      // Barra crece más deprisa => barProgress = progress * BAR_SPEED_MULT
+      let barProgress = progress * BAR_SPEED_MULT;
+      if (barProgress > 1) barProgress = 1; // límite
+      const barHeight = BAR_MAX_HEIGHT * barProgress;
+      scrollBar.style.height = barHeight + 'px';
 
-      // 2) Barra roja sube en altura: 0 -> 48px
-      const currentBarHeight = BAR_MAX_HEIGHT * progress;
-      scrollBar.style.height = currentBarHeight + 'px';
-
-      // 3) El título pequeño en la barra hace fade-in: 0 -> 1
-      barTitle.style.opacity = progress;
+      // Retrasamos la aparición del texto 
+      // (fade-in) para que la barra sea más gruesa primero.
+      // Calcular textProgress en [0..1], pero solo 
+      // a partir de TEXT_START. 
+      // Ej: progress=0.3 => textProgress=0 => opacidad=0
+      // progress=1   => textProgress=1 => opacidad=1
+      let textProgress = (progress - TEXT_START) / (1 - TEXT_START);
+      if (textProgress < 0) textProgress = 0;
+      if (textProgress > 1) textProgress = 1;
+      barTitle.style.opacity = textProgress;
     });
   </script>
 </body>
