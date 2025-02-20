@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Miguel Cox Caballero</title>
 
-  <!-- Google Fonts (para el cuerpo, Poppins). Goudy Old Style es de sistema. -->
+  <!-- Tipografía para el cuerpo (Poppins). 
+       Goudy Old Style se usará si está instalada en el sistema. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -15,31 +16,25 @@
 
   <style>
     /*--------------------------------------------------------------
-      PALETA DE COLORES & TIPOGRAFÍAS
+      PALETA DE COLORES (Únicamente la proporcionada + white)
     --------------------------------------------------------------*/
     :root {
-      --body-bg: #111;           /* Fondo general casi negro */
-      --base-green: #1F3321;     /* Verde muy oscuro (base para gradiente) */
-      --mid-green: #2B4B2E;      /* Verde intermedio para gradiente */
-      --text-color: #FFFFFF;     /* Texto sobre bloques oscuros */
-      --bullet-color: #FFD700;   /* Dorado para bullets */
-      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-
+      --black: #000001;          /* Fondo principal */
+      --white: #FFFFFF;          /* Texto base */
+      --castleton-green: #00563F;/* Fondo secciones y rectángulo */
+      --cyber-yellow: #FED502;   /* Balas de lista */
+      --vivid-tangelo: #F37433;  /* Color coral para títulos (excepto el nombre) */
+      
       /* Tipografías */
       --title-font: "Goudy Old Style", "Times New Roman", serif;
       --body-font: 'Poppins', sans-serif;
-
-      /* Radio de bordes y duraciones */
+      
       --border-radius: 6px;
-      --fade-duration: 0.7s;
-
-      /* Animaciones */
-      --gradient-duration: 8s; /* Duración del desplazamiento de gradiente */
-      --pop-duration: 0.9s;    /* Duración del “pop” inicial */
+      --fade-duration: 0.6s;
     }
 
     /*--------------------------------------------------------------
-      RESET BÁSICO
+      RESETEO
     --------------------------------------------------------------*/
     * {
       margin: 0;
@@ -50,54 +45,41 @@
       height: 100%;
     }
     body {
-      background-color: var(--body-bg);
+      background-color: var(--black);
       font-family: var(--body-font);
-      color: #ccc; /* Por si tuvieras texto suelto fuera de secciones */
-      overflow-x: hidden; /* Evita scroll horizontal en móviles */
+      color: var(--white);
+      overflow-x: hidden;
+      padding-bottom: 3rem; /* Espacio extra al final para visualizar bien los bloques */
     }
 
     /*--------------------------------------------------------------
-      ANIMACIONES CLAVE
+      ANIMACIONES
     --------------------------------------------------------------*/
-    /* 1) Pop + fade que “salta” un poco */
-    @keyframes fadePopIn {
+    @keyframes fadeInUp {
       0% {
         opacity: 0;
-        transform: translateY(30px) scale(0.8);
-      }
-      60% {
-        opacity: 1;
-        transform: translateY(0) scale(1.05);
+        transform: translateY(20px);
       }
       100% {
-        transform: translateY(0) scale(1);
+        opacity: 1;
+        transform: translateY(0);
       }
     }
-
-    /* 2) Gradiente deslizante en el fondo de las secciones */
-    @keyframes shiftingGradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+    .fade-in-up {
+      opacity: 0;
+      animation: fadeInUp var(--fade-duration) ease forwards;
     }
 
     /*--------------------------------------------------------------
-      HEADER (4:3) + TITULAR
+      HEADER (4:3) - Imagen + Overlay
     --------------------------------------------------------------*/
     header {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 3; /* Se ajusta al GIF 4:3 (722×542) */
+      aspect-ratio: 4 / 3;
       overflow: hidden;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
       margin-bottom: 2rem;
     }
     header img {
@@ -106,40 +88,42 @@
       object-fit: cover;
       display: block;
     }
-
-    /* Overlay semitransparente */
     .overlay {
       position: absolute;
       top: 0; 
       left: 0;
       width: 100%; 
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.35);
+      background-color: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
-    /* TITULAR A LA DERECHA, GRANDE, CON SOMBRA */
+    /* Contenedor del nombre, alineado a la derecha */
     .header-content {
       position: absolute;
-      bottom: 15%;
+      bottom: 15%; 
       right: 5%;
       z-index: 2;
       text-align: right;
-      animation: fadePopIn var(--pop-duration) ease forwards;
-      color: var(--text-color);
+      animation: fadeInUp 0.8s ease forwards;
       max-width: 90%;
+      color: var(--white);
+    }
+    /* Rectángulo redondeado con fondo Castleton Green a 70% opacidad */
+    .header-content .title-box {
+      background-color: rgba(0, 86, 63, 0.7);
+      border-radius: var(--border-radius);
+      padding: 0.5rem 1rem;
+      display: inline-block;
     }
     .header-content h1 {
       font-family: var(--title-font);
-      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-size: clamp(2.5rem, 6vw, 4rem);
       font-weight: 700;
-      line-height: 1.1;
-      text-shadow: 
-        0 0 10px rgba(255, 215, 0, 0.6),   /* Brillo dorado */
-        0 0 20px rgba(255, 215, 0, 0.3);
-      /* Permite ruptura de línea si es necesario */
+      color: var(--white);
       white-space: normal;
       word-break: break-word;
+      margin: 0;
     }
 
     /*--------------------------------------------------------------
@@ -152,44 +136,33 @@
     }
 
     /*--------------------------------------------------------------
-      SECCIONES (Bloques con animación de gradiente)
+      SECCIONES (FONDO Castleton Green)
     --------------------------------------------------------------*/
     section {
-      position: relative;
-      /* Gradiente animado en el fondo del bloque */
-      background: linear-gradient(90deg, var(--base-green), var(--mid-green), var(--base-green));
-      background-size: 200% 200%;
-      animation: shiftingGradient var(--gradient-duration) ease-in-out infinite;
-      
+      background-color: var(--castleton-green);
       border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
       padding: 1.5rem;
       margin-bottom: 2rem;
-
-      /* Pop-in effect al cargarse */
-      opacity: 0;
-      animation: fadePopIn var(--pop-duration) ease forwards;
-      transform-origin: center center;
     }
-
     section h2 {
       font-family: var(--title-font);
       font-size: 1.8rem;
-      color: var(--bullet-color); /* Título dorado */
+      font-weight: 700;
       margin-bottom: 1rem;
-      border-bottom: 2px solid var(--bullet-color);
+      color: var(--vivid-tangelo);
+      border-bottom: 2px solid var(--vivid-tangelo);
       display: inline-block;
       padding-bottom: 0.3rem;
     }
-    section p, 
+    section p,
     section ul {
       font-family: var(--body-font);
       font-size: 1rem;
       line-height: 1.6;
-      color: var(--text-color);
+      color: var(--white);
     }
 
-    /* LISTAS CON BALAS DORADAS */
+    /* LISTAS: Balas en Cyber Yellow */
     ul {
       list-style: none;
       margin-top: 1rem;
@@ -208,44 +181,59 @@
       transform: translateY(-50%);
       width: 8px;
       height: 8px;
-      background-color: var(--bullet-color);
+      background-color: var(--cyber-yellow);
       border-radius: 50%;
-    }
-
-    /* Al pasar el ratón sobre la sección, se agranda sutilmente */
-    section:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
 
     /*--------------------------------------------------------------
       ENLACES
     --------------------------------------------------------------*/
     a {
-      color: var(--bullet-color);
+      color: var(--cyber-yellow);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease, transform 0.3s ease;
     }
     a:hover {
-      color: var(--text-color);
+      color: var(--white);
       transform: translateY(-2px);
     }
 
     /*--------------------------------------------------------------
-      ORDEN DE APARICIÓN (ESCALONADO) PARA SECCIONES
+      ANIMACIÓN ESCALONADA PARA SECCIONES
     --------------------------------------------------------------*/
-    #about {
+    #about.fade-in-up {
       animation-delay: 0.2s;
     }
-    #achievements {
+    #achievements.fade-in-up {
       animation-delay: 0.4s;
     }
-    #languages {
+    #languages.fade-in-up {
       animation-delay: 0.6s;
     }
-    #proyectos {
+    #proyectos.fade-in-up {
       animation-delay: 0.8s;
+    }
+
+    /*--------------------------------------------------------------
+      FOOTER
+    --------------------------------------------------------------*/
+    footer {
+      background-color: var(--castleton-green);
+      padding: 1rem 0;
+      text-align: center;
+      font-family: var(--body-font);
+      font-size: 0.9rem;
+      color: var(--white);
+      border-top: 1px solid var(--vivid-tangelo);
+    }
+    footer a {
+      color: var(--vivid-tangelo);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
 
     /*--------------------------------------------------------------
@@ -254,20 +242,19 @@
     @media (max-width: 768px) {
       .header-content {
         bottom: 12%;
+        right: 3%;
       }
       .header-content h1 {
-        font-size: clamp(2.4rem, 8vw, 3.4rem);
+        font-size: clamp(2rem, 8vw, 3rem);
       }
     }
-
     @media (max-width: 480px) {
       .header-content {
         bottom: 10%;
         right: 5%;
-        max-width: 90%;
       }
       .header-content h1 {
-        font-size: clamp(1.9rem, 9vw, 3rem);
+        font-size: clamp(1.8rem, 9vw, 2.8rem);
       }
     }
   </style>
@@ -275,28 +262,26 @@
 <body>
 
   <header>
-    <!-- GIF 4:3 (722×542) -->
-    <img src="mig.gif" alt="Miguel's animated GIF 4:3" />
+    <img src="mig.gif" alt="Miguel's animated GIF 4:3">
     <div class="overlay"></div>
     <div class="header-content">
-      <!-- Nombre, grande, a la derecha, con brillo dorado -->
-      <h1>Miguel Cox Caballero</h1>
+      <div class="title-box">
+        <h1>Miguel Cox Caballero</h1>
+      </div>
     </div>
   </header>
   
   <main>
-    <!-- Sección "Acerca de mí" -->
-    <section id="about">
+    <section id="about" class="fade-in-up">
       <h2>Acerca de mí</h2>
       <p>
-        Estudiante de Ingeniería Informática en la Universidad de Murcia 
-        con 10 años de educación bilingüe y experiencia en proyectos 
-        tecnológicos innovadores.
+        Estudiante de Ingeniería Informática en la Universidad de Murcia con 
+        10 años de educación bilingüe y experiencia en proyectos tecnológicos 
+        innovadores.
       </p>
     </section>
     
-    <!-- Sección "Logros Personales" -->
-    <section id="achievements">
+    <section id="achievements" class="fade-in-up">
       <h2>Logros Personales</h2>
       <ul>
         <li>Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
@@ -308,8 +293,7 @@
       </ul>
     </section>
     
-    <!-- Sección "Idiomas" -->
-    <section id="languages">
+    <section id="languages" class="fade-in-up">
       <h2>Idiomas</h2>
       <ul>
         <li>Español: Nativo</li>
@@ -319,8 +303,7 @@
       </ul>
     </section>
 
-    <!-- Sección "Proyectos" -->
-    <section id="proyectos">
+    <section id="proyectos" class="fade-in-up">
       <h2>Proyectos</h2>
       <ul>
         <li>
@@ -338,6 +321,15 @@
       </ul>
     </section>
   </main>
+  
+  <footer>
+    <p>© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
+    <p>Sígueme en Instagram: 
+      <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">
+        @miguelcoxcaballero
+      </a>
+    </p>
+  </footer>
 
 </body>
 </html>
