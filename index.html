@@ -5,54 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Miguel Cox Caballero - Scroll Transition</title>
 
-  <!-- Fuente para el cuerpo (Poppins). 
+  <!-- Fuente para el cuerpo (Poppins).
        Goudy Old Style se usará si está instalada en el sistema -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" 
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
     rel="stylesheet"
   />
 
   <style>
     :root {
-      /* Colors */
+      /* Colores */
       --black: #000001;
       --white: #FFFFFF;
       --castleton-green: #00563F;
       --cyber-yellow: #FED502;
       --vivid-tangelo: #F37433;
-      --mahogany: #C44004; /* Red bar */
+      --mahogany: #C44004; /* Barra coral/roja */
 
-      /* Fonts */
+      /* Tipografías */
       --title-font: "Goudy Old Style", "Times New Roman", serif;
       --body-font: 'Poppins', sans-serif;
 
       --border-radius: 6px;
 
-      /* Sizes */
-      --big-title-size: 3rem;     /* Big title in green block */
-      --bar-title-size: 1.8rem;     /* Small title in the bar */
+      /* Tamaños */
+      --big-title-size: 3rem;   /* Título grande en el bloque verde */
+      --bar-title-size: 1.8rem; /* Título pequeño en la barra coral */
     }
 
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
+    /*--------------------------------------------------------------
+      RESET BÁSICO
+    --------------------------------------------------------------*/
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+    }
     body {
       background-color: var(--black);
       color: var(--white);
       font-family: var(--body-font);
       overflow-x: hidden;
-      padding-bottom: 3rem;
+      padding-bottom: 3rem; 
     }
 
-    /* Fixed red bar */
+    /*--------------------------------------------------------------
+      BARRA CORAL FIJA
+      (Ocupando la parte superior de la pantalla, se anima en el script)
+    --------------------------------------------------------------*/
     .scroll-bar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 0;
+      height: 0;              /* Se expandirá con JS */
       background-color: var(--mahogany);
       z-index: 100;
       display: flex;
@@ -66,9 +77,12 @@
       font-size: var(--bar-title-size);
       font-weight: 700;
       margin: 0;
-      opacity: 0;
+      opacity: 0;            /* Fade-in con JS */
     }
 
+    /*--------------------------------------------------------------
+      HEADER (4:3)
+    --------------------------------------------------------------*/
     header {
       position: relative;
       width: 100%;
@@ -86,17 +100,18 @@
     }
     .overlay {
       position: absolute;
-      top: 0; left: 0;
+      top: 0; 
+      left: 0;
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
-    /* Green block with title */
+    /* Bloque verde (sin animación) */
     .header-content {
       position: absolute;
-      bottom: 2%;  
+      bottom: 2%; 
       right: 5%;
       z-index: 2;
       text-align: right;
@@ -118,11 +133,15 @@
       word-break: break-word;
     }
 
+    /*--------------------------------------------------------------
+      MAIN + CONTENIDO
+    --------------------------------------------------------------*/
     main {
       max-width: 1100px;
       width: 95%;
       margin: 0 auto 2rem;
     }
+
     section {
       background-color: var(--castleton-green);
       border-radius: var(--border-radius);
@@ -144,7 +163,7 @@
       line-height: 1.6;
     }
 
-    /* Restore bullet points for lists except in #languages */
+    /* Listas con bullets dorados, excepto en #languages */
     section ul {
       list-style: none;
       margin-top: 1rem;
@@ -167,7 +186,7 @@
       border-radius: 50%;
     }
 
-    /* #languages: use flag icons instead of bullets */
+    /* Idiomas con banderas */
     #languages ul {
       list-style: none;
       margin-top: 1rem;
@@ -180,13 +199,18 @@
       position: static;
       padding-left: 0;
     }
-    #languages li::before { content: none; }
+    #languages li::before {
+      content: none;
+    }
     .lang-icon {
       width: 20px;
       height: auto;
       margin-right: 0.5rem;
     }
 
+    /*--------------------------------------------------------------
+      FOOTER
+    --------------------------------------------------------------*/
     footer {
       background-color: var(--castleton-green);
       padding: 1rem 0;
@@ -195,7 +219,7 @@
       border-top: 1px solid var(--vivid-tangelo);
     }
 
-    /* Links in yellow without underline */
+    /* Enlaces en amarillo sin subrayado */
     a {
       color: var(--cyber-yellow);
       text-decoration: none;
@@ -208,17 +232,100 @@
       transform: translateY(-2px);
     }
 
+    /* Ajustes responsive móviles */
     @media (max-width: 768px) {
-      .header-content { bottom: 2%; right: 3%; }
+      .header-content {
+        bottom: 2%;
+        right: 3%;
+      }
     }
     @media (max-width: 480px) {
-      .header-content { bottom: 2%; right: 5%; }
+      .header-content {
+        bottom: 2%;
+        right: 5%;
+      }
+    }
+
+    /*--------------------------------------------------------------
+      MODO HORIZONTAL (PANTALLA GRANDE)
+      El bloque verde queda anclado, sin animaciones, 
+      la barra coral puede verse arriba
+    --------------------------------------------------------------*/
+    @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
+      body {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 0;
+      }
+
+      /* Header fijo en la mitad izquierda */
+      header {
+        position: fixed;
+        width: 50vw;
+        height: 100vh;
+        aspect-ratio: unset;
+        margin-bottom: 0;
+        border-radius: 0;
+      }
+      header img {
+        object-position: center center;
+      }
+
+      /* Bloque verde anclado, sin animaciones */
+      .header-content {
+        bottom: 5%;
+        right: 5%;
+        max-width: 80%;
+        transition: none !important;
+      }
+      .title-box {
+        background-color: rgba(0, 86, 63, 0.9);
+        padding: 1rem 2rem;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+      .title-box h1 {
+        font-size: 4rem;
+        line-height: 1.1;
+      }
+
+      /* Barra coral en la mitad derecha */
+      .scroll-bar {
+        left: 50%;
+        width: 50vw;
+        position: fixed;
+        top: 0;
+        display: flex;
+      }
+
+      /* main+footer en la mitad derecha con scroll normal */
+      main, footer {
+        width: 50%;
+        margin-left: 50%;
+        max-width: 800px;
+        padding: 2rem;
+      }
+      section {
+        margin-bottom: 3rem;
+        padding: 2rem;
+      }
+      section h2 {
+        font-size: 2rem;
+      }
+      section p, section ul {
+        font-size: 1.1rem;
+      }
+      footer {
+        position: relative;
+        width: 50%;
+        margin-left: 50%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Fixed red bar -->
+  <!-- Barra coral -->
   <div class="scroll-bar" id="scrollBar">
     <h1 id="barTitle">Miguel Cox Caballero</h1>
   </div>
@@ -233,13 +340,13 @@
     </div>
   </header>
 
-  <main>
+  <main id="mainContent">
     <section id="about">
       <h2>Acerca de mí</h2>
       <p>
-        Estudiante de Ingeniería Informática en la Universidad de Murcia con 
-        10 años de educación bilingüe y experiencia en proyectos tecnológicos 
-        innovadores.
+        Estudiante de Ingeniería Informática en la Universidad de Murcia 
+        con 10 años de educación bilingüe y experiencia en proyectos 
+        tecnológicos innovadores.
       </p>
     </section>
     
@@ -281,22 +388,26 @@
       <h2>Proyectos</h2>
       <ul>
         <li>
-          <a href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo"
+             target="_blank" rel="noopener noreferrer">
             Guiado de drone por visión computacional
           </a>
         </li>
         <li>
-          <a href="https://github.com/miguelcoxcaballero/TypeTest" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/miguelcoxcaballero/TypeTest"
+             target="_blank" rel="noopener noreferrer">
             TypeTest
           </a>
         </li>
         <li>
-          <a href="https://bit.ly/LosKelvin" target="_blank" rel="noopener noreferrer">
+          <a href="https://bit.ly/LosKelvin"
+             target="_blank" rel="noopener noreferrer">
             Olimpiada de edificación (los kelvin)
           </a>
         </li>
         <li>
-          <a href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA"
+             target="_blank" rel="noopener noreferrer">
             MIGRANTE / HABITANTE (Becas Europa UFV)
           </a>
         </li>
@@ -307,49 +418,70 @@
   <footer>
     <p>© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
     <p>Sígueme en Instagram: 
-      <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.instagram.com/miguelcoxcaballero"
+         target="_blank" rel="noopener noreferrer">
         @miguelcoxcaballero
       </a>
     </p>
   </footer>
 
   <script>
+    // Barra coral sí se anima, pero el greenblock NO.
+    const bigHorizontal = window.matchMedia('(min-width: 1024px) and (min-aspect-ratio: 1/1)').matches;
     const scrollBar = document.getElementById('scrollBar');
-    const barTitle = document.getElementById('barTitle');
-    const headerContent = document.getElementById('headerContent');
-    const titleBox = document.getElementById('titleBox');
+    const barTitle  = document.getElementById('barTitle');
 
-    // Transition threshold in pixels
-    const THRESHOLD = 400;
-    const BAR_SPEED_MULT = 2; // full bar appears with less scroll
-    const BAR_MAX_HEIGHT = 48; // in pixels (~3rem)
-    const TEXT_START = 0.2; // Now text fade-in starts at 20% progress
+    if (!bigHorizontal) {
+      // Pantallas verticales: 
+      // El greenblock se queda fijo sin animarse, 
+      // pero la barra coral se anima al hacer scroll.
+      const THRESHOLD = 400;
+      const BAR_SPEED_MULT = 2; 
+      const BAR_MAX_HEIGHT = 48; 
+      const TEXT_START = 0.2; 
 
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      let progress = scrollY / THRESHOLD;
-      progress = Math.min(Math.max(progress, 0), 1);
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        let progress = scrollY / THRESHOLD;
+        progress = Math.min(Math.max(progress, 0), 1);
 
-      // Green block moves upward: bottom from 2% to 70%
-      const startBottom = 2;
-      const endBottom = 70;
-      const currentBottom = startBottom + (endBottom - startBottom) * progress;
-      headerContent.style.bottom = currentBottom + '%';
+        // NO tocamos el greenblock => Se elimina su animación.
 
-      // Fade out green block
-      titleBox.style.opacity = 1 - progress;
+        // Barra coral crece en altura y fade-in del texto
+        let barProgress = progress * BAR_SPEED_MULT;
+        barProgress = Math.min(barProgress, 1);
+        scrollBar.style.height = (BAR_MAX_HEIGHT * barProgress) + 'px';
 
-      // Red bar grows faster
-      let barProgress = progress * BAR_SPEED_MULT;
-      barProgress = Math.min(barProgress, 1);
-      const currentBarHeight = BAR_MAX_HEIGHT * barProgress;
-      scrollBar.style.height = currentBarHeight + 'px';
+        let textProgress = (progress - TEXT_START) / (1 - TEXT_START);
+        textProgress = Math.min(Math.max(textProgress, 0), 1);
+        barTitle.style.opacity = textProgress;
+      });
+    } else {
+      // Modo horizontal: 
+      // El greenblock anclado sin animaciones,
+      // la barra coral en la mitad derecha.
+      const mainEl = document.getElementById('mainContent');
 
-      // Text in red bar fades in with delay; now using TEXT_START = 0.2
-      let textProgress = (progress - TEXT_START) / (1 - TEXT_START);
-      textProgress = Math.min(Math.max(textProgress, 0), 1);
-      barTitle.style.opacity = textProgress;
-    });
+      // Ajusta si quieres animar la barra en desktop
+      const DESKTOP_THRESHOLD = 800;
+      const DESKTOP_BAR_SPEED_MULT = 1.5;
+      const DESKTOP_BAR_MAX_HEIGHT = 80;
+      const DESKTOP_TEXT_START = 0.3;
+
+      mainEl.addEventListener('scroll', () => {
+        const scrollY = mainEl.scrollTop;
+        let progress = scrollY / DESKTOP_THRESHOLD;
+        progress = Math.min(Math.max(progress, 0), 1);
+
+        let barProgress = progress * DESKTOP_BAR_SPEED_MULT;
+        barProgress = Math.min(barProgress, 1);
+        scrollBar.style.height = (DESKTOP_BAR_MAX_HEIGHT * barProgress) + 'px';
+
+        let textProgress = (progress - DESKTOP_TEXT_START) / (1 - DESKTOP_TEXT_START);
+        textProgress = Math.min(Math.max(textProgress, 0), 1);
+        barTitle.style.opacity = textProgress;
+      });
+    }
   </script>
 </body>
 </html>
