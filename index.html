@@ -335,15 +335,21 @@
     <div class="overlay"></div>
     <div class="header-content" id="headerContent">
       <div class="title-box" id="titleBox">
-        <h1>Miguel Cox Caballero</h1>
+        <h1 data-es="Miguel Cox Caballero" data-en="Miguel Cox Caballero">Miguel Cox Caballero</h1>
       </div>
+    </div>
+    <!-- Botón para cambiar idioma -->
+    <div class="lang-switcher">
+      <button id="langSwitcher" onclick="switchLang()">EN</button>
     </div>
   </header>
 
   <main id="mainContent">
     <section id="about">
-      <h2>Acerca de mí</h2>
-      <p>
+      <h2 data-es="Acerca de mí" data-en="About Me">Acerca de mí</h2>
+      <p data-es="Estudiante de Ingeniería Informática en la Universidad de Murcia 
+        con 10 años de educación bilingüe y experiencia en proyectos 
+        tecnológicos innovadores." data-en="Software Engineering student at the University of Murcia with 10 years of bilingual education and experience in innovative tech projects.">
         Estudiante de Ingeniería Informática en la Universidad de Murcia 
         con 10 años de educación bilingüe y experiencia en proyectos 
         tecnológicos innovadores.
@@ -351,63 +357,67 @@
     </section>
     
     <section id="achievements">
-      <h2>Logros Personales</h2>
+      <h2 data-es="Logros Personales" data-en="Personal Achievements">Logros Personales</h2>
       <ul>
-        <li>Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
-        <li>Oro en la Olimpiada de Arquitectura Sostenible.</li>
-        <li>3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
-        <li>Fabricación de una antena casera premiada en IDIES.</li>
-        <li>Diseño y construcción de una impresora 3D y un dron autónomo.</li>
-        <li>Participación en Erasmus K229 y Save Mother Earth en Liechtenstein.</li>
+        <li data-es="Oro en la Olimpiada de Ingeniería IT de la UCAM." data-en="Gold medal in the UCAM IT Engineering Olympiad.">Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
+        <li data-es="Oro en la Olimpiada de Arquitectura Sostenible." data-en="Gold medal in the Sustainable Architecture Olympiad.">Oro en la Olimpiada de Arquitectura Sostenible.</li>
+        <li data-es="3er puesto en la Olimpiada Nacional de Arquitectura Sostenible." data-en="3rd place in the National Sustainable Architecture Olympiad.">3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
+        <li data-es="Fabricación de una antena casera premiada en IDIES." data-en="Built a homemade antenna awarded at IDIES.">Fabricación de una antena casera premiada en IDIES.</li>
+        <li data-es="Diseño y construcción de una impresora 3D y un dron autónomo." data-en="Designed and built a 3D printer and an autonomous drone.">Diseño y construcción de una impresora 3D y un dron autónomo.</li>
+        <li data-es="Participación en Erasmus K229 y Save Mother Earth en Liechtenstein." data-en="Participation in Erasmus K229 and Save Mother Earth in Liechtenstein.">Participación en Erasmus K229 y Save Mother Earth en Liechtenstein.</li>
       </ul>
     </section>
     
     <section id="languages">
-      <h2>Idiomas</h2>
+      <h2 data-es="Idiomas" data-en="Languages">Idiomas</h2>
       <ul>
         <li>
           <img src="es.png" alt="Español" class="lang-icon">
-          Español: Nativo
+          <span data-es="Español: Nativo" data-en="Spanish: Native">Español: Nativo</span>
         </li>
         <li>
           <img src="uk.png" alt="Inglés" class="lang-icon">
-          Inglés: C2 (Cambridge CPE, 15 años)
+          <span data-es="Inglés: C2 (Cambridge CPE, 15 años)" data-en="English: C2 (Cambridge CPE, 15 years)">Inglés: C2 (Cambridge CPE, 15 años)</span>
         </li>
         <li>
           <img src="fr.png" alt="Francés" class="lang-icon">
-          Francés: B1 (EOI, 6 años)
+          <span data-es="Francés: B1 (EOI, 6 años)" data-en="French: B1 (EOI, 6 years)">Francés: B1 (EOI, 6 años)</span>
         </li>
         <li>
           <img src="de.png" alt="Alemán" class="lang-icon">
-          Alemán: A1 (EOI, 1 año)
+          <span data-es="Alemán: A1 (EOI, 1 año)" data-en="German: A1 (EOI, 1 year)">Alemán: A1 (EOI, 1 año)</span>
         </li>
       </ul>
     </section>
 
     <section id="proyectos">
-      <h2>Proyectos</h2>
+      <h2 data-es="Proyectos" data-en="Projects">Proyectos</h2>
       <ul>
         <li>
           <a href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo"
-             target="_blank" rel="noopener noreferrer">
+             target="_blank" rel="noopener noreferrer"
+             data-es="Guiado de drone por visión computacional" data-en="Drone guidance using computer vision">
             Guiado de drone por visión computacional
           </a>
         </li>
         <li>
           <a href="https://github.com/miguelcoxcaballero/TypeTest"
-             target="_blank" rel="noopener noreferrer">
+             target="_blank" rel="noopener noreferrer"
+             data-es="TypeTest" data-en="TypeTest">
             TypeTest
           </a>
         </li>
         <li>
           <a href="https://bit.ly/LosKelvin"
-             target="_blank" rel="noopener noreferrer">
+             target="_blank" rel="noopener noreferrer"
+             data-es="Olimpiada de edificación (los kelvin)" data-en="Building Olympiad (Los Kelvin)">
             Olimpiada de edificación (los kelvin)
           </a>
         </li>
         <li>
           <a href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA"
-             target="_blank" rel="noopener noreferrer">
+             target="_blank" rel="noopener noreferrer"
+             data-es="MIGRANTE / HABITANTE (Becas Europa UFV)" data-en="MIGRANTE / HABITANTE (EU Scholarships UFV)">
             MIGRANTE / HABITANTE (Becas Europa UFV)
           </a>
         </li>
@@ -416,8 +426,8 @@
   </main>
 
   <footer>
-    <p>© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
-    <p>Sígueme en Instagram: 
+    <p data-es="© 2025 Miguel Cox Caballero. Todos los derechos reservados." data-en="© 2025 Miguel Cox Caballero. All rights reserved.">© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
+    <p data-es="Sígueme en Instagram:" data-en="Follow me on Instagram:">Sígueme en Instagram: 
       <a href="https://www.instagram.com/miguelcoxcaballero"
          target="_blank" rel="noopener noreferrer">
         @miguelcoxcaballero
@@ -426,62 +436,24 @@
   </footer>
 
   <script>
-    // Funcionalidad de cambio de idioma sin modificar otro contenido.
-    // Se utiliza un objeto de traducciones para actualizar el contenido existente.
-    const translations = {
-      "Acerca de mí": { en: "About Me" },
-      "Estudiante de Ingeniería Informática en la Universidad de Murcia \n        con 10 años de educación bilingüe y experiencia en proyectos \n        tecnológicos innovadores.": { en: "Software Engineering student at the University of Murcia with 10 years of bilingual education and experience in innovative tech projects." },
-      "Logros Personales": { en: "Personal Achievements" },
-      "Oro en la Olimpiada de Ingeniería IT de la UCAM.": { en: "Gold medal in the UCAM IT Engineering Olympiad." },
-      "Oro en la Olimpiada de Arquitectura Sostenible.": { en: "Gold medal in the Sustainable Architecture Olympiad." },
-      "3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.": { en: "3rd place in the National Sustainable Architecture Olympiad." },
-      "Fabricación de una antena casera premiada en IDIES.": { en: "Built a homemade antenna awarded at IDIES." },
-      "Diseño y construcción de una impresora 3D y un dron autónomo.": { en: "Designed and built a 3D printer and an autonomous drone." },
-      "Participación en Erasmus K229 y Save Mother Earth en Liechtenstein.": { en: "Participated in Erasmus K229 and Save Mother Earth in Liechtenstein." },
-      "Idiomas": { en: "Languages" },
-      "Español: Nativo": { en: "Spanish: Native" },
-      "Inglés: C2 (Cambridge CPE, 15 años)": { en: "English: C2 (Cambridge CPE, 15 years)" },
-      "Francés: B1 (EOI, 6 años)": { en: "French: B1 (EOI, 6 years)" },
-      "Alemán: A1 (EOI, 1 año)": { en: "German: A1 (EOI, 1 year)" },
-      "Proyectos": { en: "Projects" },
-      "Guiado de drone por visión computacional": { en: "Drone guidance with computer vision" },
-      "TypeTest": { en: "TypeTest" },
-      "Olimpiada de edificación (los kelvin)": { en: "Building Olympiad (Los Kelvin)" },
-      "MIGRANTE / HABITANTE (Becas Europa UFV)": { en: "MIGRANTE / HABITANTE (EU Scholarships UFV)" },
-      "© 2025 Miguel Cox Caballero. Todos los derechos reservados.": { en: "© 2025 Miguel Cox Caballero. All rights reserved." },
-      "Sígueme en Instagram:": { en: "Follow me on Instagram:" }
-    };
-
+    // Funciones para el cambio de idioma
     let currentLang = 'es';
 
-    // Función para actualizar recursivamente el contenido de texto basado en las traducciones.
-    function updateTranslations(element) {
-      if (element.nodeType === Node.TEXT_NODE) {
-        const text = element.textContent.trim();
-        if (translations[text] && currentLang === 'en') {
-          element.textContent = translations[text].en;
-        }
-      } else {
-        element.childNodes.forEach(child => updateTranslations(child));
-      }
+    function updateLang() {
+      // Actualiza el texto del botón
+      document.getElementById('langSwitcher').innerText = currentLang.toUpperCase();
+      // Actualiza todos los elementos que tengan atributos de idioma
+      document.querySelectorAll('[data-es]').forEach(el => {
+        el.innerText = el.getAttribute(`data-${currentLang}`);
+      });
     }
 
     function switchLang() {
-      currentLang = currentLang === 'es' ? 'en' : 'es';
-      document.getElementById('langSwitcher').innerText = currentLang.toUpperCase();
-      updateTranslations(document.body);
+      currentLang = (currentLang === 'es') ? 'en' : 'es';
+      updateLang();
     }
 
-    // Se añade el botón de cambio de idioma sin modificar el HTML original.
-    const header = document.querySelector('header');
-    const langSwitcher = document.createElement('div');
-    langSwitcher.className = 'lang-switcher';
-    langSwitcher.innerHTML = '<button id="langSwitcher" onclick="switchLang()">EN</button>';
-    header.appendChild(langSwitcher);
-
-    document.addEventListener('DOMContentLoaded', () => {
-      updateTranslations(document.body);
-    });
+    document.addEventListener('DOMContentLoaded', updateLang);
 
     // Animación de la barra coral
     const bigHorizontal = window.matchMedia('(min-width: 1024px) and (min-aspect-ratio: 1/1)').matches;
@@ -499,8 +471,11 @@
       window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         let progress = Math.min(Math.max(scrollY / THRESHOLD, 0), 1);
+
+        // Animación de la barra coral: crece en altura y se hace fade-in del texto
         let barProgress = Math.min(progress * BAR_SPEED_MULT, 1);
         scrollBar.style.height = (BAR_MAX_HEIGHT * barProgress) + 'px';
+
         let textProgress = Math.min(Math.max((progress - TEXT_START) / (1 - TEXT_START), 0), 1);
         barTitle.style.opacity = textProgress;
       });
@@ -516,535 +491,10 @@
       mainEl.addEventListener('scroll', () => {
         const scrollY = mainEl.scrollTop;
         let progress = Math.min(Math.max(scrollY / DESKTOP_THRESHOLD, 0), 1);
+
         let barProgress = Math.min(progress * DESKTOP_BAR_SPEED_MULT, 1);
         scrollBar.style.height = (DESKTOP_BAR_MAX_HEIGHT * barProgress) + 'px';
-        let textProgress = Math.min(Math.max((progress - DESKTOP_TEXT_START) / (1 - DESKTOP_TEXT_START), 0), 1);
-        barTitle.style.opacity = textProgress;
-      });
-    }
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Miguel Cox Caballero - Scroll Transition</title>
 
-  <!-- Fuente para el cuerpo (Poppins).
-       Goudy Old Style se usará si está instalada en el sistema -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
-    rel="stylesheet"
-  />
-
-  <style>
-    :root {
-      /* Colores */
-      --black: #000001;
-      --white: #FFFFFF;
-      --castleton-green: #00563F;
-      --cyber-yellow: #FED502;
-      --vivid-tangelo: #F37433;
-      --mahogany: #C44004; /* Barra coral/roja */
-
-      /* Tipografías */
-      --title-font: "Goudy Old Style", "Times New Roman", serif;
-      --body-font: 'Poppins', sans-serif;
-
-      --border-radius: 6px;
-
-      /* Tamaños */
-      --big-title-size: 3rem;   /* Título grande en el bloque verde */
-      --bar-title-size: 1.8rem; /* Título pequeño en la barra coral */
-    }
-
-    /*--------------------------------------------------------------
-      RESET BÁSICO
-    --------------------------------------------------------------*/
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-    }
-    body {
-      background-color: var(--black);
-      color: var(--white);
-      font-family: var(--body-font);
-      overflow-x: hidden;
-      padding-bottom: 3rem; 
-    }
-
-    /*--------------------------------------------------------------
-      BARRA CORAL FIJA
-      (Ocupando la parte superior de la pantalla, se anima en el script)
-    --------------------------------------------------------------*/
-    .scroll-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 0;              /* Se expandirá con JS */
-      background-color: var(--mahogany);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      overflow: hidden;
-      transition: height 0.3s ease;
-    }
-    .scroll-bar h1 {
-      font-family: var(--title-font);
-      font-size: var(--bar-title-size);
-      font-weight: 700;
-      margin: 0;
-      opacity: 0;            /* Fade-in con JS */
-    }
-
-    /*--------------------------------------------------------------
-      HEADER (4:3)
-    --------------------------------------------------------------*/
-    header {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      margin-bottom: 4rem;
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-    }
-    header img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .overlay {
-      position: absolute;
-      top: 0; 
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 1;
-    }
-
-    /* Bloque verde (sin animación) */
-    .header-content {
-      position: absolute;
-      bottom: 2%; 
-      right: 5%;
-      z-index: 2;
-      text-align: right;
-      max-width: 90%;
-    }
-    .title-box {
-      background-color: rgba(0, 86, 63, 0.7);
-      border-radius: var(--border-radius);
-      padding: 0.5rem 1rem;
-      display: inline-block;
-      opacity: 1;
-    }
-    .title-box h1 {
-      font-family: var(--title-font);
-      font-size: var(--big-title-size);
-      font-weight: 700;
-      margin: 0;
-      white-space: normal;
-      word-break: break-word;
-    }
-
-    /*--------------------------------------------------------------
-      MAIN + CONTENIDO
-    --------------------------------------------------------------*/
-    main {
-      max-width: 1100px;
-      width: 95%;
-      margin: 0 auto 2rem;
-    }
-
-    section {
-      background-color: var(--castleton-green);
-      border-radius: var(--border-radius);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    section h2 {
-      font-family: var(--title-font);
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--vivid-tangelo);
-      border-bottom: 2px solid var(--vivid-tangelo);
-      display: inline-block;
-      padding-bottom: 0.3rem;
-    }
-    section p, section ul {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* Listas con bullets dorados, excepto en #languages */
-    section ul {
-      list-style: none;
-      margin-top: 1rem;
-      padding-left: 2rem;
-    }
-    section ul li {
-      position: relative;
-      margin-bottom: 0.6rem;
-      padding-left: 1.5rem;
-    }
-    section ul li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      background-color: var(--cyber-yellow);
-      border-radius: 50%;
-    }
-
-    /* Idiomas con banderas */
-    #languages ul {
-      list-style: none;
-      margin-top: 1rem;
-      padding-left: 0;
-    }
-    #languages li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.6rem;
-      position: static;
-      padding-left: 0;
-    }
-    #languages li::before {
-      content: none;
-    }
-    .lang-icon {
-      width: 20px;
-      height: auto;
-      margin-right: 0.5rem;
-    }
-
-    /*--------------------------------------------------------------
-      FOOTER
-    --------------------------------------------------------------*/
-    footer {
-      background-color: var(--castleton-green);
-      padding: 1rem 0;
-      text-align: center;
-      font-size: 0.9rem;
-      border-top: 1px solid var(--vivid-tangelo);
-    }
-
-    /* Enlaces en amarillo sin subrayado */
-    a {
-      color: var(--cyber-yellow);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    a:hover {
-      color: var(--white);
-      text-decoration: none;
-      transform: translateY(-2px);
-    }
-
-    /* Ajustes responsive móviles */
-    @media (max-width: 768px) {
-      .header-content {
-        bottom: 2%;
-        right: 3%;
-      }
-    }
-    @media (max-width: 480px) {
-      .header-content {
-        bottom: 2%;
-        right: 5%;
-      }
-    }
-
-    /*--------------------------------------------------------------
-      MODO HORIZONTAL (PANTALLA GRANDE)
-      El bloque verde queda anclado, sin animaciones, 
-      la barra coral puede verse arriba
-    --------------------------------------------------------------*/
-    @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
-      body {
-        display: flex;
-        flex-wrap: wrap;
-        padding-bottom: 0;
-      }
-
-      /* Header fijo en la mitad izquierda */
-      header {
-        position: fixed;
-        width: 50vw;
-        height: 100vh;
-        aspect-ratio: unset;
-        margin-bottom: 0;
-        border-radius: 0;
-      }
-      header img {
-        object-position: center center;
-      }
-
-      /* Bloque verde anclado, sin animaciones */
-      .header-content {
-        bottom: 5%;
-        right: 5%;
-        max-width: 80%;
-        transition: none !important;
-      }
-      .title-box {
-        background-color: rgba(0, 86, 63, 0.9);
-        padding: 1rem 2rem;
-        transform: none !important;
-        opacity: 1 !important;
-      }
-      .title-box h1 {
-        font-size: 4rem;
-        line-height: 1.1;
-      }
-
-      /* Barra coral en la mitad derecha */
-      .scroll-bar {
-        left: 50%;
-        width: 50vw;
-        position: fixed;
-        top: 0;
-        display: flex;
-      }
-
-      /* main+footer en la mitad derecha con scroll normal */
-      main, footer {
-        width: 50%;
-        margin-left: 50%;
-        max-width: 800px;
-        padding: 2rem;
-      }
-      section {
-        margin-bottom: 3rem;
-        padding: 2rem;
-      }
-      section h2 {
-        font-size: 2rem;
-      }
-      section p, section ul {
-        font-size: 1.1rem;
-      }
-      footer {
-        position: relative;
-        width: 50%;
-        margin-left: 50%;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Barra coral -->
-  <div class="scroll-bar" id="scrollBar">
-    <h1 id="barTitle">Miguel Cox Caballero</h1>
-  </div>
-
-  <header>
-    <img src="mig.gif" alt="Miguel Cox Caballero - GIF 4:3">
-    <div class="overlay"></div>
-    <div class="header-content" id="headerContent">
-      <div class="title-box" id="titleBox">
-        <h1>Miguel Cox Caballero</h1>
-      </div>
-    </div>
-  </header>
-
-  <main id="mainContent">
-    <section id="about">
-      <h2>Acerca de mí</h2>
-      <p>
-        Estudiante de Ingeniería Informática en la Universidad de Murcia 
-        con 10 años de educación bilingüe y experiencia en proyectos 
-        tecnológicos innovadores.
-      </p>
-    </section>
-    
-    <section id="achievements">
-      <h2>Logros Personales</h2>
-      <ul>
-        <li>Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
-        <li>Oro en la Olimpiada de Arquitectura Sostenible.</li>
-        <li>3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
-        <li>Fabricación de una antena casera premiada en IDIES.</li>
-        <li>Diseño y construcción de una impresora 3D y un dron autónomo.</li>
-        <li>Participación en Erasmus K229 y Save Mother Earth en Liechtenstein.</li>
-      </ul>
-    </section>
-    
-    <section id="languages">
-      <h2>Idiomas</h2>
-      <ul>
-        <li>
-          <img src="es.png" alt="Español" class="lang-icon">
-          Español: Nativo
-        </li>
-        <li>
-          <img src="uk.png" alt="Inglés" class="lang-icon">
-          Inglés: C2 (Cambridge CPE, 15 años)
-        </li>
-        <li>
-          <img src="fr.png" alt="Francés" class="lang-icon">
-          Francés: B1 (EOI, 6 años)
-        </li>
-        <li>
-          <img src="de.png" alt="Alemán" class="lang-icon">
-          Alemán: A1 (EOI, 1 año)
-        </li>
-      </ul>
-    </section>
-
-    <section id="proyectos">
-      <h2>Proyectos</h2>
-      <ul>
-        <li>
-          <a href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo"
-             target="_blank" rel="noopener noreferrer">
-            Guiado de drone por visión computacional
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/miguelcoxcaballero/TypeTest"
-             target="_blank" rel="noopener noreferrer">
-            TypeTest
-          </a>
-        </li>
-        <li>
-          <a href="https://bit.ly/LosKelvin"
-             target="_blank" rel="noopener noreferrer">
-            Olimpiada de edificación (los kelvin)
-          </a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA"
-             target="_blank" rel="noopener noreferrer">
-            MIGRANTE / HABITANTE (Becas Europa UFV)
-          </a>
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
-    <p>Sígueme en Instagram: 
-      <a href="https://www.instagram.com/miguelcoxcaballero"
-         target="_blank" rel="noopener noreferrer">
-        @miguelcoxcaballero
-      </a>
-    </p>
-  </footer>
-
-  <script>
-    // Funcionalidad de cambio de idioma sin modificar otro contenido.
-    // Se utiliza un objeto de traducciones para actualizar el contenido existente.
-    const translations = {
-      "Acerca de mí": { en: "About Me" },
-      "Estudiante de Ingeniería Informática en la Universidad de Murcia \n        con 10 años de educación bilingüe y experiencia en proyectos \n        tecnológicos innovadores.": { en: "Software Engineering student at the University of Murcia with 10 years of bilingual education and experience in innovative tech projects." },
-      "Logros Personales": { en: "Personal Achievements" },
-      "Oro en la Olimpiada de Ingeniería IT de la UCAM.": { en: "Gold medal in the UCAM IT Engineering Olympiad." },
-      "Oro en la Olimpiada de Arquitectura Sostenible.": { en: "Gold medal in the Sustainable Architecture Olympiad." },
-      "3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.": { en: "3rd place in the National Sustainable Architecture Olympiad." },
-      "Fabricación de una antena casera premiada en IDIES.": { en: "Built a homemade antenna awarded at IDIES." },
-      "Diseño y construcción de una impresora 3D y un dron autónomo.": { en: "Designed and built a 3D printer and an autonomous drone." },
-      "Participación en Erasmus K229 y Save Mother Earth en Liechtenstein.": { en: "Participated in Erasmus K229 and Save Mother Earth in Liechtenstein." },
-      "Idiomas": { en: "Languages" },
-      "Español: Nativo": { en: "Spanish: Native" },
-      "Inglés: C2 (Cambridge CPE, 15 años)": { en: "English: C2 (Cambridge CPE, 15 years)" },
-      "Francés: B1 (EOI, 6 años)": { en: "French: B1 (EOI, 6 years)" },
-      "Alemán: A1 (EOI, 1 año)": { en: "German: A1 (EOI, 1 year)" },
-      "Proyectos": { en: "Projects" },
-      "Guiado de drone por visión computacional": { en: "Drone guidance with computer vision" },
-      "TypeTest": { en: "TypeTest" },
-      "Olimpiada de edificación (los kelvin)": { en: "Building Olympiad (Los Kelvin)" },
-      "MIGRANTE / HABITANTE (Becas Europa UFV)": { en: "MIGRANTE / HABITANTE (EU Scholarships UFV)" },
-      "© 2025 Miguel Cox Caballero. Todos los derechos reservados.": { en: "© 2025 Miguel Cox Caballero. All rights reserved." },
-      "Sígueme en Instagram:": { en: "Follow me on Instagram:" }
-    };
-
-    let currentLang = 'es';
-
-    // Función para actualizar recursivamente el contenido de texto basado en las traducciones.
-    function updateTranslations(element) {
-      if (element.nodeType === Node.TEXT_NODE) {
-        const text = element.textContent.trim();
-        if (translations[text] && currentLang === 'en') {
-          element.textContent = translations[text].en;
-        }
-      } else {
-        element.childNodes.forEach(child => updateTranslations(child));
-      }
-    }
-
-    function switchLang() {
-      currentLang = currentLang === 'es' ? 'en' : 'es';
-      document.getElementById('langSwitcher').innerText = currentLang.toUpperCase();
-      updateTranslations(document.body);
-    }
-
-    // Se añade el botón de cambio de idioma sin modificar el HTML original.
-    const header = document.querySelector('header');
-    const langSwitcher = document.createElement('div');
-    langSwitcher.className = 'lang-switcher';
-    langSwitcher.innerHTML = '<button id="langSwitcher" onclick="switchLang()">EN</button>';
-    header.appendChild(langSwitcher);
-
-    document.addEventListener('DOMContentLoaded', () => {
-      updateTranslations(document.body);
-    });
-
-    // Animación de la barra coral
-    const bigHorizontal = window.matchMedia('(min-width: 1024px) and (min-aspect-ratio: 1/1)').matches;
-    const scrollBar = document.getElementById('scrollBar');
-    const barTitle  = document.getElementById('barTitle');
-
-    if (!bigHorizontal) {
-      // Pantallas verticales:
-      // El greenblock se queda fijo, pero la barra coral se anima al hacer scroll.
-      const THRESHOLD = 400;
-      const BAR_SPEED_MULT = 2; 
-      const BAR_MAX_HEIGHT = 48; 
-      const TEXT_START = 0.2; 
-
-      window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        let progress = Math.min(Math.max(scrollY / THRESHOLD, 0), 1);
-        let barProgress = Math.min(progress * BAR_SPEED_MULT, 1);
-        scrollBar.style.height = (BAR_MAX_HEIGHT * barProgress) + 'px';
-        let textProgress = Math.min(Math.max((progress - TEXT_START) / (1 - TEXT_START), 0), 1);
-        barTitle.style.opacity = textProgress;
-      });
-    } else {
-      // Modo horizontal:
-      // El greenblock anclado sin animaciones, la barra coral en la mitad derecha.
-      const mainEl = document.getElementById('mainContent');
-      const DESKTOP_THRESHOLD = 800;
-      const DESKTOP_BAR_SPEED_MULT = 1.5;
-      const DESKTOP_BAR_MAX_HEIGHT = 80;
-      const DESKTOP_TEXT_START = 0.3;
-
-      mainEl.addEventListener('scroll', () => {
-        const scrollY = mainEl.scrollTop;
-        let progress = Math.min(Math.max(scrollY / DESKTOP_THRESHOLD, 0), 1);
-        let barProgress = Math.min(progress * DESKTOP_BAR_SPEED_MULT, 1);
-        scrollBar.style.height = (DESKTOP_BAR_MAX_HEIGHT * barProgress) + 'px';
         let textProgress = Math.min(Math.max((progress - DESKTOP_TEXT_START) / (1 - DESKTOP_TEXT_START), 0), 1);
         barTitle.style.opacity = textProgress;
       });
