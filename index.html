@@ -378,7 +378,18 @@
         <li>3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
         <li>Fabricación de una antena casera premiada en IDIES.</li>
         <li>Diseño y construcción de una impresora 3D y un dron autónomo.</li>
+        <!-- Se elimina "y Save Mother Earth" de esta línea -->
         <li>Participación en Erasmus K229 en Liechtenstein.</li>
+      </ul>
+    </section>
+
+    <!-- NUEVA SECCIÓN Movilidad ERASMUS+ -->
+    <section id="erasmus">
+      <h2>Movilidad ERASMUS+</h2>
+      <ul>
+        <li>Youth Exchange en Chequia: Trabajamos sobre el patrimonio cultural común europeo.</li>
+        <li>Youth Exchange en Liechtenstein: Enfocado en la vida sostenible y en el contacto directo con la naturaleza.</li>
+        <li>Training Course en Lębork (Polonia): Tratamos la comunicación digital ligada a mis estudios de Ingeniería Informática.</li>
       </ul>
     </section>
     
@@ -404,16 +415,6 @@
       </ul>
     </section>
 
-    <!-- NUEVA SECCIÓN Movilidad ERASMUS+ -->
-    <section id="erasmus">
-      <h2>Movilidad ERASMUS+</h2>
-      <ul>
-        <li>Youth Exchange: En Chequia, donde trabajamos sobre el patrimonio cultural común europeo.</li>
-        <li>Youth Exchange: En Liechtenstein, centrado en la vida sostenible, en el contacto directo con la naturaleza y Save Mother Earth.</li>
-        <li>Training Course: POLANET en Lębork (Polonia), donde tratamos la comunicación digital entre jóvenes europeos, una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería Informática en la Universidad de Murcia.</li>
-      </ul>
-    </section>
-    
     <section id="proyectos">
       <h2>Proyectos</h2>
       <ul>
@@ -546,10 +547,30 @@
         es: 'Diseño y construcción de una impresora 3D y un dron autónomo.',
         en: 'Designed and built a 3D printer and an autonomous drone.'
       },
+      // Se quita "y Save Mother Earth"
       'section#achievements ul li:nth-child(6)': {
         es: 'Participación en Erasmus K229 en Liechtenstein.',
         en: 'Participated in Erasmus K229 in Liechtenstein.'
       },
+
+      // SECCIÓN NUEVA: Movilidad ERASMUS+
+      'section#erasmus h2': {
+        es: 'Movilidad ERASMUS+',
+        en: 'ERASMUS+ Mobility'
+      },
+      'section#erasmus ul li:nth-child(1)': {
+        es: 'Youth Exchange en Chequia: Trabajamos sobre el patrimonio cultural común europeo.',
+        en: 'Youth Exchange in Czechia: We worked on Europe’s shared cultural heritage.'
+      },
+      'section#erasmus ul li:nth-child(2)': {
+        es: 'Youth Exchange en Liechtenstein: Enfocado en la vida sostenible y en el contacto directo con la naturaleza.',
+        en: 'Youth Exchange in Liechtenstein: Focused on sustainable living and direct contact with nature.'
+      },
+      'section#erasmus ul li:nth-child(3)': {
+        es: 'Training Course en Lębork (Polonia): Tratamos la comunicación digital ligada a mis estudios de Ingeniería Informática.',
+        en: 'Training Course in Lębork (Poland): We explored digital communication related to my Computer Engineering studies.'
+      },
+
       'section#languages h2': {
         es: 'Idiomas',
         en: 'Languages'
@@ -569,22 +590,6 @@
       'section#languages ul li:nth-child(4) span': {
         es: 'Alemán: A1 (EOI, 1 año)',
         en: 'German: A1 (EOI, 1 year)'
-      },
-      'section#erasmus h2': {
-        es: 'Movilidad ERASMUS+',
-        en: 'ERASMUS+ Mobility'
-      },
-      'section#erasmus ul li:nth-child(1)': {
-        es: 'Youth Exchange: En Chequia, donde trabajamos sobre el patrimonio cultural común europeo.',
-        en: 'Youth Exchange: In Czechia, where we worked on Europe’s common cultural heritage.'
-      },
-      'section#erasmus ul li:nth-child(2)': {
-        es: 'Youth Exchange: En Liechtenstein, centrado en la vida sostenible, en el contacto directo con la naturaleza y Save Mother Earth.',
-        en: 'Youth Exchange: In Liechtenstein, focused on sustainable living, direct contact with nature and Save Mother Earth.'
-      },
-      'section#erasmus ul li:nth-child(3)': {
-        es: 'Training Course: POLANET en Lębork (Polonia), donde tratamos la comunicación digital entre jóvenes europeos, una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería Informática en la Universidad de Murcia.',
-        en: 'Training Course: POLANET in Lębork (Poland), where we worked on digital communication among young Europeans, strongly related to my studies, as I am currently pursuing a degree in Computer Engineering at the University of Murcia.'
       },
       'section#proyectos h2': {
         es: 'Proyectos',
@@ -618,7 +623,7 @@
 
     function switchLang() {
       currentLang = (currentLang === 'es') ? 'en' : 'es';
-      document.getElementById('langSwitcher').textContent = currentLang.toUpperCase();
+      document.getElementById('langSwitcher').innerText = currentLang.toUpperCase();
       for (let selector in translations) {
         let elem = document.querySelector(selector);
         if (elem) {
@@ -626,4 +631,14 @@
             // Actualiza manteniendo el enlace a Instagram intacto
             elem.innerHTML = translations[selector][currentLang] + ' <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>';
           } else {
-     
+            elem.innerText = translations[selector][currentLang];
+          }
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inicializa el botón de idioma
+      document.getElementById('langSwitcher').innerText = 'ES';
+    });
+  </scr
