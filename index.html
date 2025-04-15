@@ -1,3 +1,6 @@
+A continuación te dejo el código completo actualizado; he modificado la función de cambio de idioma para utilizar textContent en vez de innerText. Esto puede mejorar la consistencia en la actualización de los elementos y asegurar que el botón funcione correctamente:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -190,13 +193,12 @@
       margin-bottom: 0.6rem;
       padding-left: 1.5rem;
     }
-    /* Ajuste de la posición vertical del bullet:
-       - top: 0.35em centra aproximadamente la "bolita" con la primera línea. */
+    /* Ajuste del bullet: se centra verticalmente respecto a la primera línea */
     section ul li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 0.35em; /* Ajustar si deseas un desplazamiento distinto */
+      top: 0.35em; /* Ajusta este valor según necesites */
       width: 8px;
       height: 8px;
       background-color: var(--cyber-yellow);
@@ -355,7 +357,7 @@
         <h1>Miguel Cox Caballero</h1>
       </div>
     </div>
-    <!-- Botón para cambiar idioma (se ha eliminado el onclick inline y se asigna el event listener) -->
+    <!-- Botón para cambiar idioma (sin onclick inline; se asigna listener) -->
     <div class="lang-switcher">
       <button id="langSwitcher">ES</button>
     </div>
@@ -462,13 +464,13 @@
     const barTitle  = document.getElementById('barTitle');
 
     if (!bigHorizontal) {
-      // Pantallas verticales: 
-      // El greenblock se queda fijo sin animarse, 
+      // Pantallas verticales:
+      // El greenblock se queda fijo sin animarse,
       // pero la barra coral se anima al hacer scroll.
       const THRESHOLD = 400;
-      const BAR_SPEED_MULT = 2; 
-      const BAR_MAX_HEIGHT = 48; 
-      const TEXT_START = 0.2; 
+      const BAR_SPEED_MULT = 2;
+      const BAR_MAX_HEIGHT = 48;
+      const TEXT_START = 0.2;
 
       window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
@@ -485,7 +487,7 @@
         barTitle.style.opacity = textProgress;
       });
     } else {
-      // Modo horizontal: 
+      // Modo horizontal:
       // El greenblock anclado sin animaciones,
       // la barra coral en la mitad derecha.
       const mainEl = document.getElementById('mainContent');
@@ -619,7 +621,7 @@
 
     function switchLang() {
       currentLang = (currentLang === 'es') ? 'en' : 'es';
-      document.getElementById('langSwitcher').innerText = currentLang.toUpperCase();
+      document.getElementById('langSwitcher').textContent = currentLang.toUpperCase();
       for (let selector in translations) {
         let elem = document.querySelector(selector);
         if (elem) {
@@ -627,14 +629,10 @@
             // Actualiza manteniendo el enlace a Instagram intacto
             elem.innerHTML = translations[selector][currentLang] + ' <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>';
           } else {
-            elem.innerText = translations[selector][currentLang];
+            elem.textContent = translations[selector][currentLang];
           }
         }
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      // Inicializa el botón de idioma y asigna el event listener
-      const langBtn = document.getElementById('langSwitcher');
-      langBtn.innerText = 'ES';
-      langBtn.add
+    document.addEventListener('DOMContentLoaded'
