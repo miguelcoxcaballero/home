@@ -404,6 +404,16 @@
       </ul>
     </section>
 
+    <!-- NUEVA SECCIÓN Movilidad ERASMUS+ (añadida tal cual) -->
+    <section id="erasmus">
+      <h2>Movilidad ERASMUS+</h2>
+      <ul>
+        <li>Youth Exchange: En Chequia, donde trabajamos sobre el patrimonio cultural común europeo.</li>
+        <li>Youth Exchange: En Liechtenstein, centrado en la vida sostenible y en el contacto directo con la naturaleza.</li>
+        <li>Training Course: POLANET en Lębork (Polonia), donde tratamos la comunicación digital entre jóvenes europeos, una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería informática en la Universidad de Murcia.</li>
+      </ul>
+    </section>
+    
     <section id="proyectos">
       <h2>Proyectos</h2>
       <ul>
@@ -433,30 +443,6 @@
         </li>
       </ul>
     </section>
-
-    <!-- NUEVO APARTADO DE MOVILIDAD ERASMUS+ (sin tocar nada más) -->
-    <section id="mobility">
-      <h2>Movilidad ERASMUS+</h2>
-      <p>
-        Tengo 19 años y ya he participado en tres proyectos Erasmus+, 
-        dos Youth Exchange y un Training Course (este último a través de YouthBCN).
-      </p>
-      <ul>
-        <li>
-          <strong>Chequia:</strong> donde trabajamos sobre el patrimonio cultural común europeo.
-        </li>
-        <li>
-          <strong>Liechtenstein:</strong> centrado en la vida sostenible y en el contacto directo con la naturaleza.
-        </li>
-        <li>
-          <strong>POLANET (Łębok, Polonia):</strong> donde tratamos la comunicación digital aplicada a varios estudios,
-          una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería informática 
-          en la Universidad de Murcia.
-        </li>
-      </ul>
-    </section>
-    <!-- FIN NUEVO APARTADO -->
-
   </main>
 
   <footer>
@@ -584,6 +570,22 @@
         es: 'Alemán: A1 (EOI, 1 año)',
         en: 'German: A1 (EOI, 1 year)'
       },
+      'section#erasmus h2': {
+        es: 'Movilidad ERASMUS+',
+        en: 'ERASMUS+ Mobility'
+      },
+      'section#erasmus ul li:nth-child(1)': {
+        es: 'Youth Exchange: En Chequia, donde trabajamos sobre el patrimonio cultural común europeo.',
+        en: 'Youth Exchange: In Czechia, where we worked on Europe’s common cultural heritage.'
+      },
+      'section#erasmus ul li:nth-child(2)': {
+        es: 'Youth Exchange: En Liechtenstein, centrado en la vida sostenible y en el contacto directo con la naturaleza.',
+        en: 'Youth Exchange: In Liechtenstein, focused on sustainable living and direct contact with nature.'
+      },
+      'section#erasmus ul li:nth-child(3)': {
+        es: 'Training Course: POLANET en Lębork (Polonia), donde tratamos la comunicación digital entre jóvenes europeos, una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería informática en la Universidad de Murcia.',
+        en: 'Training Course: POLANET in Lębork (Poland), where we worked on digital communication among young Europeans, strongly related to my studies, as I am currently pursuing a degree in Computer Engineering at the University of Murcia.'
+      },
       'section#proyectos h2': {
         es: 'Proyectos',
         en: 'Projects'
@@ -604,31 +606,23 @@
         es: 'MIGRANTE / HABITANTE (Becas Europa UFV)',
         en: 'MIGRANTE / HABITANTE (EU Scholarships UFV)'
       },
-      // NUEVO APARTADO: Movilidad ERASMUS+
-      'section#mobility h2': {
-        es: 'Movilidad ERASMUS+',
-        en: 'ERASMUS+ Mobility'
-      },
-      'section#mobility p': {
-        es: 'Tengo 19 años y ya he participado en tres proyectos Erasmus+, \n        dos Youth Exchange y un Training Course (este último a través de YouthBCN).',
-        en: 'I am 19 years old and have participated in three Erasmus+ projects, two Youth Exchanges, and one Training Course (the latter through YouthBCN).'
-      },
-      'section#mobility ul li:nth-child(1)': {
-        es: 'Chequia: donde trabajamos sobre el patrimonio cultural común europeo.',
-        en: 'Czech Republic: where we worked on Europe’s common cultural heritage.'
-      },
-      'section#mobility ul li:nth-child(2)': {
-        es: 'Liechtenstein: centrado en la vida sostenible y en el contacto directo con la naturaleza.',
-        en: 'Liechtenstein: focused on sustainable living and direct contact with nature.'
-      },
-      'section#mobility ul li:nth-child(3)': {
-        es: 'POLANET (Łębok, Polonia): donde tratamos la comunicación digital aplicada a varios estudios, \n    una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería informática en la Universidad de Murcia.',
-        en: 'POLANET (Łębok, Poland): where we dealt with digital communication applied to various fields of study, \n    an experience closely tied to my academic path as I am currently studying Computer Engineering at the University of Murcia.'
-      },
       'footer p:nth-child(1)': {
         es: '© 2025 Miguel Cox Caballero. Todos los derechos reservados.',
         en: '© 2025 Miguel Cox Caballero. All rights reserved.'
       },
       'footer p:nth-child(2)': {
         es: 'Sígueme en Instagram:',
-        en: 'Follow me on Instagra
+        en: 'Follow me on Instagram:'
+      }
+    };
+
+    function switchLang() {
+      currentLang = (currentLang === 'es') ? 'en' : 'es';
+      document.getElementById('langSwitcher').innerText = currentLang.toUpperCase();
+      for (let selector in translations) {
+        let elem = document.querySelector(selector);
+        if (elem) {
+          if (selector === 'footer p:nth-child(2)') {
+            // Actualiza manteniendo el enlace a Instagram intacto
+            elem.innerHTML = translations[selector][currentLang] + ' <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>';
+  
