@@ -190,14 +190,13 @@
       margin-bottom: 0.6rem;
       padding-left: 1.5rem;
     }
-    /* Ajuste de la posición vertical del bullet para centrarlo respecto
-       a la primera línea. Se usa una fracción de "em" para permitir un ajuste
-       relativo al tamaño de fuente. */
+    /* Alinea el bullet centrado respecto a la primera línea.
+       Ajusta el valor (0.35em) según el tamaño de fuente para lograr el centrado */
     section ul li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 0.35em;  /* Ajusta este valor (por ejemplo, 0.35em o 0.4em) según lo necesites */
+      top: 0.35em;
       width: 8px;
       height: 8px;
       background-color: var(--cyber-yellow);
@@ -634,7 +633,12 @@
       }
     }
 
-    // Asignamos el event listener directamente ya que el script se ejecuta al final del body.
-    const langBtn = document.getElementById('langSwitcher');
-    langBtn.innerText = 'ES';
-    langBtn.addEventListener('cl
+    // Asignamos el event listener dentro de DOMContentLoaded para asegurar que el elemento existe.
+    document.addEventListener('DOMContentLoaded', () => {
+      const langBtn = document.getElementById('langSwitcher');
+      langBtn.innerText = 'ES';
+      langBtn.addEventListener('click', switchLang);
+    });
+  </script>
+</body>
+</h
