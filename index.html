@@ -378,18 +378,7 @@
         <li>3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
         <li>Fabricación de una antena casera premiada en IDIES.</li>
         <li>Diseño y construcción de una impresora 3D y un dron autónomo.</li>
-        <!-- Se elimina "y Save Mother Earth" de esta línea -->
-        <li>Participación en Erasmus K229 en Liechtenstein.</li>
-      </ul>
-    </section>
-
-    <!-- NUEVA SECCIÓN Movilidad ERASMUS+ -->
-    <section id="erasmus">
-      <h2>Movilidad ERASMUS+</h2>
-      <ul>
-        <li>Youth Exchange en Chequia: Trabajamos sobre el patrimonio cultural común europeo.</li>
-        <li>Youth Exchange en Liechtenstein: Enfocado en la vida sostenible y en el contacto directo con la naturaleza.</li>
-        <li>Training Course en Lębork (Polonia): Tratamos la comunicación digital ligada a mis estudios de Ingeniería Informática.</li>
+        <!-- Se elimina la mención a Save Mother Earth (6º bullet) -->
       </ul>
     </section>
     
@@ -442,6 +431,16 @@
             MIGRANTE / HABITANTE (Becas Europa UFV)
           </a>
         </li>
+      </ul>
+    </section>
+
+    <!-- NUEVO APARTADO: Movilidad ERASMUS+ -->
+    <section id="erasmus">
+      <h2>Movilidad ERASMUS+</h2>
+      <ul>
+        <li>Youth Exchange en Chequia. Donde trabajamos sobre el patrimonio cultural común europeo.</li>
+        <li>Youth Exchange en Liechtenstein. Centrado en la vida sostenible y en el contacto directo con la naturaleza.</li>
+        <li>Training Course en Polonia. Allí tratamos la comunicación digital y los medios europeos. Ha sido una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería Informática en la Universidad de Murcia.</li>
       </ul>
     </section>
   </main>
@@ -547,30 +546,8 @@
         es: 'Diseño y construcción de una impresora 3D y un dron autónomo.',
         en: 'Designed and built a 3D printer and an autonomous drone.'
       },
-      // Se quita "y Save Mother Earth"
-      'section#achievements ul li:nth-child(6)': {
-        es: 'Participación en Erasmus K229 en Liechtenstein.',
-        en: 'Participated in Erasmus K229 in Liechtenstein.'
-      },
-
-      // SECCIÓN NUEVA: Movilidad ERASMUS+
-      'section#erasmus h2': {
-        es: 'Movilidad ERASMUS+',
-        en: 'ERASMUS+ Mobility'
-      },
-      'section#erasmus ul li:nth-child(1)': {
-        es: 'Youth Exchange en Chequia: Trabajamos sobre el patrimonio cultural común europeo.',
-        en: 'Youth Exchange in Czechia: We worked on Europe’s shared cultural heritage.'
-      },
-      'section#erasmus ul li:nth-child(2)': {
-        es: 'Youth Exchange en Liechtenstein: Enfocado en la vida sostenible y en el contacto directo con la naturaleza.',
-        en: 'Youth Exchange in Liechtenstein: Focused on sustainable living and direct contact with nature.'
-      },
-      'section#erasmus ul li:nth-child(3)': {
-        es: 'Training Course en Lębork (Polonia): Tratamos la comunicación digital ligada a mis estudios de Ingeniería Informática.',
-        en: 'Training Course in Lębork (Poland): We explored digital communication related to my Computer Engineering studies.'
-      },
-
+      // Se elimina la 6ª mención (Save Mother Earth)
+      
       'section#languages h2': {
         es: 'Idiomas',
         en: 'Languages'
@@ -611,6 +588,25 @@
         es: 'MIGRANTE / HABITANTE (Becas Europa UFV)',
         en: 'MIGRANTE / HABITANTE (EU Scholarships UFV)'
       },
+
+      /* NUEVAS TRADUCCIONES: Movilidad ERASMUS+ */
+      'section#erasmus h2': {
+        es: 'Movilidad ERASMUS+',
+        en: 'ERASMUS+ Mobility'
+      },
+      'section#erasmus ul li:nth-child(1)': {
+        es: 'Youth Exchange en Chequia. Donde trabajamos sobre el patrimonio cultural común europeo.',
+        en: 'Youth Exchange in the Czech Republic. We worked on the common European cultural heritage.'
+      },
+      'section#erasmus ul li:nth-child(2)': {
+        es: 'Youth Exchange en Liechtenstein. Centrado en la vida sostenible y en el contacto directo con la naturaleza.',
+        en: 'Youth Exchange in Liechtenstein. Focused on sustainable living and direct contact with nature.'
+      },
+      'section#erasmus ul li:nth-child(3)': {
+        es: 'Training Course en Polonia. Allí tratamos la comunicación digital y los medios europeos. Ha sido una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería Informática en la Universidad de Murcia.',
+        en: 'Training Course in Poland. There, we worked on digital communication and European media. It was a great experience closely tied to my studies, since I am currently pursuing a degree in Computer Engineering at the University of Murcia.'
+      },
+
       'footer p:nth-child(1)': {
         es: '© 2025 Miguel Cox Caballero. Todos los derechos reservados.',
         en: '© 2025 Miguel Cox Caballero. All rights reserved.'
@@ -637,8 +633,4 @@
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      // Inicializa el botón de idioma
-      document.getElementById('langSwitcher').innerText = 'ES';
-    });
-  </scr
+    document.addEventListener('DOMContentL
