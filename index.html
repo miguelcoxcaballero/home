@@ -354,9 +354,9 @@
         <h1>Miguel Cox Caballero</h1>
       </div>
     </div>
-    <!-- Botón para cambiar idioma (sin modificar lo demás) -->
+    <!-- Botón para cambiar idioma (se ha eliminado el onclick inline y se asigna el event listener) -->
     <div class="lang-switcher">
-      <button id="langSwitcher" onclick="switchLang()">ES</button>
+      <button id="langSwitcher">ES</button>
     </div>
   </header>
 
@@ -378,7 +378,6 @@
         <li>3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
         <li>Fabricación de una antena casera premiada en IDIES.</li>
         <li>Diseño y construcción de una impresora 3D y un dron autónomo.</li>
-        <!-- Se elimina la mención a Save Mother Earth (6º bullet) -->
       </ul>
     </section>
     
@@ -438,9 +437,9 @@
     <section id="erasmus">
       <h2>Movilidad ERASMUS+</h2>
       <ul>
-        <li>Youth Exchange en Chequia. Donde trabajamos sobre el patrimonio cultural común europeo.</li>
-        <li>Youth Exchange en Liechtenstein. Centrado en la vida sostenible y en el contacto directo con la naturaleza.</li>
-        <li>Training Course en Polonia. Allí tratamos la comunicación digital y los medios europeos. Ha sido una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería Informática en la Universidad de Murcia.</li>
+        <li>Youth Exchange: Chequia – Trabajé en el patrimonio cultural común europeo.</li>
+        <li>Youth Exchange: Liechtenstein – Enfocado en la vida sostenible y el contacto directo con la naturaleza.</li>
+        <li>Training Course: Polonia – Abordamos la comunicación digital y los medios europeos, muy vinculado a mis estudios en Ingeniería Informática.</li>
       </ul>
     </section>
   </main>
@@ -546,7 +545,7 @@
         es: 'Diseño y construcción de una impresora 3D y un dron autónomo.',
         en: 'Designed and built a 3D printer and an autonomous drone.'
       },
-      // Se elimina la 6ª mención (Save Mother Earth)
+      // Se elimina la sexta mención (Save Mother Earth)
       
       'section#languages h2': {
         es: 'Idiomas',
@@ -595,16 +594,16 @@
         en: 'ERASMUS+ Mobility'
       },
       'section#erasmus ul li:nth-child(1)': {
-        es: 'Youth Exchange en Chequia. Donde trabajamos sobre el patrimonio cultural común europeo.',
-        en: 'Youth Exchange in the Czech Republic. We worked on the common European cultural heritage.'
+        es: 'Youth Exchange: Chequia – Trabajé en el patrimonio cultural común europeo.',
+        en: 'Youth Exchange: Czech Republic – I worked on the common European cultural heritage.'
       },
       'section#erasmus ul li:nth-child(2)': {
-        es: 'Youth Exchange en Liechtenstein. Centrado en la vida sostenible y en el contacto directo con la naturaleza.',
-        en: 'Youth Exchange in Liechtenstein. Focused on sustainable living and direct contact with nature.'
+        es: 'Youth Exchange: Liechtenstein – Enfocado en la vida sostenible y el contacto directo con la naturaleza.',
+        en: 'Youth Exchange: Liechtenstein – Focused on sustainable living and direct contact with nature.'
       },
       'section#erasmus ul li:nth-child(3)': {
-        es: 'Training Course en Polonia. Allí tratamos la comunicación digital y los medios europeos. Ha sido una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería Informática en la Universidad de Murcia.',
-        en: 'Training Course in Poland. There, we worked on digital communication and European media. It was a great experience closely tied to my studies, since I am currently pursuing a degree in Computer Engineering at the University of Murcia.'
+        es: 'Training Course: Polonia – Abordamos la comunicación digital y los medios europeos, muy vinculado a mis estudios en Ingeniería Informática.',
+        en: 'Training Course: Poland – We addressed digital communication and European media, closely related to my studies in Computer Engineering.'
       },
 
       'footer p:nth-child(1)': {
@@ -633,4 +632,12 @@
       }
     }
 
-    document.addEventListener('DOMContentL
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inicializa el botón de idioma y asigna el event listener
+      const langBtn = document.getElementById('langSwitcher');
+      langBtn.innerText = 'ES';
+      langBtn.addEventListener('click', switchLang);
+    });
+  </script>
+</body>
+</html>
