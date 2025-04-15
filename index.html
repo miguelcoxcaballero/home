@@ -378,7 +378,7 @@
         <li>3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
         <li>Fabricación de una antena casera premiada en IDIES.</li>
         <li>Diseño y construcción de una impresora 3D y un dron autónomo.</li>
-        <li>Participación en Erasmus K229 y Save Mother Earth en Liechtenstein.</li>
+        <li>Participación en Erasmus K229 en Liechtenstein.</li>
       </ul>
     </section>
     
@@ -404,13 +404,13 @@
       </ul>
     </section>
 
-    <!-- NUEVA SECCIÓN Movilidad ERASMUS+ (añadida tal cual) -->
+    <!-- NUEVA SECCIÓN Movilidad ERASMUS+ -->
     <section id="erasmus">
       <h2>Movilidad ERASMUS+</h2>
       <ul>
         <li>Youth Exchange: En Chequia, donde trabajamos sobre el patrimonio cultural común europeo.</li>
-        <li>Youth Exchange: En Liechtenstein, centrado en la vida sostenible y en el contacto directo con la naturaleza.</li>
-        <li>Training Course: POLANET en Lębork (Polonia), donde tratamos la comunicación digital entre jóvenes europeos, una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería informática en la Universidad de Murcia.</li>
+        <li>Youth Exchange: En Liechtenstein, centrado en la vida sostenible, en el contacto directo con la naturaleza y Save Mother Earth.</li>
+        <li>Training Course: POLANET en Lębork (Polonia), donde tratamos la comunicación digital entre jóvenes europeos, una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería Informática en la Universidad de Murcia.</li>
       </ul>
     </section>
     
@@ -547,8 +547,8 @@
         en: 'Designed and built a 3D printer and an autonomous drone.'
       },
       'section#achievements ul li:nth-child(6)': {
-        es: 'Participación en Erasmus K229 y Save Mother Earth en Liechtenstein.',
-        en: 'Participated in Erasmus K229 and Save Mother Earth in Liechtenstein.'
+        es: 'Participación en Erasmus K229 en Liechtenstein.',
+        en: 'Participated in Erasmus K229 in Liechtenstein.'
       },
       'section#languages h2': {
         es: 'Idiomas',
@@ -579,11 +579,11 @@
         en: 'Youth Exchange: In Czechia, where we worked on Europe’s common cultural heritage.'
       },
       'section#erasmus ul li:nth-child(2)': {
-        es: 'Youth Exchange: En Liechtenstein, centrado en la vida sostenible y en el contacto directo con la naturaleza.',
-        en: 'Youth Exchange: In Liechtenstein, focused on sustainable living and direct contact with nature.'
+        es: 'Youth Exchange: En Liechtenstein, centrado en la vida sostenible, en el contacto directo con la naturaleza y Save Mother Earth.',
+        en: 'Youth Exchange: In Liechtenstein, focused on sustainable living, direct contact with nature and Save Mother Earth.'
       },
       'section#erasmus ul li:nth-child(3)': {
-        es: 'Training Course: POLANET en Lębork (Polonia), donde tratamos la comunicación digital entre jóvenes europeos, una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería informática en la Universidad de Murcia.',
+        es: 'Training Course: POLANET en Lębork (Polonia), donde tratamos la comunicación digital entre jóvenes europeos, una experiencia muy ligada a mis estudios, ya que actualmente curso Ingeniería Informática en la Universidad de Murcia.',
         en: 'Training Course: POLANET in Lębork (Poland), where we worked on digital communication among young Europeans, strongly related to my studies, as I am currently pursuing a degree in Computer Engineering at the University of Murcia.'
       },
       'section#proyectos h2': {
@@ -618,11 +618,12 @@
 
     function switchLang() {
       currentLang = (currentLang === 'es') ? 'en' : 'es';
-      document.getElementById('langSwitcher').innerText = currentLang.toUpperCase();
+      document.getElementById('langSwitcher').textContent = currentLang.toUpperCase();
       for (let selector in translations) {
         let elem = document.querySelector(selector);
         if (elem) {
           if (selector === 'footer p:nth-child(2)') {
             // Actualiza manteniendo el enlace a Instagram intacto
             elem.innerHTML = translations[selector][currentLang] + ' <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>';
-  
+          } else {
+     
