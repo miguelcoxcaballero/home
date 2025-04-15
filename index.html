@@ -190,11 +190,13 @@
       margin-bottom: 0.6rem;
       padding-left: 1.5rem;
     }
+    /* Ajuste de la posición vertical del bullet:
+       - top: 0.35em centra aproximadamente la "bolita" con la primera línea. */
     section ul li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 0; /* Se alinea con la primera línea */
+      top: 0.35em; /* Ajustar si deseas un desplazamiento distinto */
       width: 8px;
       height: 8px;
       background-color: var(--cyber-yellow);
@@ -635,8 +637,4 @@
       // Inicializa el botón de idioma y asigna el event listener
       const langBtn = document.getElementById('langSwitcher');
       langBtn.innerText = 'ES';
-      langBtn.addEventListener('click', switchLang);
-    });
-  </script>
-</body>
-</html>
+      langBtn.add
