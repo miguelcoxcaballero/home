@@ -87,7 +87,7 @@
       position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
-      overflow: hidden;
+      overflow: visible;       /* Permitimos que el título desborde hacia el fondo negro */
       margin-bottom: 4rem;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
@@ -111,7 +111,7 @@
     /* Bloque verde (sin animación) */
     .header-content {
       position: absolute;
-      bottom: 2%; 
+      bottom: -2rem;    /* La movemos hacia abajo para partirla mitad sobre el GIF y mitad sobre el fondo negro */
       right: 5%;
       z-index: 2;
       text-align: right;
@@ -190,8 +190,6 @@
       margin-bottom: 0.6rem;
       padding-left: 1.5rem;
     }
-    /* Alinea el bullet centrado respecto a la primera línea.
-       Ajusta el valor (0.35em) según el tamaño de fuente para lograr el centrado */
     section ul li::before {
       content: "";
       position: absolute;
@@ -236,7 +234,6 @@
       border-top: 1px solid var(--vivid-tangelo);
     }
 
-    /* Enlaces en amarillo sin subrayado */
     a {
       color: var(--cyber-yellow);
       text-decoration: none;
@@ -252,21 +249,19 @@
     /* Ajustes responsive móviles */
     @media (max-width: 768px) {
       .header-content {
-        bottom: 2%;
+        bottom: -2rem;
         right: 3%;
       }
     }
     @media (max-width: 480px) {
       .header-content {
-        bottom: 2%;
+        bottom: -2rem;
         right: 5%;
       }
     }
 
     /*--------------------------------------------------------------
       MODO HORIZONTAL (PANTALLA GRANDE)
-      El bloque verde queda anclado, sin animaciones, 
-      la barra coral puede verse arriba
     --------------------------------------------------------------*/
     @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
       body {
@@ -274,8 +269,6 @@
         flex-wrap: wrap;
         padding-bottom: 0;
       }
-
-      /* Header fijo en la mitad izquierda */
       header {
         position: fixed;
         width: 50vw;
@@ -283,14 +276,13 @@
         aspect-ratio: unset;
         margin-bottom: 0;
         border-radius: 0;
+        overflow: visible;  /* también visible en desktop */
       }
       header img {
         object-position: center center;
       }
-
-      /* Bloque verde anclado, sin animaciones */
       .header-content {
-        bottom: 5%;
+        bottom: -2rem;
         right: 5%;
         max-width: 80%;
         transition: none !important;
@@ -305,8 +297,6 @@
         font-size: 4rem;
         line-height: 1.1;
       }
-
-      /* Barra coral en la mitad derecha */
       .scroll-bar {
         left: 50%;
         width: 50vw;
@@ -314,8 +304,6 @@
         top: 0;
         display: flex;
       }
-
-      /* main+footer en la mitad derecha con scroll normal */
       main, footer {
         width: 50%;
         margin-left: 50%;
@@ -434,7 +422,6 @@
       </ul>
     </section>
 
-    <!-- NUEVO APARTADO: Movilidad ERASMUS+ -->
     <section id="erasmus">
       <h2>Movilidad ERASMUS+</h2>
       <ul>
@@ -462,9 +449,6 @@
     const barTitle  = document.getElementById('barTitle');
 
     if (!bigHorizontal) {
-      // Pantallas verticales: 
-      // El greenblock se queda fijo sin animarse, 
-      // pero la barra coral se anima al hacer scroll.
       const THRESHOLD = 400;
       const BAR_SPEED_MULT = 2; 
       const BAR_MAX_HEIGHT = 48; 
@@ -475,7 +459,6 @@
         let progress = scrollY / THRESHOLD;
         progress = Math.min(Math.max(progress, 0), 1);
 
-        // Barra coral crece en altura y fade-in del texto
         let barProgress = progress * BAR_SPEED_MULT;
         barProgress = Math.min(barProgress, 1);
         scrollBar.style.height = (BAR_MAX_HEIGHT * barProgress) + 'px';
@@ -485,9 +468,6 @@
         barTitle.style.opacity = textProgress;
       });
     } else {
-      // Modo horizontal: 
-      // El greenblock anclado sin animaciones,
-      // la barra coral en la mitad derecha.
       const mainEl = document.getElementById('mainContent');
       const DESKTOP_THRESHOLD = 800;
       const DESKTOP_BAR_SPEED_MULT = 1.5;
@@ -546,8 +526,6 @@
         es: 'Diseño y construcción de una impresora 3D y un dron autónomo.',
         en: 'Designed and built a 3D printer and an autonomous drone.'
       },
-      // Se elimina la sexta mención (Save Mother Earth)
-      
       'section#languages h2': {
         es: 'Idiomas',
         en: 'Languages'
@@ -588,8 +566,6 @@
         es: 'MIGRANTE / HABITANTE (Becas Europa UFV)',
         en: 'MIGRANTE / HABITANTE (EU Scholarships UFV)'
       },
-
-      /* NUEVAS TRADUCCIONES: Movilidad ERASMUS+ */
       'section#erasmus h2': {
         es: 'Movilidad ERASMUS+',
         en: 'ERASMUS+ Mobility'
@@ -606,7 +582,6 @@
         es: 'Training Course: Lębork, Polonia – IA, Ciberseguridad y networing con otros profesionales.',
         en: 'Training Course: Lębork, Poland – AI, Cybersecurity and networing with like-minded people.'
       },
-
       'footer p:nth-child(1)': {
         es: '© 2025 Miguel Cox Caballero. Todos los derechos reservados.',
         en: '© 2025 Miguel Cox Caballero. All rights reserved.'
@@ -624,7 +599,6 @@
         let elem = document.querySelector(selector);
         if (elem) {
           if (selector === 'footer p:nth-child(2)') {
-            // Actualiza manteniendo el enlace a Instagram intacto
             elem.innerHTML = translations[selector][currentLang] + ' <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>';
           } else {
             elem.innerText = translations[selector][currentLang];
@@ -633,7 +607,6 @@
       }
     }
 
-    // Asignamos el event listener dentro de DOMContentLoaded para asegurar que el elemento existe.
     document.addEventListener('DOMContentLoaded', () => {
       const langBtn = document.getElementById('langSwitcher');
       langBtn.innerText = 'ES';
@@ -641,4 +614,4 @@
     });
   </script>
 </body>
-</h
+</html>
