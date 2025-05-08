@@ -51,12 +51,11 @@
       color: var(--white);
       font-family: var(--body-font);
       overflow-x: hidden;
-      padding-bottom: 3rem; 
+      padding-bottom: 3rem;
     }
 
     /*--------------------------------------------------------------
       BARRA CORAL FIJA
-      (Ocupando la parte superior de la pantalla, se anima en el script)
     --------------------------------------------------------------*/
     .scroll-bar {
       position: fixed;
@@ -87,7 +86,7 @@
       position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
-      overflow: visible;       /* Permitimos que el título desborde hacia el fondo negro */
+      overflow: visible;     /* permitir overflow del título */
       margin-bottom: 4rem;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
@@ -100,7 +99,7 @@
     }
     .overlay {
       position: absolute;
-      top: 0; 
+      top: 0;
       left: 0;
       width: 100%;
       height: 100%;
@@ -111,7 +110,7 @@
     /* Bloque verde (sin animación) */
     .header-content {
       position: absolute;
-      bottom: -2rem;    /* La movemos hacia abajo para partirla mitad sobre el GIF y mitad sobre el fondo negro */
+      bottom: -2rem;       /* Desplazamos un poco hacia abajo para dividirse entre GIF y fondo negro */
       right: 5%;
       z-index: 2;
       text-align: right;
@@ -157,7 +156,6 @@
       width: 95%;
       margin: 0 auto 2rem;
     }
-
     section {
       background-color: var(--castleton-green);
       border-radius: var(--border-radius);
@@ -178,8 +176,6 @@
       font-size: 1rem;
       line-height: 1.6;
     }
-
-    /* Listas con bullets dorados, excepto en #languages */
     section ul {
       list-style: none;
       margin-top: 1rem;
@@ -211,11 +207,7 @@
       display: flex;
       align-items: center;
       margin-bottom: 0.6rem;
-      position: static;
       padding-left: 0;
-    }
-    #languages li::before {
-      content: none;
     }
     .lang-icon {
       width: 20px;
@@ -233,7 +225,6 @@
       font-size: 0.9rem;
       border-top: 1px solid var(--vivid-tangelo);
     }
-
     a {
       color: var(--cyber-yellow);
       text-decoration: none;
@@ -242,26 +233,44 @@
     }
     a:hover {
       color: var(--white);
-      text-decoration: none;
       transform: translateY(-2px);
     }
 
-    /* Ajustes responsive móviles */
-    @media (max-width: 768px) {
+    /*--------------------------------------------------------------
+      AJUSTES PARA TABLET / PC VERTICAL
+    --------------------------------------------------------------*/
+    @media (min-width: 769px) and (max-width: 1023px),
+           (min-width: 1024px) and (max-aspect-ratio: 1/1) {
       .header-content {
-        bottom: -2rem;
+        bottom: -3rem;
+        right: 4%;
+      }
+    }
+
+    /*--------------------------------------------------------------
+      AJUSTES PARA MÓVIL
+    --------------------------------------------------------------*/
+    @media (max-width: 768px) {
+      header {
+        margin-bottom: 6rem;   /* espacio extra antes de las cajas verdes */
+      }
+      .header-content {
+        bottom: -4rem;         /* bajar título */
         right: 3%;
       }
     }
     @media (max-width: 480px) {
+      header {
+        margin-bottom: 8rem;   /* aún más espacio en móviles pequeños */
+      }
       .header-content {
-        bottom: -2rem;
+        bottom: -5rem;
         right: 5%;
       }
     }
 
     /*--------------------------------------------------------------
-      MODO HORIZONTAL (PANTALLA GRANDE)
+      MODO HORIZONTAL (PC GRANDE)
     --------------------------------------------------------------*/
     @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
       body {
@@ -276,13 +285,13 @@
         aspect-ratio: unset;
         margin-bottom: 0;
         border-radius: 0;
-        overflow: visible;  /* también visible en desktop */
+        overflow: visible;
       }
       header img {
         object-position: center center;
       }
       .header-content {
-        bottom: -2rem;
+        bottom: 5%;
         right: 5%;
         max-width: 80%;
         transition: none !important;
@@ -290,7 +299,6 @@
       .title-box {
         background-color: rgba(0, 86, 63, 0.9);
         padding: 1rem 2rem;
-        transform: none !important;
         opacity: 1 !important;
       }
       .title-box h1 {
@@ -300,9 +308,7 @@
       .scroll-bar {
         left: 50%;
         width: 50vw;
-        position: fixed;
         top: 0;
-        display: flex;
       }
       main, footer {
         width: 50%;
@@ -322,8 +328,8 @@
       }
       footer {
         position: relative;
-        width: 50%;
         margin-left: 50%;
+        width: 50%;
       }
     }
   </style>
@@ -343,7 +349,6 @@
         <h1>Miguel Cox Caballero</h1>
       </div>
     </div>
-    <!-- Botón para cambiar idioma -->
     <div class="lang-switcher">
       <button id="langSwitcher">ES</button>
     </div>
@@ -358,7 +363,7 @@
         tecnológicos innovadores.
       </p>
     </section>
-    
+
     <section id="achievements">
       <h2>Logros Personales</h2>
       <ul>
@@ -369,26 +374,14 @@
         <li>Diseño y construcción de una impresora 3D y un dron autónomo.</li>
       </ul>
     </section>
-    
+
     <section id="languages">
       <h2>Idiomas</h2>
       <ul>
-        <li>
-          <img src="es.png" alt="Español" class="lang-icon">
-          <span>Español: Nativo</span>
-        </li>
-        <li>
-          <img src="uk.png" alt="Inglés" class="lang-icon">
-          <span>Inglés: C2 (Cambridge CPE, 15 años)</span>
-        </li>
-        <li>
-          <img src="fr.png" alt="Francés" class="lang-icon">
-          <span>Francés: B1 (EOI, 6 años)</span>
-        </li>
-        <li>
-          <img src="de.png" alt="Alemán" class="lang-icon">
-          <span>Alemán: A1 (EOI, 1 año)</span>
-        </li>
+        <li><img src="es.png" alt="Español" class="lang-icon"><span>Español: Nativo</span></li>
+        <li><img src="uk.png" alt="Inglés" class="lang-icon"><span>Inglés: C2 (Cambridge CPE, 15 años)</span></li>
+        <li><img src="fr.png" alt="Francés" class="lang-icon"><span>Francés: B1 (EOI, 6 años)</span></li>
+        <li><img src="de.png" alt="Alemán" class="lang-icon"><span>Alemán: A1 (EOI, 1 año)</span></li>
       </ul>
     </section>
 
@@ -434,7 +427,7 @@
 
   <footer>
     <p>© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
-    <p>Sígueme en Instagram: 
+    <p>Sígueme en Instagram:
       <a href="https://www.instagram.com/miguelcoxcaballero"
          target="_blank" rel="noopener noreferrer">
         @miguelcoxcaballero
@@ -443,26 +436,23 @@
   </footer>
 
   <script>
-    // Animación de la barra coral (según el tamaño y orientación de la pantalla)
+    // Animación de la barra coral
     const bigHorizontal = window.matchMedia('(min-width: 1024px) and (min-aspect-ratio: 1/1)').matches;
     const scrollBar = document.getElementById('scrollBar');
     const barTitle  = document.getElementById('barTitle');
 
     if (!bigHorizontal) {
       const THRESHOLD = 400;
-      const BAR_SPEED_MULT = 2; 
-      const BAR_MAX_HEIGHT = 48; 
-      const TEXT_START = 0.2; 
-
+      const BAR_SPEED_MULT = 2;
+      const BAR_MAX_HEIGHT = 48;
+      const TEXT_START = 0.2;
       window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         let progress = scrollY / THRESHOLD;
         progress = Math.min(Math.max(progress, 0), 1);
-
         let barProgress = progress * BAR_SPEED_MULT;
         barProgress = Math.min(barProgress, 1);
         scrollBar.style.height = (BAR_MAX_HEIGHT * barProgress) + 'px';
-
         let textProgress = (progress - TEXT_START) / (1 - TEXT_START);
         textProgress = Math.min(Math.max(textProgress, 0), 1);
         barTitle.style.opacity = textProgress;
@@ -473,16 +463,13 @@
       const DESKTOP_BAR_SPEED_MULT = 1.5;
       const DESKTOP_BAR_MAX_HEIGHT = 80;
       const DESKTOP_TEXT_START = 0.3;
-
       mainEl.addEventListener('scroll', () => {
         const scrollY = mainEl.scrollTop;
         let progress = scrollY / DESKTOP_THRESHOLD;
         progress = Math.min(Math.max(progress, 0), 1);
-
         let barProgress = progress * DESKTOP_BAR_SPEED_MULT;
         barProgress = Math.min(barProgress, 1);
         scrollBar.style.height = (DESKTOP_BAR_MAX_HEIGHT * barProgress) + 'px';
-
         let textProgress = (progress - DESKTOP_TEXT_START) / (1 - DESKTOP_TEXT_START);
         textProgress = Math.min(Math.max(textProgress, 0), 1);
         barTitle.style.opacity = textProgress;
@@ -490,8 +477,8 @@
     }
   </script>
 
-  <!-- Script de traducción sin modificar el contenido original -->
   <script>
+    // Script de traducción
     let currentLang = 'es';
     const translations = {
       'section#about h2': {
@@ -599,7 +586,8 @@
         let elem = document.querySelector(selector);
         if (elem) {
           if (selector === 'footer p:nth-child(2)') {
-            elem.innerHTML = translations[selector][currentLang] + ' <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>';
+            elem.innerHTML = translations[selector][currentLang] +
+              ' <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>';
           } else {
             elem.innerText = translations[selector][currentLang];
           }
