@@ -71,14 +71,6 @@ const translations = {
     es: '3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.',
     en: '3rd place in the National Sustainable Architecture Olympiad.'
   },
-  'section#achievements ul li:nth-child(4)': {
-    es: 'Fabricación de una antena casera premiada en IDIES.',
-    en: 'Built a homemade antenna awarded at IDIES.'
-  },
-  'section#achievements ul li:nth-child(5)': {
-    es: 'Diseño y construcción de una impresora 3D y un dron autónomo.',
-    en: 'Designed and built a 3D printer and an autonomous drone.'
-  },
 
   'section#languages ul li:nth-child(1) span': {
     es: '<strong>Español</strong>: Nativo',
