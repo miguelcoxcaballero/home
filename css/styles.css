@@ -39,14 +39,14 @@ body {
 }
 
 /*--------------------------------------------------------------
-  BARRA CORAL FIJA
+  BARRA CORAL FIJA (definición única)
 --------------------------------------------------------------*/
 .scroll-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 0;              /* Se expandirá con JS */
+  height: 0;                /* Se expandirá con JS */
   background-color: var(--mahogany);
   z-index: 100;
   display: flex;
@@ -57,12 +57,11 @@ body {
 }
 .scroll-bar h1 {
   font-family: var(--title-font);
-  font-size: var(--bar-title-size);
   font-weight: 700;
   margin: 0;
-  opacity: 0;            /* Fade-in con JS */
-  white-space: nowrap;  /* evita que Caballero baje a la siguiente línea */
-  font-size: min(var(--bar-title-size), 9vw);
+  opacity: 0;               /* Fade-in con JS */
+  white-space: nowrap;      /* evita wrap */
+  font-size: min(var(--bar-title-size), 4vw);
 }
 
 /*--------------------------------------------------------------
@@ -72,7 +71,7 @@ header {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
-  overflow: visible;     /* permitir overflow del título */
+  overflow: visible;
   margin-bottom: 4rem;
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
@@ -85,18 +84,14 @@ header img {
 }
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background-color: rgba(0, 0, 0, 0);
   z-index: 1;
 }
-
-/* Bloque verde (sin animación) */
 .header-content {
   position: absolute;
-  bottom: -2rem;       /* Desplazamos un poco hacia abajo para dividirse entre GIF y fondo negro */
+  bottom: -2rem;
   right: 5%;
   z-index: 2;
   text-align: right;
@@ -114,15 +109,11 @@ header img {
   font-size: var(--big-title-size);
   font-weight: 700;
   margin: 0;
-  white-space: normal;
   word-break: break-word;
 }
-
-/* Botón para cambiar idioma */
 .lang-switcher {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 10px; right: 10px;
   z-index: 3;
 }
 .lang-switcher button {
@@ -175,16 +166,14 @@ section ul li {
 section ul li::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 0.35em;
-  width: 8px;
-  height: 8px;
+  left: 0; top: 0.35em;
+  width: 8px; height: 8px;
   background-color: var(--cyber-yellow);
   border-radius: 50%;
 }
 
 /*--------------------------------------------------------------
-  IDIOMAS (sobrescribimos sólo los bullets, manteniendo el flex)
+  IDIOMAS
 --------------------------------------------------------------*/
 #languages ul {
   list-style: none;
@@ -195,10 +184,10 @@ section ul li::before {
   display: flex;
   align-items: center;
   margin-bottom: 0.6rem;
-  padding-left: 1.5rem; /* misma sangría que el resto de listas */
+  padding-left: 1.5rem;
 }
 #languages li::before {
-  content: none;        /* anulamos únicamente el círculo amarillo */
+  content: none;
 }
 .lang-icon {
   width: 20px;
@@ -243,20 +232,18 @@ a:hover {
 --------------------------------------------------------------*/
 @media (max-width: 768px) {
   header {
-    margin-bottom: 6rem;   /* espacio extra antes de las cajas verdes */
+    margin-bottom: 6rem;
   }
   .header-content {
-    bottom: -4rem;         /* bajar título */
-    right: 3%;
+    bottom: -4rem; right: 3%;
   }
 }
 @media (max-width: 480px) {
   header {
-    margin-bottom: 8rem;   /* aún más espacio en móviles pequeños */
+    margin-bottom: 8rem;
   }
   .header-content {
-    bottom: -5rem;
-    right: 5%;
+    bottom: -5rem; right: 5%;
   }
 }
 
@@ -283,13 +270,11 @@ a:hover {
     object-position: center center;
   }
   .header-content {
-    bottom: 5%;
-    right: 5%;
-    max-width: 80%;
+    bottom: 5%; right: 5%; max-width: 80%;
     transition: none !important;
   }
   .title-box {
-    background-color: rgba(0, 86, 63, 0.9);
+    background-color: rgba(0,86,63,0.9);
     padding: 1rem 2rem;
     opacity: 1 !important;
   }
@@ -298,34 +283,15 @@ a:hover {
     line-height: 1.1;
   }
 
-  /* Barra coral */
+  /* Reposiciona la misma .scroll-bar */
   .scroll-bar {
-    position: fixed;
-    top: 0;
     left: 50vw;
     width: 50vw;
-    height: 0;
-    background-color: var(--mahogany);
-    z-index: 100;
-    display: flex;
-    align-items: center;
     padding: 0 2rem;
-    overflow: hidden;
-    transition: height 0.3s ease;
-  }
-  .scroll-bar h1 {
-    font-family: var(--title-font);
-    /* evita saltos y ajusta tamaño máximo pero que escale en pantallas estrechas */
-    white-space: nowrap;
-    font-size: min(var(--bar-title-size), 4vw);
-    font-weight: 700;
-    margin: 0;
-    opacity: 0;
   }
 
-  /* Contenido derecho (main y footer) */
-  main,
-  footer {
+  /* Main y footer alineados a la derecha */
+  main, footer {
     width: 50vw;
     margin-left: 50vw;
     max-width: none;
@@ -340,15 +306,8 @@ a:hover {
   section h2 {
     font-size: 2rem;
   }
-  section p,
-  section ul {
+  section p, section ul {
     font-size: 1.1rem;
-  }
-
-  footer {
-    text-align: center;
-    font-size: 0.9rem;
-    border-top: 1px solid var(--vivid-tangelo);
   }
 
   /* Botón de idioma */
