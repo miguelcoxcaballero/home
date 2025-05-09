@@ -1,0 +1,17 @@
+project-root/
+│
+├── index.html
+│
+├── css/
+│   └── styles.css
+│
+├── js/
+│   └── scripts.js
+│
+└── assets/
+    ├── mig.gif
+    └── img/
+        ├── es.png
+        ├── uk.png
+        ├── fr.png
+        └── de.png

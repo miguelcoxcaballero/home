@@ -1,3 +1,4 @@
+<!-- project-root/index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,325 +15,8 @@
     rel="stylesheet"
   />
 
-  <style>
-    :root {
-      /* Colores */
-      --black: #000001;
-      --white: #FFFFFF;
-      --castleton-green: #00563F;
-      --cyber-yellow: #FED502;
-      --vivid-tangelo: #F37433;
-      --mahogany: #C44004; /* Barra coral/roja */
-
-      /* Tipografías */
-      --title-font: "Goudy Old Style", "Times New Roman", serif;
-      --body-font: 'Poppins', sans-serif;
-
-      --border-radius: 6px;
-
-      /* Tamaños */
-      --big-title-size: 3rem;   /* Título grande en el bloque verde */
-      --bar-title-size: 1.8rem; /* Título pequeño en la barra coral */
-    }
-
-    /*--------------------------------------------------------------
-      RESET BÁSICO
-    --------------------------------------------------------------*/
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-    }
-    body {
-      background-color: var(--black);
-      color: var(--white);
-      font-family: var(--body-font);
-      overflow-x: hidden;
-      padding-bottom: 3rem;
-    }
-
-    /*--------------------------------------------------------------
-      BARRA CORAL FIJA
-    --------------------------------------------------------------*/
-    .scroll-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 0;              /* Se expandirá con JS */
-      background-color: var(--mahogany);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      overflow: hidden;
-      transition: height 0.3s ease;
-    }
-    .scroll-bar h1 {
-      font-family: var(--title-font);
-      font-size: var(--bar-title-size);
-      font-weight: 700;
-      margin: 0;
-      opacity: 0;            /* Fade-in con JS */
-    }
-
-    /*--------------------------------------------------------------
-      HEADER (4:3)
-    --------------------------------------------------------------*/
-    header {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: visible;     /* permitir overflow del título */
-      margin-bottom: 4rem;
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-    }
-    header img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0);
-      z-index: 1;
-    }
-
-    /* Bloque verde (sin animación) */
-    .header-content {
-      position: absolute;
-      bottom: -2rem;       /* Desplazamos un poco hacia abajo para dividirse entre GIF y fondo negro */
-      right: 5%;
-      z-index: 2;
-      text-align: right;
-      max-width: 90%;
-    }
-    .title-box {
-      background-color: rgba(0, 86, 63, 0.7);
-      border-radius: var(--border-radius);
-      padding: 0.5rem 1rem;
-      display: inline-block;
-      opacity: 1;
-    }
-    .title-box h1 {
-      font-family: var(--title-font);
-      font-size: var(--big-title-size);
-      font-weight: 700;
-      margin: 0;
-      white-space: normal;
-      word-break: break-word;
-    }
-
-    /* Botón para cambiar idioma */
-    .lang-switcher {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 3;
-    }
-    .lang-switcher button {
-      padding: 0.4rem 0.8rem;
-      background: var(--cyber-yellow);
-      border: none;
-      border-radius: var(--border-radius);
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /*--------------------------------------------------------------
-      MAIN + CONTENIDO
-    --------------------------------------------------------------*/
-    main {
-      max-width: 1100px;
-      width: 95%;
-      margin: 0 auto 2rem;
-    }
-    section {
-      background-color: var(--castleton-green);
-      border-radius: var(--border-radius);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    section h2 {
-      font-family: var(--title-font);
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--vivid-tangelo);
-      border-bottom: 2px solid var(--vivid-tangelo);
-      display: inline-block;
-      padding-bottom: 0.3rem;
-    }
-    section p, section ul, section li, section a, section span {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    section ul {
-      list-style: none;
-      margin-top: 1rem;
-      padding-left: 2rem;
-    }
-    section ul li {
-      position: relative;
-      margin-bottom: 0.6rem;
-      padding-left: 1.5rem;
-    }
-    section ul li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.35em;
-      width: 8px;
-      height: 8px;
-      background-color: var(--cyber-yellow);
-      border-radius: 50%;
-    }
-
-    /* Idiomas con banderas */
-    #languages ul {
-      list-style: none;
-      margin-top: 1rem;
-      padding-left: 0;
-    }
-    #languages li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.6rem;
-      padding-left: 0;
-    }
-    .lang-icon {
-      width: 20px;
-      height: auto;
-      margin-right: 0.5rem;
-    }
-
-    /*--------------------------------------------------------------
-      FOOTER
-    --------------------------------------------------------------*/
-    footer {
-      background-color: var(--castleton-green);
-      padding: 1rem 0;
-      text-align: center;
-      font-size: 0.9rem;
-      border-top: 1px solid var(--vivid-tangelo);
-    }
-    a {
-      color: var(--cyber-yellow);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    a:hover {
-      color: var(--white);
-      transform: translateY(-2px);
-    }
-
-    /*--------------------------------------------------------------
-      AJUSTES PARA TABLET / PC VERTICAL
-    --------------------------------------------------------------*/
-    @media (min-width: 769px) and (max-width: 1023px),
-           (min-width: 1024px) and (max-aspect-ratio: 1/1) {
-      .header-content {
-        bottom: -3rem;
-        right: 4%;
-      }
-    }
-
-    /*--------------------------------------------------------------
-      AJUSTES PARA MÓVIL
-    --------------------------------------------------------------*/
-    @media (max-width: 768px) {
-      header {
-        margin-bottom: 6rem;   /* espacio extra antes de las cajas verdes */
-      }
-      .header-content {
-        bottom: -4rem;         /* bajar título */
-        right: 3%;
-      }
-    }
-    @media (max-width: 480px) {
-      header {
-        margin-bottom: 8rem;   /* aún más espacio en móviles pequeños */
-      }
-      .header-content {
-        bottom: -5rem;
-        right: 5%;
-      }
-    }
-
-    /*--------------------------------------------------------------
-      MODO HORIZONTAL (PC GRANDE)
-    --------------------------------------------------------------*/
-    @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
-      body {
-        display: flex;
-        flex-wrap: wrap;
-        padding-bottom: 0;
-      }
-      header {
-        position: fixed;
-        width: 50vw;
-        height: 100vh;
-        aspect-ratio: unset;
-        margin-bottom: 0;
-        border-radius: 0;
-        overflow: visible;
-      }
-      header img {
-        object-position: center center;
-      }
-      .header-content {
-        bottom: 5%;
-        right: 5%;
-        max-width: 80%;
-        transition: none !important;
-      }
-      .title-box {
-        background-color: rgba(0, 86, 63, 0.9);
-        padding: 1rem 2rem;
-        opacity: 1 !important;
-      }
-      .title-box h1 {
-        font-size: 4rem;
-        line-height: 1.1;
-      }
-      .scroll-bar {
-        left: 50%;
-        width: 50vw;
-        top: 0;
-      }
-      main, footer {
-        width: 50%;
-        margin-left: 50%;
-        max-width: 800px;
-        padding: 2rem;
-      }
-      section {
-        margin-bottom: 3rem;
-        padding: 2rem;
-      }
-      section h2 {
-        font-size: 2rem;
-      }
-      section p, section ul {
-        font-size: 1.1rem;
-      }
-      footer {
-        position: relative;
-        margin-left: 50%;
-        width: 50%;
-      }
-    }
-  </style>
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -342,7 +26,7 @@
   </div>
 
   <header>
-    <img src="mig.gif" alt="Miguel Cox Caballero - GIF 4:3">
+    <img src="assets/mig.gif" alt="Miguel Cox Caballero - GIF 4:3">
     <div class="overlay"></div>
     <div class="header-content" id="headerContent">
       <div class="title-box" id="titleBox">
@@ -350,7 +34,7 @@
       </div>
     </div>
     <div class="lang-switcher">
-      <button id="langSwitcher">ES</button>
+      <button id="langSwitcher">🌐 ES</button>
     </div>
   </header>
 
@@ -376,53 +60,87 @@
     </section>
 
     <section id="languages">
-      <h2>Idiomas</h2>
-      <ul>
-        <li><img src="es.png" alt="Español" class="lang-icon"><span>Español: Nativo</span></li>
-        <li><img src="uk.png" alt="Inglés" class="lang-icon"><span>Inglés: C2 (Cambridge CPE, 15 años)</span></li>
-        <li><img src="fr.png" alt="Francés" class="lang-icon"><span>Francés: B1 (EOI, 6 años)</span></li>
-        <li><img src="de.png" alt="Alemán" class="lang-icon"><span>Alemán: A1 (EOI, 1 año)</span></li>
-      </ul>
+        <h2>Idiomas</h2>
+        <ul>
+          <li>
+            <img src="assets/img/es.png" alt="Español" class="lang-icon">
+            <span><strong>Español</strong>: Nativo</span>
+          </li>
+          <li>
+            <img src="assets/img/uk.png" alt="Inglés" class="lang-icon">
+            <span><strong>Inglés</strong>: C2 (Cambridge CPE)</span>
+          </li>
+          <li>
+            <img src="assets/img/fr.png" alt="Francés" class="lang-icon">
+            <span><strong>Francés</strong>: B1 (EOI)</span>
+          </li>
+          <li>
+            <img src="assets/img/de.png" alt="Alemán" class="lang-icon">
+            <span><strong>Alemán</strong>: A1 (EOI)</span>
+          </li>
+        </ul>
     </section>
+      
 
     <section id="proyectos">
-      <h2>Proyectos</h2>
-      <ul>
-        <li>
-          <a href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo"
-             target="_blank" rel="noopener noreferrer">
-            Guiado de drone por visión computacional
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/miguelcoxcaballero/TypeTest"
-             target="_blank" rel="noopener noreferrer">
-            TypeTest
-          </a>
-        </li>
-        <li>
-          <a href="https://bit.ly/LosKelvin"
-             target="_blank" rel="noopener noreferrer">
-            Olimpiada de edificación (los kelvin)
-          </a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA"
-             target="_blank" rel="noopener noreferrer">
-            MIGRANTE / HABITANTE (Becas Europa UFV)
-          </a>
-        </li>
-      </ul>
+        <h2>Proyectos</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/miguelcoxcaballero/antenahechaamano"
+               target="_blank" rel="noopener noreferrer">
+              IDIES Antena Hecha a Mano
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo"
+               target="_blank" rel="noopener noreferrer">
+              Guiado de drone por visión computacional
+            </a>
+          </li>
+          <li>
+            <a href="https://bit.ly/LosKelvin"
+               target="_blank" rel="noopener noreferrer">
+              Olimpiada de edificación (Los Kelvin)
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/miguelcoxcaballero/TypeTest"
+               target="_blank" rel="noopener noreferrer">
+              TypeTest
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/miguelcoxcaballero/pomodoro"
+               target="_blank" rel="noopener noreferrer">
+              Web Pomodoro Timer
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/miguelcoxcaballero/multiplicar"
+               target="_blank" rel="noopener noreferrer">
+              Web Tablas de Multiplicar
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA"
+               target="_blank" rel="noopener noreferrer">
+              MIGRANTE / HABITANTE (Becas Europa UFV)
+            </a>
+          </li>
+        </ul>
     </section>
+      
 
     <section id="erasmus">
-      <h2>Movilidad ERASMUS+</h2>
-      <ul>
-        <li>Youth Exchange: Olomouc, Chequia – Herencia cultural europea.</li>
-        <li>Youth Exchange: Malbun, Liechtenstein – "Save Mother Earth", Enfocado en la vida sostenible y el contacto directo con la naturaleza.</li>
-        <li>Training Course: Lębork, Polonia – IA, Ciberseguridad y networing con otros profesionales.</li>
-      </ul>
-    </section>
+        <h2>Movilidad ERASMUS+</h2>
+        <ul>
+          <li><strong>CHEQUIA</strong>: (Youth Exchange) Herencia cultural europea.</li>
+          <li><strong>LIECHTENSTEIN</strong>: (Youth Exchange) "Save Mother Earth", enfocado en la vida sostenible y el contacto directo con la naturaleza.</li>
+          <li><strong>POLONIA</strong>: (Training Course) IA, ciberseguridad y networking con otros profesionales.</li>
+          <li><strong>POLONIA</strong>: (Training Course) Mindful Trails about mental health and wellbeing.</li>
+        </ul>
+      </section>
+      
   </main>
 
   <footer>
@@ -435,171 +153,7 @@
     </p>
   </footer>
 
-  <script>
-    // Animación de la barra coral
-    const bigHorizontal = window.matchMedia('(min-width: 1024px) and (min-aspect-ratio: 1/1)').matches;
-    const scrollBar = document.getElementById('scrollBar');
-    const barTitle  = document.getElementById('barTitle');
-
-    if (!bigHorizontal) {
-      const THRESHOLD = 400;
-      const BAR_SPEED_MULT = 2;
-      const BAR_MAX_HEIGHT = 48;
-      const TEXT_START = 0.2;
-      window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        let progress = scrollY / THRESHOLD;
-        progress = Math.min(Math.max(progress, 0), 1);
-        let barProgress = progress * BAR_SPEED_MULT;
-        barProgress = Math.min(barProgress, 1);
-        scrollBar.style.height = (BAR_MAX_HEIGHT * barProgress) + 'px';
-        let textProgress = (progress - TEXT_START) / (1 - TEXT_START);
-        textProgress = Math.min(Math.max(textProgress, 0), 1);
-        barTitle.style.opacity = textProgress;
-      });
-    } else {
-      const mainEl = document.getElementById('mainContent');
-      const DESKTOP_THRESHOLD = 800;
-      const DESKTOP_BAR_SPEED_MULT = 1.5;
-      const DESKTOP_BAR_MAX_HEIGHT = 80;
-      const DESKTOP_TEXT_START = 0.3;
-      mainEl.addEventListener('scroll', () => {
-        const scrollY = mainEl.scrollTop;
-        let progress = scrollY / DESKTOP_THRESHOLD;
-        progress = Math.min(Math.max(progress, 0), 1);
-        let barProgress = progress * DESKTOP_BAR_SPEED_MULT;
-        barProgress = Math.min(barProgress, 1);
-        scrollBar.style.height = (DESKTOP_BAR_MAX_HEIGHT * barProgress) + 'px';
-        let textProgress = (progress - DESKTOP_TEXT_START) / (1 - DESKTOP_TEXT_START);
-        textProgress = Math.min(Math.max(textProgress, 0), 1);
-        barTitle.style.opacity = textProgress;
-      });
-    }
-  </script>
-
-  <script>
-    // Script de traducción
-    let currentLang = 'es';
-    const translations = {
-      'section#about h2': {
-        es: 'Acerca de mí',
-        en: 'About Me'
-      },
-      'section#about p': {
-        es: 'Estudiante de Ingeniería Informática en la Universidad de Murcia \n        con 10 años de educación bilingüe y experiencia en proyectos \n        tecnológicos innovadores.',
-        en: 'Software Engineering student at the University of Murcia with 10 years of bilingual education and experience in innovative tech projects.'
-      },
-      'section#achievements h2': {
-        es: 'Logros Personales',
-        en: 'Personal Achievements'
-      },
-      'section#achievements ul li:nth-child(1)': {
-        es: 'Oro en la Olimpiada de Ingeniería IT de la UCAM.',
-        en: 'Gold medal in the UCAM IT Engineering Olympiad.'
-      },
-      'section#achievements ul li:nth-child(2)': {
-        es: 'Oro en la Olimpiada de Arquitectura Sostenible.',
-        en: 'Gold medal in the Sustainable Architecture Olympiad.'
-      },
-      'section#achievements ul li:nth-child(3)': {
-        es: '3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.',
-        en: '3rd place in the National Sustainable Architecture Olympiad.'
-      },
-      'section#achievements ul li:nth-child(4)': {
-        es: 'Fabricación de una antena casera premiada en IDIES.',
-        en: 'Built a homemade antenna awarded at IDIES.'
-      },
-      'section#achievements ul li:nth-child(5)': {
-        es: 'Diseño y construcción de una impresora 3D y un dron autónomo.',
-        en: 'Designed and built a 3D printer and an autonomous drone.'
-      },
-      'section#languages h2': {
-        es: 'Idiomas',
-        en: 'Languages'
-      },
-      'section#languages ul li:nth-child(1) span': {
-        es: 'Español: Nativo',
-        en: 'Spanish: Native'
-      },
-      'section#languages ul li:nth-child(2) span': {
-        es: 'Inglés: C2 (Cambridge CPE, 15 años)',
-        en: 'English: C2 (Cambridge CPE, 15 years)'
-      },
-      'section#languages ul li:nth-child(3) span': {
-        es: 'Francés: B1 (EOI, 6 años)',
-        en: 'French: B1 (EOI, 6 years)'
-      },
-      'section#languages ul li:nth-child(4) span': {
-        es: 'Alemán: A1 (EOI, 1 año)',
-        en: 'German: A1 (EOI, 1 year)'
-      },
-      'section#proyectos h2': {
-        es: 'Proyectos',
-        en: 'Projects'
-      },
-      'section#proyectos ul li:nth-child(1) a': {
-        es: 'Guiado de drone por visión computacional',
-        en: 'Drone guidance with computer vision'
-      },
-      'section#proyectos ul li:nth-child(2) a': {
-        es: 'TypeTest',
-        en: 'TypeTest'
-      },
-      'section#proyectos ul li:nth-child(3) a': {
-        es: 'Olimpiada de edificación (los kelvin)',
-        en: 'Building Olympiad (Los Kelvin)'
-      },
-      'section#proyectos ul li:nth-child(4) a': {
-        es: 'MIGRANTE / HABITANTE (Becas Europa UFV)',
-        en: 'MIGRANTE / HABITANTE (EU Scholarships UFV)'
-      },
-      'section#erasmus h2': {
-        es: 'Movilidad ERASMUS+',
-        en: 'ERASMUS+ Mobility'
-      },
-      'section#erasmus ul li:nth-child(1)': {
-        es: 'Youth Exchange: Olomouc, Chequia – Herencia cultural europea.',
-        en: 'Youth Exchange: Olomouc, Czech Republic – European cultural heritage.'
-      },
-      'section#erasmus ul li:nth-child(2)': {
-        es: 'Youth Exchange: Malbun, Liechtenstein – "Save Mother Earth", Enfocado en la vida sostenible y el contacto directo con la naturaleza.',
-        en: 'Youth Exchange: Malbun, Liechtenstein – "Save Mother Earth", Focused on sustainable living and direct contact with nature.'
-      },
-      'section#erasmus ul li:nth-child(3)': {
-        es: 'Training Course: Lębork, Polonia – IA, Ciberseguridad y networing con otros profesionales.',
-        en: 'Training Course: Lębork, Poland – AI, Cybersecurity and networing with like-minded people.'
-      },
-      'footer p:nth-child(1)': {
-        es: '© 2025 Miguel Cox Caballero. Todos los derechos reservados.',
-        en: '© 2025 Miguel Cox Caballero. All rights reserved.'
-      },
-      'footer p:nth-child(2)': {
-        es: 'Sígueme en Instagram:',
-        en: 'Follow me on Instagram:'
-      }
-    };
-
-    function switchLang() {
-      currentLang = (currentLang === 'es') ? 'en' : 'es';
-      document.getElementById('langSwitcher').innerText = currentLang.toUpperCase();
-      for (let selector in translations) {
-        let elem = document.querySelector(selector);
-        if (elem) {
-          if (selector === 'footer p:nth-child(2)') {
-            elem.innerHTML = translations[selector][currentLang] +
-              ' <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>';
-          } else {
-            elem.innerText = translations[selector][currentLang];
-          }
-        }
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const langBtn = document.getElementById('langSwitcher');
-      langBtn.innerText = 'ES';
-      langBtn.addEventListener('click', switchLang);
-    });
-  </script>
+  <!-- JS externo -->
+  <script src="js/scripts.js" defer></script>
 </body>
 </html>
