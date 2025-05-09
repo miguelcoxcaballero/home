@@ -61,7 +61,7 @@ body {
   margin: 0;
   opacity: 0;               /* Fade-in con JS */
   white-space: nowrap;      /* evita wrap */
-  font-size: min(var(--bar-title-size), 4vw);
+  font-size: min(var(--bar-title-size), 9vw);
 }
 
 /*--------------------------------------------------------------
