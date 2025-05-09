@@ -50,7 +50,7 @@ const translations = {
   },
 
   'section#about p': {
-    es: 'Estudiante de Ingeniería Informática en la Universidad de Murcia \n        con 10 años de educación bilingüe y experiencia en proyectos \n        tecnológicos innovadores.',
+    es: 'Estudiante de Ingeniería Informática en la Universidad de Murcia con 10 años de educación bilingüe y experiencia en proyectos tecnológicos innovadores.',
     en: 'Software Engineering student at the University of Murcia with 10 years of bilingual education and experience in innovative tech projects.'
   },
 
