@@ -133,8 +133,8 @@ const translations = {
     en: '<strong>CZECH REPUBLIC</strong>: (Youth Exchange) European cultural heritage.'
   },
   'section#erasmus ul li:nth-child(2)': {
-    es: '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) "Save Mother Earth", enfocado en la vida sostenible y el contacto directo con la naturaleza.',
-    en: '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) "Save Mother Earth", focused on sustainable living and direct contact with nature.'
+    es: '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Vida sostenible y contacto directo con la naturaleza.',
+    en: '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Sustainable living and direct contact with nature.'
   },
   'section#erasmus ul li:nth-child(3)': {
     es: '<strong>POLONIA</strong>: (Training Course) IA, ciberseguridad y networking con otros profesionales.',
