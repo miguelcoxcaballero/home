@@ -23,22 +23,30 @@ if (!bigHorizontal) {
     barTitle.style.opacity = textProgress;
   });
 } else {
-  const mainEl = document.getElementById('mainContent');
-  const DESKTOP_THRESHOLD = 800;
+  // === LÓGICA PARA ESCRITORIO HORIZONTAL ===
+  const DESKTOP_THRESHOLD      = 800;
   const DESKTOP_BAR_SPEED_MULT = 1.5;
   const DESKTOP_BAR_MAX_HEIGHT = 80;
-  const DESKTOP_TEXT_START = 0.3;
-  mainEl.addEventListener('scroll', () => {
-    const scrollY = mainEl.scrollTop;
-    let progress = scrollY / DESKTOP_THRESHOLD;
-    progress = Math.min(Math.max(progress, 0), 1);
+  const DESKTOP_TEXT_START     = 0.3;
+
+  function updateDesktopBar() {
+    const scrollY   = window.scrollY;
+    let progress    = scrollY / DESKTOP_THRESHOLD;
+    progress        = Math.min(Math.max(progress, 0), 1);
+
     let barProgress = progress * DESKTOP_BAR_SPEED_MULT;
-    barProgress = Math.min(barProgress, 1);
+    barProgress     = Math.min(barProgress, 1);
     scrollBar.style.height = (DESKTOP_BAR_MAX_HEIGHT * barProgress) + 'px';
+
     let textProgress = (progress - DESKTOP_TEXT_START) / (1 - DESKTOP_TEXT_START);
-    textProgress = Math.min(Math.max(textProgress, 0), 1);
+    textProgress     = Math.min(Math.max(textProgress, 0), 1);
     barTitle.style.opacity = textProgress;
-  });
+  }
+
+  // Escucha el scroll de la ventana en lugar del main
+  window.addEventListener('scroll', updateDesktopBar);
+  // Inicializa la barra al cargar
+  updateDesktopBar();
 }
 
 // Script de traducción
