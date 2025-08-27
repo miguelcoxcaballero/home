@@ -1,4 +1,4 @@
-// js/scripts.js — robust scroll bar + i18n (ES/EN)
+// js/scripts.js — scroll bar + i18n robusto (ES/EN)
 
 // ===== Scroll bar animation =====
 const scrollBar  = document.getElementById('scrollBar');
@@ -20,7 +20,7 @@ function updateBar(scrollY) {
   if (scrollBar) scrollBar.style.height = Math.round(MAX_H * barProg) + 'px';
   if (barTitle) {
     barTitle.style.opacity = String(txtProg);
-    const s = 0.9 + 0.1 * txtProg; // subtle scale-in
+    const s = 0.9 + 0.1 * txtProg; // sutil scale-in
     barTitle.style.transform = `scale(${s})`;
     barTitle.style.transformOrigin = 'left center';
   }
@@ -58,6 +58,7 @@ const I18N = {
     erasmus_4 : '<strong>POLONIA</strong>: (Training Course) Mindful Trails about mental health and wellbeing.',
     footer_copy  : '© 2025 Miguel Cox Caballero. Todos los derechos reservados.',
     footer_follow: 'Sígueme en Instagram: <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>',
+    aria_change_lang: 'Cambiar idioma',
   },
   en: {
     doc_title: 'Miguel Cox Caballero - Scroll Transition',
@@ -87,11 +88,13 @@ const I18N = {
     erasmus_4 : '<strong>POLAND</strong>: (Training Course) Mindful Trails about mental health and wellbeing.',
     footer_copy  : '© 2025 Miguel Cox Caballero. All rights reserved.',
     footer_follow: 'Follow me on Instagram: <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>',
+    aria_change_lang: 'Change language',
   }
 };
 
 function applyLanguage(lang){
   const dict = I18N[lang] || I18N.es;
+
   // Update <html lang>
   document.documentElement.setAttribute('lang', lang);
 
@@ -108,15 +111,30 @@ function applyLanguage(lang){
     else el.textContent = val;
   });
 
-  // Update the document title explicitly too
+  // Update the document title explicitly
   if (dict.doc_title) document.title = dict.doc_title;
 
-  // Update language button
+  // Update language button (label + aria)
   const btn = document.getElementById('langSwitcher');
-  if (btn) btn.textContent = '🌐 ' + lang.toUpperCase();
+  if (btn) {
+    btn.textContent = '🌐 ' + lang.toUpperCase();
+    btn.setAttribute('aria-label', dict.aria_change_lang || 'Change language');
+  }
 
   // Persist
   try { localStorage.setItem('lang', lang); } catch(_) {}
+
+  // Reaplicar por seguridad en el próximo frame (evita parpadeos/competencia con otros scripts)
+  requestAnimationFrame(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = dict[key];
+      if (val == null) return;
+      const htmlMode = el.getAttribute('data-i18n-html') === 'true';
+      if (htmlMode) el.innerHTML = val;
+      else el.textContent = val;
+    });
+  });
 }
 
 function toggleLang(){
@@ -125,9 +143,20 @@ function toggleLang(){
   applyLanguage(next);
 }
 
+// Aplicamos idioma en DOMContentLoaded y también en window.load
 document.addEventListener('DOMContentLoaded', () => {
   const initial = (localStorage.getItem('lang') || document.documentElement.lang || 'es').toLowerCase();
   applyLanguage(initial);
   const btn = document.getElementById('langSwitcher');
-  if (btn) btn.addEventListener('click', toggleLang);
+  if (btn) btn.addEventListener('click', () => {
+    // Si el usuario pulsa muy pronto, nos aseguramos de reaplicar el actual antes de alternar
+    const cur = (localStorage.getItem('lang') || document.documentElement.lang || 'es').toLowerCase();
+    applyLanguage(cur);
+    toggleLang();
+  });
+});
+
+window.addEventListener('load', () => {
+  const current = (localStorage.getItem('lang') || document.documentElement.lang || 'es').toLowerCase();
+  applyLanguage(current);
 });
