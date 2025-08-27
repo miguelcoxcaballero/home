@@ -1,142 +1,133 @@
-// project-root/js/scripts.js
+// js/scripts.js — robust scroll bar + i18n (ES/EN)
 
-// Referencias
+// ===== Scroll bar animation =====
 const scrollBar  = document.getElementById('scrollBar');
 const barTitle   = document.getElementById('barTitle');
 const bigDesktop = window.matchMedia('(min-width: 1024px) and (min-aspect-ratio: 1/1)').matches;
 
-// Parámetros según dispositivo
-const THRESHOLD  = bigDesktop ? 400 : 400;
+const THRESHOLD  = 400;
 const SPEED      = bigDesktop ? 3 : 2;
-const MAX_H      = bigDesktop ? 48 : 48;
+const MAX_H      = 48;
 const TXT_START  = bigDesktop ? 0.3 : 0.2;
 
-// Función única
+function clamp(n, lo, hi){ return Math.min(Math.max(n, lo), hi); }
+
 function updateBar(scrollY) {
-  let prog      = Math.min(Math.max(scrollY / THRESHOLD, 0), 1);
-  let barProg   = Math.min(prog * SPEED, 1);
-  scrollBar.style.height = (MAX_H * barProg) + 'px';
+  const prog    = clamp(scrollY / THRESHOLD, 0, 1);
+  const barProg = clamp(prog * SPEED, 0, 1);
+  const txtProg = clamp((prog - TXT_START) / (1 - TXT_START), 0, 1);
 
-  let txtProg = Math.min(Math.max((prog - TXT_START) / (1 - TXT_START), 0), 1);
-  barTitle.style.opacity = txtProg;
+  if (scrollBar) scrollBar.style.height = Math.round(MAX_H * barProg) + 'px';
+  if (barTitle) {
+    barTitle.style.opacity = String(txtProg);
+    const s = 0.9 + 0.1 * txtProg; // subtle scale-in
+    barTitle.style.transform = `scale(${s})`;
+    barTitle.style.transformOrigin = 'left center';
+  }
 }
-
-// Siempre escucha el scroll de la ventana
 window.addEventListener('scroll', () => updateBar(window.scrollY));
-// Inicializa al cargar
 updateBar(window.scrollY);
 
-
-// Traducciones
-let currentLang = 'es';
-const translations = {
-  'section#about h2': {
-    es: 'Acerca de mí', en: 'About Me'
+// ===== Simple i18n (data-i18n) =====
+const I18N = {
+  es: {
+    doc_title: 'Miguel Cox Caballero - Transición al hacer scroll',
+    about_h2 : 'Acerca de mí',
+    about_p  : 'Estudiante de Ingeniería Informática en la Universidad de Murcia con 10 años de educación bilingüe y experiencia en proyectos tecnológicos innovadores.',
+    achi_h2  : 'Logros Personales',
+    achi_1   : 'Oro en la Olimpiada de Ingeniería IT de la UCAM.',
+    achi_2   : 'Oro en la Olimpiada de Arquitectura Sostenible.',
+    achi_3   : '3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.',
+    lang_h2  : 'Idiomas',
+    lang_1   : '<strong>Español</strong>: Nativo',
+    lang_2   : '<strong>Inglés</strong>: C2 (Cambridge CPE)',
+    lang_3   : '<strong>Francés</strong>: B1 (EOI)',
+    lang_4   : '<strong>Alemán</strong>: A1 (EOI)',
+    proj_h2  : 'Proyectos',
+    proj_1   : 'IDIES Antena Hecha a Mano',
+    proj_2   : 'Guiado de drone por visión computacional',
+    proj_3   : 'Olimpiada de edificación (Los Kelvin)',
+    proj_4   : 'TypeTest',
+    proj_5   : 'Web Pomodoro Timer',
+    proj_6   : 'Web Tablas de Multiplicar',
+    proj_7   : 'MIGRANTE / HABITANTE (Becas Europa UFV)',
+    erasmus_h2: 'Movilidad ERASMUS+',
+    erasmus_1 : '<strong>CHEQUIA</strong>: (Youth Exchange) Herencia cultural europea.',
+    erasmus_2 : '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Vida sostenible y contacto directo con la naturaleza.',
+    erasmus_3 : '<strong>POLONIA</strong>: (Training Course) IA, ciberseguridad y networking con otros profesionales.',
+    erasmus_4 : '<strong>POLONIA</strong>: (Training Course) Mindful Trails about mental health and wellbeing.',
+    footer_copy  : '© 2025 Miguel Cox Caballero. Todos los derechos reservados.',
+    footer_follow: 'Sígueme en Instagram: <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>',
   },
-  'section#about p': {
-    es: 'Estudiante de Ingeniería Informática en la Universidad de Murcia con 10 años de educación bilingüe y experiencia en proyectos tecnológicos innovadores.',
-    en: 'Software Engineering student at the University of Murcia with 10 years of bilingual education and experience in innovative tech projects.'
-  },
-  'section#achievements h2': {
-    es: 'Logros Personales', en: 'Personal Achievements'
-  },
-  'section#achievements ul li:nth-child(1)': {
-    es: 'Oro en la Olimpiada de Ingeniería IT de la UCAM.', en: 'Gold medal in the UCAM IT Engineering Olympiad.'
-  },
-  'section#achievements ul li:nth-child(2)': {
-    es: 'Oro en la Olimpiada de Arquitectura Sostenible.', en: 'Gold medal in the Sustainable Architecture Olympiad.'
-  },
-  'section#achievements ul li:nth-child(3)': {
-    es: '3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.', en: '3rd place in the National Sustainable Architecture Olympiad.'
-  },
-  'section#languages ul li:nth-child(1) span': {
-    es: '<strong>Español</strong>: Nativo', en: '<strong>Spanish</strong>: Native'
-  },
-  'section#languages ul li:nth-child(2) span': {
-    es: '<strong>Inglés</strong>: C2 (Cambridge CPE)', en: '<strong>English</strong>: C2 (Cambridge CPE)'
-  },
-  'section#languages ul li:nth-child(3) span': {
-    es: '<strong>Francés</strong>: B1 (EOI)', en: '<strong>French</strong>: B1 (EOI)'
-  },
-  'section#languages ul li:nth-child(4) span': {
-    es: '<strong>Alemán</strong>: A1 (EOI)', en: '<strong>German</strong>: A1 (EOI)'
-  },
-  'section#proyectos h2': {
-    es: 'Proyectos', en: 'Projects'
-  },
-  'section#proyectos ul li:nth-child(1) a': {
-    es: 'IDIES Antena Hecha a Mano', en: 'IDIES Handmade Antenna'
-  },
-  'section#proyectos ul li:nth-child(2) a': {
-    es: 'Guiado de drone por visión computacional', en: 'Drone guidance with computer vision'
-  },
-  'section#proyectos ul li:nth-child(3) a': {
-    es: 'Olimpiada de edificación (Los Kelvin)', en: 'Building Olympiad (Los Kelvin)'
-  },
-  'section#proyectos ul li:nth-child(4) a': {
-    es: 'TypeTest', en: 'TypeTest'
-  },
-  'section#proyectos ul li:nth-child(5) a': {
-    es: 'Web Pomodoro Timer', en: 'Pomodoro Timer Web'
-  },
-  'section#proyectos ul li:nth-child(6) a': {
-    es: 'Web Tablas de Multiplicar', en: 'Multiplication Tables Web'
-  },
-  'section#proyectos ul li:nth-child(7) a': {
-    es: 'MIGRANTE / HABITANTE (Becas Europa UFV)', en: 'MIGRANTE / HABITANTE (EU Scholarships UFV)'
-  },
-  'section#erasmus h2': {
-    es: 'Movilidad ERASMUS+', en: 'ERASMUS+ Mobility'
-  },
-  'section#erasmus ul li:nth-child(1)': {
-    es: '<strong>CHEQUIA</strong>: (Youth Exchange) Herencia cultural europea.',
-    en: '<strong>CZECH REPUBLIC</strong>: (Youth Exchange) European cultural heritage.'
-  },
-  'section#erasmus ul li:nth-child(2)': {
-    es: '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Vida sostenible y contacto directo con la naturaleza.',
-    en: '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Sustainable living and direct contact with nature.'
-  },
-  'section#erasmus ul li:nth-child(3)': {
-    es: '<strong>POLONIA</strong>: (Training Course) IA, ciberseguridad y networking con otros profesionales.',
-    en: '<strong>POLAND</strong>: (Training Course) AI, cybersecurity and networking with like-minded professionals.'
-  },
-  'section#erasmus ul li:nth-child(4)': {
-    es: '<strong>POLONIA</strong>: (Training Course) Mindful Trails about mental health and wellbeing.',
-    en: '<strong>POLAND</strong>: (Training Course) Mindful Trails about mental health and wellbeing.'
-  },
-  'footer p:nth-child(1)': {
-    es: '© 2025 Miguel Cox Caballero. Todos los derechos reservados.',
-    en: '© 2025 Miguel Cox Caballero. All rights reserved.'
-  },
-  'footer p:nth-child(2)': {
-    es: 'Sígueme en Instagram:', en: 'Follow me on Instagram:'
+  en: {
+    doc_title: 'Miguel Cox Caballero - Scroll Transition',
+    about_h2 : 'About Me',
+    about_p  : 'Software Engineering student at the University of Murcia with 10 years of bilingual education and experience in innovative tech projects.',
+    achi_h2  : 'Personal Achievements',
+    achi_1   : 'Gold medal in the UCAM IT Engineering Olympiad.',
+    achi_2   : 'Gold medal in the Sustainable Architecture Olympiad.',
+    achi_3   : '3rd place in the National Sustainable Architecture Olympiad.',
+    lang_h2  : 'Languages',
+    lang_1   : '<strong>Spanish</strong>: Native',
+    lang_2   : '<strong>English</strong>: C2 (Cambridge CPE)',
+    lang_3   : '<strong>French</strong>: B1 (EOI)',
+    lang_4   : '<strong>German</strong>: A1 (EOI)',
+    proj_h2  : 'Projects',
+    proj_1   : 'IDIES Handmade Antenna',
+    proj_2   : 'Drone guidance with computer vision',
+    proj_3   : 'Building Olympiad (Los Kelvin)',
+    proj_4   : 'TypeTest',
+    proj_5   : 'Web Pomodoro Timer',
+    proj_6   : 'Web Multiplication Tables',
+    proj_7   : 'MIGRANTE / HABITANTE (UFV Europe Scholarships)',
+    erasmus_h2: 'ERASMUS+ Mobility',
+    erasmus_1 : '<strong>CZECH REPUBLIC</strong>: (Youth Exchange) European cultural heritage.',
+    erasmus_2 : '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Sustainable living and direct contact with nature.',
+    erasmus_3 : '<strong>POLAND</strong>: (Training Course) AI, cybersecurity and networking with like-minded professionals.',
+    erasmus_4 : '<strong>POLAND</strong>: (Training Course) Mindful Trails about mental health and wellbeing.',
+    footer_copy  : '© 2025 Miguel Cox Caballero. All rights reserved.',
+    footer_follow: 'Follow me on Instagram: <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>',
   }
 };
 
-function switchLang() {
-  currentLang = (currentLang === 'es') ? 'en' : 'es';
-  document.getElementById('langSwitcher').innerText = '🌐 ' + currentLang.toUpperCase();
+function applyLanguage(lang){
+  const dict = I18N[lang] || I18N.es;
+  // Update <html lang>
+  document.documentElement.setAttribute('lang', lang);
 
-  for (let selector in translations) {
-    let elem = document.querySelector(selector);
-    if (!elem) continue;
-
-    if (selector === 'footer p:nth-child(2)') {
-      elem.innerHTML = translations[selector][currentLang] +
-        ' <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>';
-    } else if (
-      selector.startsWith('section#erasmus ul li') ||
-      selector.startsWith('section#languages ul li')
-    ) {
-      elem.innerHTML = translations[selector][currentLang];
-    } else {
-      elem.innerText = translations[selector][currentLang];
+  // Update all elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = dict[key];
+    if (val == null) {
+      console.warn('[i18n] Missing key:', key, 'for lang:', lang);
+      return;
     }
-  }
+    const htmlMode = el.getAttribute('data-i18n-html') === 'true';
+    if (htmlMode) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+  // Update the document title explicitly too
+  if (dict.doc_title) document.title = dict.doc_title;
+
+  // Update language button
+  const btn = document.getElementById('langSwitcher');
+  if (btn) btn.textContent = '🌐 ' + lang.toUpperCase();
+
+  // Persist
+  try { localStorage.setItem('lang', lang); } catch(_) {}
+}
+
+function toggleLang(){
+  const cur = (localStorage.getItem('lang') || document.documentElement.lang || 'es').toLowerCase();
+  const next = (cur === 'es') ? 'en' : 'es';
+  applyLanguage(next);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const langBtn = document.getElementById('langSwitcher');
-  langBtn.innerText = '🌐 ES';
-  langBtn.addEventListener('click', switchLang);
+  const initial = (localStorage.getItem('lang') || document.documentElement.lang || 'es').toLowerCase();
+  applyLanguage(initial);
+  const btn = document.getElementById('langSwitcher');
+  if (btn) btn.addEventListener('click', toggleLang);
 });
