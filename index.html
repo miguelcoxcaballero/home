@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Miguel Cox Caballero - Scroll Transition</title>
+  <title data-i18n="doc_title">Miguel Cox Caballero - Transición al hacer scroll</title>
 
   <!-- Fuente para el cuerpo (Poppins).
        Goudy Old Style se usará si está instalada en el sistema -->
@@ -34,116 +34,120 @@
       </div>
     </div>
     <div class="lang-switcher">
-      <button id="langSwitcher">🌐 ES</button>
+      <button id="langSwitcher" aria-label="Change language">🌐 ES</button>
     </div>
   </header>
 
   <main id="mainContent">
     <section id="about">
-      <h2>Acerca de mí</h2>
-      <p>
-        Estudiante de Ingeniería Informática en la Universidad de Murcia 
-        con 10 años de educación bilingüe y experiencia en proyectos 
+      <h2 data-i18n="about_h2">Acerca de mí</h2>
+      <p data-i18n="about_p">
+        Estudiante de Ingeniería Informática en la Universidad de Murcia
+        con 10 años de educación bilingüe y experiencia en proyectos
         tecnológicos innovadores.
       </p>
     </section>
 
     <section id="achievements">
-      <h2>Logros Personales</h2>
+      <h2 data-i18n="achi_h2">Logros Personales</h2>
       <ul>
-        <li>Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
-        <li>Oro en la Olimpiada de Arquitectura Sostenible.</li>
-        <li>3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
+        <li data-i18n="achi_1">Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
+        <li data-i18n="achi_2">Oro en la Olimpiada de Arquitectura Sostenible.</li>
+        <li data-i18n="achi_3">3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
       </ul>
     </section>
 
     <section id="languages">
-        <h2>Idiomas</h2>
+        <h2 data-i18n="lang_h2">Idiomas</h2>
         <ul>
           <li>
             <img src="assets/img/es.png" alt="Español" class="lang-icon">
-            <span><strong>Español</strong>: Nativo</span>
+            <span data-i18n="lang_1" data-i18n-html="true"><strong>Español</strong>: Nativo</span>
           </li>
           <li>
             <img src="assets/img/uk.png" alt="Inglés" class="lang-icon">
-            <span><strong>Inglés</strong>: C2 (Cambridge CPE)</span>
+            <span data-i18n="lang_2" data-i18n-html="true"><strong>Inglés</strong>: C2 (Cambridge CPE)</span>
           </li>
           <li>
             <img src="assets/img/fr.png" alt="Francés" class="lang-icon">
-            <span><strong>Francés</strong>: B1 (EOI)</span>
+            <span data-i18n="lang_3" data-i18n-html="true"><strong>Francés</strong>: B1 (EOI)</span>
           </li>
           <li>
             <img src="assets/img/de.png" alt="Alemán" class="lang-icon">
-            <span><strong>Alemán</strong>: A1 (EOI)</span>
+            <span data-i18n="lang_4" data-i18n-html="true"><strong>Alemán</strong>: A1 (EOI)</span>
           </li>
         </ul>
     </section>
-      
 
     <section id="proyectos">
-        <h2>Proyectos</h2>
-        <ul>
-          <li>
-            <a href="https://github.com/miguelcoxcaballero/antenahechaamano"
-               target="_blank" rel="noopener noreferrer">
-              IDIES Antena Hecha a Mano
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo"
-               target="_blank" rel="noopener noreferrer">
-              Guiado de drone por visión computacional
-            </a>
-          </li>
-          <li>
-            <a href="https://bit.ly/LosKelvin"
-               target="_blank" rel="noopener noreferrer">
-              Olimpiada de edificación (Los Kelvin)
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/miguelcoxcaballero/TypeTest"
-               target="_blank" rel="noopener noreferrer">
-              TypeTest
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/miguelcoxcaballero/pomodoro"
-               target="_blank" rel="noopener noreferrer">
-              Web Pomodoro Timer
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/miguelcoxcaballero/multiplicar"
-               target="_blank" rel="noopener noreferrer">
-              Web Tablas de Multiplicar
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA"
-               target="_blank" rel="noopener noreferrer">
-              MIGRANTE / HABITANTE (Becas Europa UFV)
-            </a>
-          </li>
-        </ul>
+      <h2 data-i18n="proj_h2">Proyectos</h2>
+      <ul>
+        <li>
+          <a data-i18n="proj_1"
+             href="https://github.com/miguelcoxcaballero/idies-antenna"
+             target="_blank" rel="noopener noreferrer">
+            IDIES Antena Hecha a Mano
+          </a>
+        </li>
+        <li>
+          <a data-i18n="proj_2"
+             href="https://github.com/miguelcoxcaballero/drone-vision"
+             target="_blank" rel="noopener noreferrer">
+            Guiado de drone por visión computacional
+          </a>
+        </li>
+        <li>
+          <a data-i18n="proj_3"
+             href="https://github.com/miguelcoxcaballero/kelvin-olympiad"
+             target="_blank" rel="noopener noreferrer">
+            Olimpiada de edificación (Los Kelvin)
+          </a>
+        </li>
+        <li>
+          <a data-i18n="proj_4"
+             href="https://github.com/miguelcoxcaballero/typetest"
+             target="_blank" rel="noopener noreferrer">
+            TypeTest
+          </a>
+        </li>
+        <li>
+          <a data-i18n="proj_5"
+             href="https://github.com/miguelcoxcaballero/pomodoro"
+             target="_blank" rel="noopener noreferrer">
+            Web Pomodoro Timer
+          </a>
+        </li>
+        <li>
+          <a data-i18n="proj_6"
+             href="https://github.com/miguelcoxcaballero/multiplicar"
+             target="_blank" rel="noopener noreferrer">
+            Web Tablas de Multiplicar
+          </a>
+        </li>
+        <li>
+          <a data-i18n="proj_7"
+             href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA"
+             target="_blank" rel="noopener noreferrer">
+            MIGRANTE / HABITANTE (Becas Europa UFV)
+          </a>
+        </li>
+      </ul>
     </section>
-      
 
     <section id="erasmus">
-        <h2>Movilidad ERASMUS+</h2>
+        <h2 data-i18n="erasmus_h2">Movilidad ERASMUS+</h2>
         <ul>
-          <li><strong>CHEQUIA</strong>: (Youth Exchange) Herencia cultural europea.</li>
-          <li><strong>LIECHTENSTEIN</strong>: (Youth Exchange) Vida sostenible y contacto directo con la naturaleza.</li>
-          <li><strong>POLONIA</strong>: (Training Course) IA, ciberseguridad y networking con otros profesionales.</li>
-          <li><strong>POLONIA</strong>: (Training Course) Mindful Trails about mental health and wellbeing.</li>
+          <li data-i18n="erasmus_1" data-i18n-html="true"><strong>CHEQUIA</strong>: (Youth Exchange) Herencia cultural europea.</li>
+          <li data-i18n="erasmus_2" data-i18n-html="true"><strong>LIECHTENSTEIN</strong>: (Youth Exchange) Vida sostenible y contacto directo con la naturaleza.</li>
+          <li data-i18n="erasmus_3" data-i18n-html="true"><strong>POLONIA</strong>: (Training Course) IA, ciberseguridad y networking con otros profesionales.</li>
+          <li data-i18n="erasmus_4" data-i18n-html="true"><strong>POLONIA</strong>: (Training Course) Mindful Trails about mental health and wellbeing.</li>
         </ul>
-      </section>
-      
+    </section>
   </main>
 
   <footer>
-    <p>© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
-    <p>Sígueme en Instagram:
+    <p data-i18n="footer_copy">© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
+    <p data-i18n="footer_follow" data-i18n-html="true">Sígueme en Instagram:
       <a href="https://www.instagram.com/miguelcoxcaballero"
          target="_blank" rel="noopener noreferrer">
         @miguelcoxcaballero
