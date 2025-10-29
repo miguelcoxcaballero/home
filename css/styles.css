@@ -146,7 +146,7 @@ section ul li::before {
   margin: 1rem 0 1.25rem;
 }
 .erasmus-pic {
-  width: 50%; max-width: 620px; height: auto;
+  width: 75%; max-width: 620px; height: auto;
   border-radius: 12px;
 }
 
@@ -216,3 +216,4 @@ a:hover, a:focus-visible { color: var(--white); transform: translateY(-2px); tex
   /* Botón de idioma */
   header .lang-switcher { right: 2rem; top: 10px; }
 }
+
