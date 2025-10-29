@@ -5,6 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title data-i18n="doc_title">Miguel Cox Caballero - Transición al hacer scroll</title>
 
+  <!-- Meta SEO -->
+  <meta name="description" content="Portfolio de Miguel Cox Caballero: proyectos de ingeniería, ERASMUS+, logros y contacto.">
+  <link rel="canonical" href="https://miguelcoxcaballero.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://miguelcoxcaballero.com/">
+  <meta property="og:title" content="Miguel Cox Caballero">
+  <meta property="og:description" content="Proyectos, logros, movilidad ERASMUS+ e idiomas.">
+  <meta property="og:image" content="https://miguelcoxcaballero.com/assets/mig-og.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Miguel Cox Caballero">
+  <meta name="twitter:description" content="Proyectos, logros, movilidad ERASMUS+ e idiomas.">
+  <meta name="twitter:image" content="https://miguelcoxcaballero.com/assets/mig-og.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <!-- JSON-LD Person -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Miguel Cox Caballero",
+    "url":"https://miguelcoxcaballero.com/",
+    "image":"https://miguelcoxcaballero.com/assets/mig-og.jpg",
+    "sameAs": [
+      "https://github.com/miguelcoxcaballero",
+      "https://www.instagram.com/miguelcoxcaballero"
+    ],
+    "jobTitle":"Software Engineering Student",
+    "alumniOf":{
+      "@type":"CollegeOrUniversity",
+      "name":"Universidad de Murcia"
+    }
+  }
+  </script>
+
   <!-- Fuente para el cuerpo (Poppins). Goudy Old Style se usará si está instalada -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,9 +55,26 @@
     rel="stylesheet"
   />
 
+  <!-- I18N boot: fija lang y preasigna el botón para evitar parpadeos -->
+  <script>
+    (function(){
+      var lang = (localStorage.getItem('lang') || (document.documentElement.lang || 'es')).toLowerCase();
+      document.documentElement.setAttribute('lang', lang);
+      document.addEventListener('DOMContentLoaded', function(){
+        var btn = document.getElementById('langSwitcher');
+        if (!btn) return;
+        btn.textContent = '🌐 ' + lang.toUpperCase();
+        btn.setAttribute('aria-label', lang==='es' ? 'Cambiar idioma' : 'Change language');
+      });
+    })();
+  </script>
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+  <!-- Skip to content (accesibilidad) -->
+  <a href="#mainContent" class="skip-link">Saltar al contenido</a>
 
   <!-- Barra coral -->
   <div class="scroll-bar" id="scrollBar">
@@ -23,7 +82,10 @@
   </div>
 
   <header>
-    <img src="assets/mig.gif" alt="Miguel Cox Caballero - GIF 4:3">
+    <img src="assets/mig.gif"
+         alt="Miguel Cox Caballero - GIF 4:3"
+         width="1600" height="1200"
+         loading="eager" decoding="async">
     <div class="overlay"></div>
     <div class="header-content" id="headerContent">
       <div class="title-box" id="titleBox">
@@ -39,9 +101,7 @@
     <section id="about">
       <h2 data-i18n="about_h2">Acerca de mí</h2>
       <p data-i18n="about_p">
-        Estudiante de Ingeniería Informática en la Universidad de Murcia
-        con 10 años de educación bilingüe y experiencia en proyectos
-        tecnológicos innovadores.
+        Estudiante de Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV).
       </p>
     </section>
 
@@ -50,12 +110,11 @@
       <ul>
         <li data-i18n="achi_1">Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
         <li data-i18n="achi_2">Oro en la Olimpiada de Arquitectura Sostenible.</li>
-        <li data-i18n="achi_3">3er puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
+        <li data-i18n="achi_3">3º puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
       </ul>
     </section>
 
     <section id="languages">
-      <!-- ESTE ES EL H2 QUE DEBE CAMBIAR A “Languages” EN INGLÉS -->
       <h2 data-i18n="lang_h2">Idiomas</h2>
       <ul>
         <li>
@@ -82,21 +141,21 @@
       <ul>
         <li>
           <a data-i18n="proj_1"
-             href="https://github.com/miguelcoxcaballero/idies-antenna"
+             href="https://github.com/miguelcoxcaballero/antenahechaamano"
              target="_blank" rel="noopener noreferrer">
             IDIES Antena Hecha a Mano
           </a>
         </li>
         <li>
           <a data-i18n="proj_2"
-             href="https://github.com/miguelcoxcaballero/drone-vision"
+             href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo"
              target="_blank" rel="noopener noreferrer">
             Guiado de drone por visión computacional
           </a>
         </li>
         <li>
           <a data-i18n="proj_3"
-             href="https://github.com/miguelcoxcaballero/kelvin-olympiad"
+             href="https://sites.google.com/view/loskelvin/home"
              target="_blank" rel="noopener noreferrer">
             Olimpiada de edificación (Los Kelvin)
           </a>
@@ -134,11 +193,35 @@
 
     <section id="erasmus">
       <h2 data-i18n="erasmus_h2">Movilidad ERASMUS+</h2>
+
+      <!-- Imagen centrada -->
+      <figure class="erasmus-figure">
+        <img
+          class="erasmus-pic"
+          src="assets/erasmus.png"
+          alt="ERASMUS+ Mobility collage"
+          loading="lazy" decoding="async"
+          width="1200" height="675">
+      </figure>
+
       <ul>
         <li data-i18n="erasmus_1" data-i18n-html="true"><strong>CHEQUIA</strong>: (Youth Exchange) Herencia cultural europea.</li>
         <li data-i18n="erasmus_2" data-i18n-html="true"><strong>LIECHTENSTEIN</strong>: (Youth Exchange) Vida sostenible y contacto directo con la naturaleza.</li>
         <li data-i18n="erasmus_3" data-i18n-html="true"><strong>POLONIA</strong>: (Training Course) IA, ciberseguridad y networking con otros profesionales.</li>
         <li data-i18n="erasmus_4" data-i18n-html="true"><strong>POLONIA</strong>: (Training Course) Mindful Trails about mental health and wellbeing.</li>
+        <li data-i18n="erasmus_5" data-i18n-html="true"><strong>ITALIA</strong>: (Intercambio Juvenil) TechWise Youth sobre IA y comprensión tecnológica entre la juventud.</li>
+        <li data-i18n="erasmus_6" data-i18n-html="true"><strong>ALEMANIA</strong>: (Curso de Formación) PeaceUp! sobre habilidades de resolución de conflictos y CNV.</li>
+        <li data-i18n="erasmus_7" data-i18n-html="true"><strong>ALEMANIA</strong>: (Intercambio Juvenil) Digital Detox sobre uso adecuado de la tecnología y reconexión con la naturaleza.</li>
+      </ul>
+    </section>
+
+    <!-- NUEVA SECCIÓN: CONGRESOS -->
+    <section id="congress">
+      <h2 data-i18n="conf_h2">Congresos</h2>
+      <ul>
+        <li data-i18n="conf_1" data-i18n-html="true">
+          Asistencia al XXXII congreso de la Asociación de Estudiantes de Aeronáutica y Espacio de 2025 en León.
+        </li>
       </ul>
     </section>
   </main>

@@ -33,7 +33,7 @@ const I18N = {
   es: {
     doc_title: 'Miguel Cox Caballero - Transición al hacer scroll',
     about_h2 : 'Acerca de mí',
-    about_p  : 'Estudiante de Ingeniería Informática en la Universidad de Murcia con 10 años de educación bilingüe y experiencia en proyectos tecnológicos innovadores.',
+    about_p  : 'Estudiante de Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV).',
     achi_h2  : 'Logros Personales',
     achi_1   : 'Oro en la Olimpiada de Ingeniería IT de la UCAM.',
     achi_2   : 'Oro en la Olimpiada de Arquitectura Sostenible.',
@@ -56,6 +56,12 @@ const I18N = {
     erasmus_2 : '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Vida sostenible y contacto directo con la naturaleza.',
     erasmus_3 : '<strong>POLONIA</strong>: (Training Course) IA, ciberseguridad y networking con otros profesionales.',
     erasmus_4 : '<strong>POLONIA</strong>: (Training Course) Mindful Trails about mental health and wellbeing.',
+    erasmus_5 : '<strong>ITALIA</strong>: (Intercambio Juvenil) TechWise Youth sobre IA y comprensión tecnológica entre la juventud.',
+    erasmus_6 : '<strong>ALEMANIA</strong>: (Curso de Formación) PeaceUp! sobre habilidades de resolución de conflictos y CNV.',
+    erasmus_7 : '<strong>ALEMANIA</strong>: (Intercambio Juvenil) Digital Detox sobre uso adecuado de la tecnología y reconexión con la naturaleza.',
+    /* NUEVA SECCIÓN */
+    conf_h2   : 'Congresos',
+    conf_1    : 'Asistencia al XXXII congreso de la Asociación de Estudiantes de Aeronáutica y Espacio de 2025 en León.',
     footer_copy  : '© 2025 Miguel Cox Caballero. Todos los derechos reservados.',
     footer_follow: 'Sígueme en Instagram: <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>',
     aria_change_lang: 'Cambiar idioma',
@@ -63,7 +69,7 @@ const I18N = {
   en: {
     doc_title: 'Miguel Cox Caballero - Scroll Transition',
     about_h2 : 'About Me',
-    about_p  : 'Software Engineering student at the University of Murcia with 10 years of bilingual education and experience in innovative tech projects.',
+    about_p  : 'Student of Computer Engineering (UMU) and Aerospace Engineering (UPV).',
     achi_h2  : 'Personal Achievements',
     achi_1   : 'Gold medal in the UCAM IT Engineering Olympiad.',
     achi_2   : 'Gold medal in the Sustainable Architecture Olympiad.',
@@ -86,6 +92,12 @@ const I18N = {
     erasmus_2 : '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Sustainable living and direct contact with nature.',
     erasmus_3 : '<strong>POLAND</strong>: (Training Course) AI, cybersecurity and networking with like-minded professionals.',
     erasmus_4 : '<strong>POLAND</strong>: (Training Course) Mindful Trails about mental health and wellbeing.',
+    erasmus_5 : '<strong>ITALY</strong>: (Youth Exchange) TechWise Youth about AI and technology understanding among the youth.',
+    erasmus_6 : '<strong>GERMANY</strong>: (Training Course) PeaceUp! about conflict solving skills and NVC.',
+    erasmus_7 : '<strong>GERMANY</strong>: (Youth Exchange) Digital Detox about proper use of technology and reconnecting with nature.',
+    /* NEW SECTION */
+    conf_h2   : 'Conferences',
+    conf_1    : 'Attendance at the 2025 XXXII Congress of the Spanish Aeronautics and Space Students Association in León.',
     footer_copy  : '© 2025 Miguel Cox Caballero. All rights reserved.',
     footer_follow: 'Follow me on Instagram: <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer">@miguelcoxcaballero</a>',
     aria_change_lang: 'Change language',
@@ -124,7 +136,7 @@ function applyLanguage(lang){
   // Persist
   try { localStorage.setItem('lang', lang); } catch(_) {}
 
-  // Reaplicar por seguridad en el próximo frame (evita parpadeos/competencia con otros scripts)
+  // Reaplicar por seguridad en el próximo frame
   requestAnimationFrame(() => {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
@@ -147,13 +159,32 @@ function toggleLang(){
 document.addEventListener('DOMContentLoaded', () => {
   const initial = (localStorage.getItem('lang') || document.documentElement.lang || 'es').toLowerCase();
   applyLanguage(initial);
+
   const btn = document.getElementById('langSwitcher');
-  if (btn) btn.addEventListener('click', () => {
-    // Si el usuario pulsa muy pronto, nos aseguramos de reaplicar el actual antes de alternar
-    const cur = (localStorage.getItem('lang') || document.documentElement.lang || 'es').toLowerCase();
-    applyLanguage(cur);
-    toggleLang();
-  });
+  if (btn) {
+    // Rol y foco accesibles
+    btn.setAttribute('role','button');
+    btn.setAttribute('tabindex','0');
+    btn.setAttribute('aria-pressed', initial === 'en');
+
+    // Click
+    btn.addEventListener('click', () => {
+      // Reaplica el actual (por si hay condiciones de carrera) y alterna
+      const cur = (localStorage.getItem('lang') || document.documentElement.lang || 'es').toLowerCase();
+      applyLanguage(cur);
+      toggleLang();
+      const now = (localStorage.getItem('lang') || 'es').toLowerCase();
+      btn.setAttribute('aria-pressed', now === 'en');
+    });
+
+    // Teclado
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+  }
 });
 
 window.addEventListener('load', () => {
