@@ -53,6 +53,7 @@ const I18N = {
     // NUEVO PROYECTO
     proj_8   : 'Poli[traumaT]',
     proj_7   : 'MIGRANTE / HABITANTE (Becas Europa UFV)',
+    proj_9   : 'Scanner',
     erasmus_h2: 'Movilidad ERASMUS+',
     erasmus_1 : '<strong>CHEQUIA</strong>: (Youth Exchange) Herencia cultural europea.',
     erasmus_2 : '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Vida sostenible y contacto directo con la naturaleza.',
@@ -91,6 +92,7 @@ const I18N = {
     // NEW PROJECT
     proj_8   : 'Poli[traumaT]',
     proj_7   : 'MIGRANTE / HABITANTE (UFV Europe Scholarships)',
+    proj_9   : 'Scanner',
     erasmus_h2: 'ERASMUS+ Mobility',
     erasmus_1 : '<strong>CZECHIA</strong>: (Youth Exchange) European cultural heritage.',
     erasmus_2 : '<strong>LIECHTENSTEIN</strong>: (Youth Exchange) Sustainable living and direct contact with nature.',
@@ -195,3 +197,4 @@ window.addEventListener('load', () => {
   const current = (localStorage.getItem('lang') || document.documentElement.lang || 'es').toLowerCase();
   applyLanguage(current);
 });
+
