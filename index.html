@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
-  <title data-i18n="doc_title">Miguel Cox Caballero - Portfolio Oficial</title>
+  <title data-i18n="doc_title">Miguel Cox Caballero</title>
 
   <meta name="description" content="Portfolio oficial de Miguel Cox Caballero. Estudiante de doble grado en Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV). Proyectos de software, IA, movilidad ERASMUS+ y logros académicos.">
   <meta name="keywords" content="Miguel Cox Caballero, Ingeniería Informática, Ingeniería Aeroespacial, UMU, UPV, Software, Portfolio, InHouse Software">
@@ -15,7 +15,7 @@
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
 
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Miguel Cox Caballero - Portfolio">
+  <meta property="og:title" content="Miguel Cox Caballero">
   <meta property="og:description" content="Estudiante de Ingeniería Informática y Aeroespacial. Proyectos, logros y trayectoria.">
   <meta property="og:image" content="https://miguelcoxcaballero.com/assets/mig-og.jpg">
   <meta property="og:url" content="https://miguelcoxcaballero.com/">
@@ -115,12 +115,14 @@
     .title-box h1 {
       font-family: var(--title-font);
       font-weight: 700; margin: 0; color: var(--white); letter-spacing: -1px;
+      
+      /* REGLAS PARA UNA SOLA LÍNEA */
       white-space: nowrap;       
       overflow: hidden;          
       text-overflow: ellipsis;   
       
-      /* Tamaño móvil default */
-      font-size: clamp(1.2rem, 6vw, 2.5rem); 
+      /* TAMAÑO RESPONSIVO MÓVIL */
+      font-size: clamp(0.9rem, 5vw, 2.6rem); 
     }
 
     .lang-switcher { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 600; pointer-events: auto; }
@@ -264,7 +266,7 @@
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
-      padding: 2.5rem !important;
+      padding: 1.5rem !important;
       display: flex; flex-direction: column;
     }
 
@@ -323,7 +325,7 @@
       .content-wrapper { width: 100%; max-width: 780px; margin: 0; }
       .scroll-bar { left: 45vw; width: 55vw; }
       
-      /* FIX NOMBRE: Reducido drásticamente para ajustar al 45% de ancho en una línea */
+      /* Tamaño del Nombre en PC: Reducido para encajar en 45vw */
       .title-box h1 { 
         font-size: clamp(0.8rem, 2.2vw, 2.5rem); 
       }
@@ -332,6 +334,8 @@
       .project-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
       .erasmus-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
       .lang-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+      
+      .lang-card { padding: 2.5rem !important; }
     }
   </style>
 </head>
@@ -557,7 +561,7 @@
               <span class="erasmus-country" data-i18n="erasmus_3_country">POLONIA</span>
             </div>
             <span class="erasmus-type badge-tc">Training Course</span>
-            <p class="erasmus-desc" data-i18n="erasmus_3_desc">IA, ciberseguridad y networking.</p>
+            <p class="erasmus-desc" data-i18n="erasmus_3_desc">IA, ciberseguridad y networking con otros profesionales.</p>
           </li>
 
           <li class="erasmus-card">
@@ -569,7 +573,7 @@
               <span class="erasmus-country" data-i18n="erasmus_4_country">POLONIA</span>
             </div>
             <span class="erasmus-type badge-tc">Training Course</span>
-            <p class="erasmus-desc" data-i18n="erasmus_4_desc">Mindful Trails y salud mental.</p>
+            <p class="erasmus-desc" data-i18n="erasmus_4_desc">Mindful Trails sobre salud mental y bienestar.</p>
           </li>
 
           <li class="erasmus-card">
@@ -582,7 +586,7 @@
               <span class="erasmus-country" data-i18n="erasmus_5_country">ITALIA</span>
             </div>
             <span class="erasmus-type badge-ye">Youth Exchange</span>
-            <p class="erasmus-desc" data-i18n="erasmus_5_desc">TechWise Youth: IA y tecnología.</p>
+            <p class="erasmus-desc" data-i18n="erasmus_5_desc">TechWise Youth sobre IA y comprensión tecnológica entre la juventud.</p>
           </li>
 
           <li class="erasmus-card">
@@ -595,7 +599,7 @@
               <span class="erasmus-country" data-i18n="erasmus_6_country">ALEMANIA</span>
             </div>
             <span class="erasmus-type badge-tc">Training Course</span>
-            <p class="erasmus-desc" data-i18n="erasmus_6_desc">PeaceUp! Resolución de conflictos.</p>
+            <p class="erasmus-desc" data-i18n="erasmus_6_desc">PeaceUp! sobre habilidades de resolución de conflictos y CNV.</p>
           </li>
 
           <li class="erasmus-card">
@@ -608,7 +612,7 @@
               <span class="erasmus-country" data-i18n="erasmus_7_country">ALEMANIA</span>
             </div>
             <span class="erasmus-type badge-ye">Youth Exchange</span>
-            <p class="erasmus-desc" data-i18n="erasmus_7_desc">Digital Detox y reconexión natural.</p>
+            <p class="erasmus-desc" data-i18n="erasmus_7_desc">Digital Detox sobre uso adecuado de la tecnología y reconexión con la naturaleza.</p>
           </li>
 
           <li class="erasmus-card">
@@ -621,7 +625,7 @@
               <span class="erasmus-country" data-i18n="erasmus_8_country">HUNGRÍA</span>
             </div>
             <span class="erasmus-type badge-ye">Youth Exchange</span>
-            <p class="erasmus-desc" data-i18n="erasmus_8_desc">Youth Council Exchange: trabajo en equipo, creatividad.</p>
+            <p class="erasmus-desc" data-i18n="erasmus_8_desc">Youth Council Exchange: trabajo en equipo, creatividad y resolución de problemas.</p>
           </li>
         </ul>
       </section>
@@ -635,7 +639,7 @@
       </section>
 
       <footer>
-        <p data-i18n="footer_copy">© 2025 Miguel Cox Caballero.</p>
+        <p data-i18n="footer_copy">© 2025 Miguel Cox Caballero. Todos los derechos reservados.</p>
         <p><a href="https://www.instagram.com/miguelcoxcaballero" target="_blank">@miguelcoxcaballero</a></p>
       </footer>
 
@@ -645,6 +649,7 @@
   <script>
     const I18N = {
       es: {
+        doc_title: 'Miguel Cox Caballero', // CORREGIDO: TÍTULO BASE
         doc_title_name: 'Miguel Cox Caballero',
         about_h2 : 'Acerca de mí',
         about_p  : 'Estudiante de Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV).',
@@ -663,7 +668,7 @@
         lang_3_level: 'B1 (EOI)',
         lang_4_name: 'Alemán',
         lang_4_level: 'A1 (EOI)',
-        lang_5_name: 'Italian',
+        lang_5_name: 'Italiano',
         lang_5_level: 'A2',
         lang_6_name: 'Catalán',
         lang_6_level: 'A1',
@@ -700,6 +705,7 @@
         footer_copy  : '© 2025 Miguel Cox Caballero. Todos los derechos reservados.'
       },
       en: {
+        doc_title: 'Miguel Cox Caballero', // CORREGIDO: TÍTULO BASE
         doc_title_name: 'Miguel Cox Caballero',
         about_h2 : 'About Me',
         about_p  : 'Student of Computer Engineering (UMU) and Aerospace Engineering (UPV).',
@@ -758,6 +764,10 @@
 
     function updateLang(lang) {
       const dict = I18N[lang] || I18N.es;
+      
+      // Actualizamos el título del documento (pestaña del navegador)
+      if (dict.doc_title) document.title = dict.doc_title;
+
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key]) {
