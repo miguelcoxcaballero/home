@@ -92,7 +92,8 @@
 
     /* HEADER */
     header {
-      position: relative; width: 100%; aspect-ratio: 4 / 3;
+      position: relative; width: 100%; 
+      height: 60vh; /* Altura móvil */
       overflow: hidden; pointer-events: none;
     }
     header img { 
@@ -102,19 +103,24 @@
     .overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--black), transparent); z-index: 1; }
     
     .header-content {
-      position: absolute; bottom: 2rem; right: 5%; z-index: 10;
-      text-align: right; max-width: 90%;
+      position: absolute; bottom: 10%; right: 5%; left: 5%; z-index: 10;
+      text-align: center; 
     }
     .title-box {
       background: var(--glass-bg); border: 1px solid var(--glass-border);
-      padding: 1.5rem 2.5rem; border-radius: var(--border-radius);
-      position: relative;
+      padding: 1.5rem 2rem; border-radius: var(--border-radius);
+      position: relative; display: inline-block;
+      max-width: 100%;
     }
     .title-box h1 {
       font-family: var(--title-font);
       font-weight: 700; margin: 0; color: var(--white); letter-spacing: -1px;
-      /* TAMAÑO REDUCIDO (70% aprox del anterior) */
-      font-size: clamp(1.3rem, 4.2vw, 2.6rem); 
+      white-space: nowrap;       
+      overflow: hidden;          
+      text-overflow: ellipsis;   
+      
+      /* Tamaño móvil default */
+      font-size: clamp(1.2rem, 6vw, 2.5rem); 
     }
 
     .lang-switcher { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 600; pointer-events: auto; }
@@ -126,12 +132,14 @@
     .lang-switcher button:hover { transform: scale(1.05); }
 
     /* MAIN & SECCIONES */
-    main { width: 100%; padding: 4rem 1.5rem; }
+    main { width: 100%; padding: 2rem 1rem; }
     .content-wrapper { width: 100%; max-width: 850px; margin: 0 auto; }
 
     section {
       position: relative; background: transparent; 
-      border-radius: var(--border-radius); padding: 3rem; margin-bottom: 3.5rem;
+      border-radius: var(--border-radius); 
+      padding: 1.5rem; 
+      margin-bottom: 2.5rem;
       overflow: hidden; isolation: isolate; 
     }
     section::before {
@@ -146,13 +154,13 @@
     section h2 {
       font-family: var(--title-font); font-size: 1.4rem; font-weight: 700;
       color: var(--vivid-tangelo); border-bottom: 2px solid var(--vivid-tangelo);
-      display: inline-block; margin-bottom: 2rem; padding-bottom: 0.5rem;
+      display: inline-block; margin-bottom: 1.5rem; padding-bottom: 0.5rem;
       text-transform: uppercase; letter-spacing: 2px;
     }
 
     /* Listas Generales */
     section ul:not(.project-grid):not(.erasmus-grid):not(.lang-grid) li {
-      position: relative; margin-bottom: 1rem; padding-left: 1.8rem; list-style: none;
+      position: relative; margin-bottom: 1rem; padding-left: 1.5rem; list-style: none;
     }
     section ul:not(.project-grid):not(.erasmus-grid):not(.lang-grid) li::before {
       content: ""; position: absolute; left: 0; top: 0.65rem;
@@ -161,7 +169,8 @@
 
     /* GRID PROYECTOS */
     .project-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      display: grid; 
+      grid-template-columns: 1fr;
       gap: 1.5rem; list-style: none !important; padding: 0; margin: 0;
     }
     .project-grid li { padding: 0 !important; margin: 0 !important; }
@@ -169,7 +178,7 @@
 
     .project-card {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 2.5rem; min-height: 200px;
+      text-align: center; padding: 2rem; min-height: 180px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--glass-border); border-radius: var(--border-radius);
       text-decoration: none !important; transition: var(--transition);
@@ -185,12 +194,12 @@
 
     /* DISEÑO ERASMUS */
     .erasmus-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 1.5rem;
       list-style: none !important;
       padding: 0 !important;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
     .erasmus-grid li { margin: 0 !important; }
     .erasmus-grid li::before { content: none !important; }
@@ -221,42 +230,41 @@
     }
     
     .erasmus-country {
-      font-family: var(--title-font); font-size: 1.2rem; font-weight: 700;
+      font-family: var(--title-font); font-size: 1.1rem; font-weight: 700;
       color: var(--white); text-transform: uppercase; letter-spacing: 0.5px;
     }
 
     /* BADGES */
     .erasmus-type {
-      font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
-      padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1rem;
+      font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+      padding: 0.4rem 0.8rem; border-radius: 50px; margin-bottom: 1rem;
       display: inline-block;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     .badge-ye { background-color: var(--cyber-yellow); color: #000; }
     .badge-tc { background-color: var(--vivid-tangelo); color: #fff; }
 
-    .erasmus-desc { font-size: 1rem; color: #ddd; line-height: 1.6; }
-    .erasmus-figure { text-align: center; margin: 0 0 3rem 0; }
+    .erasmus-desc { font-size: 0.95rem; color: #ddd; line-height: 1.5; }
+    .erasmus-figure { text-align: center; margin: 0 0 2rem 0; }
     .erasmus-pic { width: 100%; max-width: 100%; border-radius: var(--border-radius); }
 
     /* DISEÑO IDIOMAS */
     .lang-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      display: grid; 
+      grid-template-columns: 1fr; 
       gap: 1.5rem; 
       list-style: none !important; 
       padding: 0 !important; 
       margin-top: 1rem;
     }
-    .lang-grid li { 
-      margin: 0 !important; 
-    }
+    .lang-grid li { margin: 0 !important; }
     .lang-grid li::before { content: none !important; }
 
     .lang-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
-      padding: 1.5rem !important;
+      padding: 2.5rem !important;
       display: flex; flex-direction: column;
     }
 
@@ -292,17 +300,38 @@
       letter-spacing: -0.5px; text-transform: lowercase; 
     }
 
-    footer { padding: 5rem 2rem; text-align: center; border-top: 1px solid var(--glass-border); opacity: 0.8; }
+    footer { padding: 4rem 1.5rem; text-align: center; border-top: 1px solid var(--glass-border); opacity: 0.8; }
     footer a { color: var(--vivid-tangelo); font-weight: 600; }
 
-    /* VISTA DIVIDIDA (PC) */
+    /* TABLET (>= 600px) */
+    @media (min-width: 600px) {
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+      .erasmus-grid { grid-template-columns: repeat(2, 1fr); }
+      .lang-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* PC / ESCRITORIO (>= 1024px + Pantalla Panorámica) */
     @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
       body { display: flex; }
       header { position: fixed; width: 45vw; height: 100vh; aspect-ratio: unset; }
+      .header-content { bottom: 2rem; right: 5%; left: auto; text-align: right; }
+      .title-box { padding: 1.5rem 2.5rem; }
+      
       main { margin-left: 45vw; width: 55vw; display: flex; justify-content: center; padding: 6rem 3rem; }
+      section { padding: 3rem; margin-bottom: 3.5rem; }
+      
       .content-wrapper { width: 100%; max-width: 780px; margin: 0; }
       .scroll-bar { left: 45vw; width: 55vw; }
-      .title-box h1 { font-size: 4.8rem; }
+      
+      /* FIX NOMBRE: Reducido drásticamente para ajustar al 45% de ancho en una línea */
+      .title-box h1 { 
+        font-size: clamp(0.8rem, 2.2vw, 2.5rem); 
+      }
+
+      /* Grids Desktop */
+      .project-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+      .erasmus-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+      .lang-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
     }
   </style>
 </head>
@@ -634,7 +663,7 @@
         lang_3_level: 'B1 (EOI)',
         lang_4_name: 'Alemán',
         lang_4_level: 'A1 (EOI)',
-        lang_5_name: 'Italiano',
+        lang_5_name: 'Italian',
         lang_5_level: 'A2',
         lang_6_name: 'Catalán',
         lang_6_level: 'A1',
