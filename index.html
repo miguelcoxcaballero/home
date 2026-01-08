@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
-  <title data-i18n="doc_title">Miguel Cox Caballero</title>
+  <title data-i18n="doc_title">Miguel Cox Caballero - Portfolio Oficial</title>
 
   <meta name="description" content="Portfolio oficial de Miguel Cox Caballero. Estudiante de doble grado en Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV). Proyectos de software, IA, movilidad ERASMUS+ y logros académicos.">
   <meta name="keywords" content="Miguel Cox Caballero, Ingeniería Informática, Ingeniería Aeroespacial, UMU, UPV, Software, Portfolio, InHouse Software">
@@ -15,7 +15,7 @@
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
 
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Miguel Cox Caballero">
+  <meta property="og:title" content="Miguel Cox Caballero - Portfolio">
   <meta property="og:description" content="Estudiante de Ingeniería Informática y Aeroespacial. Proyectos, logros y trayectoria.">
   <meta property="og:image" content="https://miguelcoxcaballero.com/assets/mig-og.jpg">
   <meta property="og:url" content="https://miguelcoxcaballero.com/">
@@ -78,10 +78,12 @@
       font-family: var(--body-font); line-height: 1.6; overflow-x: hidden;
     }
 
-    /* Barra de progreso */
+    /* Barra de progreso (Banner superior) */
     .scroll-bar {
       position: fixed; top: 0; left: 0; width: 100%; height: 0;
-      background-color: var(--mahogany); z-index: 500;
+      /* CAMBIO DE COLOR: Usamos el naranja vivo en lugar del caoba oscuro */
+      background-color: var(--vivid-tangelo); 
+      z-index: 500;
       display: flex; align-items: center; padding: 0 1.5rem; overflow: hidden;
       transition: height 0.2s linear;
     }
@@ -116,12 +118,10 @@
       font-family: var(--title-font);
       font-weight: 700; margin: 0; color: var(--white); letter-spacing: -1px;
       
-      /* REGLAS PARA UNA SOLA LÍNEA */
       white-space: nowrap;       
       overflow: hidden;          
       text-overflow: ellipsis;   
       
-      /* TAMAÑO RESPONSIVO MÓVIL */
       font-size: clamp(0.9rem, 5vw, 2.6rem); 
     }
 
@@ -266,7 +266,7 @@
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
-      padding: 1.5rem !important;
+      padding: 2.5rem !important;
       display: flex; flex-direction: column;
     }
 
@@ -325,7 +325,7 @@
       .content-wrapper { width: 100%; max-width: 780px; margin: 0; }
       .scroll-bar { left: 45vw; width: 55vw; }
       
-      /* Tamaño del Nombre en PC: Reducido para encajar en 45vw */
+      /* Tamaño del Nombre en PC */
       .title-box h1 { 
         font-size: clamp(0.8rem, 2.2vw, 2.5rem); 
       }
@@ -668,7 +668,7 @@
         lang_3_level: 'B1 (EOI)',
         lang_4_name: 'Alemán',
         lang_4_level: 'A1 (EOI)',
-        lang_5_name: 'Italiano',
+        lang_5_name: 'Italian',
         lang_5_level: 'A2',
         lang_6_name: 'Catalán',
         lang_6_level: 'A1',
