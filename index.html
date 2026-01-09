@@ -31,10 +31,10 @@
       --ink-1: rgba(255,255,255,0.78);
       --ink-2: rgba(255,255,255,0.62);
 
-      --border-radius-lg: 26px;
+      --border-radius-lg: 20px; /* Reducido ligeramente para móvil */
       --ios-ease: cubic-bezier(0.25, 1, 0.5, 1);
 
-      /* Backgrounds */
+      /* Backgrounds (Variables) */
       --bg-radial-1: radial-gradient(1200px 800px at 15% 10%, rgba(217,95,33,0.14), transparent 60%);
       --bg-radial-2: radial-gradient(1000px 700px at 85% 40%, rgba(217,181,0,0.10), transparent 58%);
       --bg-radial-3: radial-gradient(900px 700px at 55% 95%, rgba(0,66,48,0.22), transparent 55%);
@@ -42,17 +42,31 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    
+    html { 
+      scroll-behavior: smooth; 
+      overscroll-behavior: none; 
+    }
     
     body {
       width: 100%;
       background-color: var(--black);
-      background-image: var(--bg-radial-1), var(--bg-radial-2), var(--bg-radial-3), var(--bg-linear);
-      background-attachment: fixed;
       font-family: 'Inter', sans-serif;
       color: var(--white);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* FONDO FIJO (Optimizado para móvil) */
+    #fixed-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: -10;
+      background-image: var(--bg-radial-1), var(--bg-radial-2), var(--bg-radial-3), var(--bg-linear);
+      background-attachment: scroll;
+      pointer-events: none;
+      transform: translateZ(0);
     }
 
     /* --- BARRA SUPERIOR --- */
@@ -73,8 +87,8 @@
     /* --- HEADER (PERFIL) --- */
     header {
       position: relative; width: 100%; 
-      height: 100vh; /* Fallback para navegadores antiguos */
-      height: 100dvh; /* FIX: Dynamic Viewport Height para móviles (evita que la barra tape contenido) */
+      height: 100vh; 
+      height: 100svh; /* Estable en móvil */
       background-color: transparent;
       padding: 0; overflow: hidden;
     }
@@ -94,8 +108,8 @@
 
     .header-text-content {
         position: absolute; bottom: 0; left: 0; width: 100%;
-        /* FIX: Añadido env(safe-area) para iPhone X+ y un poco más de padding base */
-        padding: 2.5rem 2.5rem calc(2.5rem + env(safe-area-inset-bottom)) 2.5rem;
+        /* MOBILE: Padding ajustado para aprovechar espacio */
+        padding: 1.5rem 1.5rem calc(1.5rem + env(safe-area-inset-bottom)) 1.5rem;
         display: flex; flex-direction: column; 
         align-items: flex-start; justify-content: flex-end;
         z-index: 10;
@@ -105,16 +119,16 @@
         font-family: 'Poppins', sans-serif; font-weight: 800;
         font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 0.95;
         color: var(--ink-0); text-transform: uppercase; letter-spacing: -1px;
-        margin-bottom: 0.8rem; text-shadow: 0 10px 30px rgba(0,0,0,0.55);
+        margin-bottom: 0.6rem; text-shadow: 0 10px 30px rgba(0,0,0,0.55);
     }
 
     .profile-bio {
-        font-size: 1.1rem; color: rgba(217,181,0,0.95);
-        max-width: 90%; font-weight: 600; margin-bottom: 1.5rem;
+        font-size: 1.05rem; color: rgba(217,181,0,0.95);
+        max-width: 95%; font-weight: 600; margin-bottom: 1.2rem;
         text-shadow: 0 4px 10px rgba(0,0,0,0.7); line-height: 1.4;
     }
 
-    .social-links { display: flex; gap: 1rem; }
+    .social-links { display: flex; gap: 0.8rem; }
     .social-icon-link {
         display: inline-flex; align-items: center; justify-content: center;
         width: 44px; height: 44px; border-radius: 14px;
@@ -139,8 +153,12 @@
     }
     .lang-btn:hover { transform: scale(1.05); background: rgba(217,181,0,1); }
 
-    /* --- MAIN & SECCIONES --- */
-    main { width: 100%; padding: 2rem 1.5rem; }
+    /* --- MAIN & SECCIONES (MOBILE OPTIMIZED) --- */
+    main { 
+        width: 100%; 
+        /* MOBILE: Padding lateral reducido a 0.6rem para ganar ancho */
+        padding: 1.5rem 0.6rem; 
+    }
     .content-wrapper { width: 100%; max-width: 1400px; margin: 0 auto; }
 
     section {
@@ -148,7 +166,11 @@
       backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
       border: 1px solid var(--glass-border); border-radius: var(--border-radius-lg);
       box-shadow: var(--glass-shadow);
-      padding: 2.5rem; margin-bottom: 2.5rem; overflow: hidden;
+      /* MOBILE: Padding interno reducido a 1.25rem */
+      padding: 1.25rem; 
+      /* MOBILE: Margen inferior reducido */
+      margin-bottom: 1.5rem; 
+      overflow: hidden;
       transition: transform 0.3s ease;
     }
     section::before {
@@ -157,47 +179,37 @@
       pointer-events:none; opacity: 0.6;
     }
 
-    section h2 {
-      font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 800;
-      color: var(--ink-0); margin-bottom: 2rem; position: relative;
+    section h2, section > h3 {
+      font-family: 'Poppins', sans-serif; font-size: 1.7rem; font-weight: 800;
+      color: var(--ink-0); position: relative;
       display: inline-block; text-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    section h2::after {
-        content: ""; position: absolute; left: 0; bottom: -8px;
-        height: 3px; width: 60px;
-        background: linear-gradient(90deg, var(--vivid-tangelo), var(--cyber-yellow));
-        border-radius: 2px;
-    }
+    section h2 { margin-bottom: 1.5rem; }
+    section > h3 { margin-top: 2.5rem; margin-bottom: 1.5rem; }
 
-    section > h3 {
-      font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 800;
-      color: var(--ink-0); margin-top: 3rem; margin-bottom: 2rem; position: relative;
-      display: inline-block; text-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    section > h3::after {
-        content: ""; position: absolute; left: 0; bottom: -8px;
-        height: 3px; width: 60px;
+    section h2::after, section > h3::after {
+        content: ""; position: absolute; left: 0; bottom: -6px;
+        height: 3px; width: 50px;
         background: linear-gradient(90deg, var(--vivid-tangelo), var(--cyber-yellow));
         border-radius: 2px;
     }
 
     /* LISTAS */
-    .std-list { margin-top: 1rem; padding: 0; }
+    .std-list { margin-top: 0.5rem; padding: 0; }
     .std-list li {
-      list-style: none; position: relative; padding-left: 20px; margin-bottom: 12px;
-      font-size: 1.05rem; color: var(--ink-1);
+      list-style: none; position: relative; padding-left: 20px; margin-bottom: 10px;
+      font-size: 1rem; color: var(--ink-1);
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      padding: 14px 14px 14px 45px; border-radius: 14px;
+      padding: 12px 12px 12px 42px; border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.06); transition: transform 0.2s, background 0.2s;
     }
     .std-list li:hover { background: rgba(255,255,255,0.08); transform: translateX(5px); }
     
-    .std-list li::before { content: "🏆"; position: absolute; left: 15px; top: 14px; font-size: 1.1rem; }
+    .std-list li::before { content: "🏆"; position: absolute; left: 14px; top: 12px; font-size: 1.1rem; }
     
     .std-list li.gold::before { content: "🥇"; }
     .std-list li.silver::before { content: "🥈"; }
     .std-list li.bronze::before { content: "🥉"; }
-
     .std-list.conf li::before { content: "📢"; }
     .std-list.jornadas li::before { content: "🎓"; }
 
@@ -210,15 +222,17 @@
     /* --- GRID PROYECTOS --- */
     .project-grid {
       display: grid; grid-template-columns: 1fr;
-      gap: 1rem; list-style: none !important; padding: 0; margin: 0;
+      gap: 0.8rem; list-style: none !important; padding: 0; margin: 0;
     }
     .project-grid li { margin: 0; padding: 0; }
     .project-grid li::before { display: none; }
 
     .project-card {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 2rem; min-height: 160px;
-      /* DEGRADADO REFERENCIA */
+      text-align: center; 
+      /* MOBILE: Menos padding */
+      padding: 1.5rem; 
+      min-height: 140px;
       background:
         radial-gradient(380px 140px at 20% 25%, rgba(217,181,0,0.10), transparent 60%),
         radial-gradient(380px 140px at 80% 85%, rgba(217,95,33,0.10), transparent 60%),
@@ -228,7 +242,6 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
     .project-card:hover {
-      /* HOVER REFERENCIA */
       background:
         radial-gradient(380px 140px at 20% 25%, rgba(217,181,0,0.14), transparent 60%),
         radial-gradient(380px 140px at 80% 85%, rgba(217,95,33,0.14), transparent 60%),
@@ -237,15 +250,15 @@
       transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     }
     .project-card span { 
-      font-weight: 700; margin-top: 15px; font-size: 1.1rem; letter-spacing: 0.3px;
+      font-weight: 700; margin-top: 12px; font-size: 1.05rem; letter-spacing: 0.3px;
     }
 
     /* --- DISEÑO ERASMUS --- */
     .erasmus-grid {
       display: grid;
       grid-template-columns: 1fr; 
-      gap: 1rem;
-      list-style: none !important; padding: 0; margin-top: 1.5rem;
+      gap: 0.8rem;
+      list-style: none !important; padding: 0; margin-top: 1.2rem;
       grid-auto-rows: 1fr; 
     }
     .erasmus-grid li { margin: 0; padding: 0; display: flex; min-width: 0; }
@@ -253,15 +266,14 @@
 
     .erasmus-card {
       width: 100%; height: 100%;
-      /* DEGRADADO REFERENCIA */
       background:
         radial-gradient(420px 180px at 18% 20%, rgba(217,181,0,0.09), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,0.26), rgba(0,0,0,0.10));
       border: 1px solid rgba(255,255,255,0.07);
       border-radius: 16px;
       
-      /* PADDING FORZADO */
-      padding: 1.8rem !important;
+      /* MOBILE: Padding ajustado a 1.2rem para ganar espacio */
+      padding: 1.2rem !important;
       box-sizing: border-box !important;
       
       display: flex; flex-direction: column; 
@@ -272,7 +284,6 @@
     }
     .erasmus-card:hover { 
       transform: translateY(-3px); 
-      /* HOVER REFERENCIA */
       background:
         radial-gradient(420px 180px at 18% 20%, rgba(217,181,0,0.12), transparent 60%),
         rgba(255,255,255,0.05);
@@ -280,79 +291,77 @@
     }
 
     .erasmus-header {
-      display: flex; align-items: flex-start; gap: 12px;
-      margin-bottom: 1rem; width: 100%;
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 0.8rem; width: 100%;
     }
     
     .flag-svg {
-      width: 44px; height: 30px; 
-      border-radius: 6px;
+      width: 40px; height: 27px; /* Un pelín más pequeña en móvil */
+      border-radius: 5px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.4); display: block; object-fit: cover;
-      flex-shrink: 0;
-      margin-top: 2px;
+      flex-shrink: 0; margin-top: 3px;
     }
     
     .erasmus-location { display: flex; flex-direction: column; }
 
     .erasmus-city {
-      font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 800;
-      color: var(--white); letter-spacing: 0.5px;
-      line-height: 1.1;
+      font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 800;
+      color: var(--white); letter-spacing: 0.5px; line-height: 1.1;
     }
 
     .erasmus-country-small {
-        font-size: 0.75rem; color: var(--cyber-yellow);
+        font-size: 0.7rem; color: var(--cyber-yellow);
         font-weight: 700; text-transform: uppercase;
-        margin-top: 4px; letter-spacing: 0.5px;
+        margin-top: 3px; letter-spacing: 0.5px;
     }
 
     .badge {
-      font-size: 0.65rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px;
-      padding: 5px 10px; border-radius: 50px; margin-bottom: 0.8rem;
+      font-size: 0.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 4px 9px; border-radius: 50px; margin-bottom: 0.6rem;
       display: inline-block; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
     .badge-ye { background: rgba(217,181,0,0.9); color: #000; }
     .badge-tc { background: rgba(217,95,33,0.9); color: #fff; }
 
     .erasmus-desc { 
-      font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; 
+      font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; 
       margin-top: auto; 
     }
     
-    .erasmus-figure { margin: 0 0 2rem 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+    .erasmus-figure { margin: 0 0 1.5rem 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
     .erasmus-pic { width: 100%; display: block; }
 
     /* --- DISEÑO IDIOMAS --- */
     .lang-grid {
       display: grid; grid-template-columns: 1fr;
-      gap: 1rem; list-style: none !important; padding: 0;
+      gap: 0.8rem; list-style: none !important; padding: 0;
     }
     .lang-grid li { margin: 0; padding: 0; }
     .lang-grid li::before { display: none; }
 
     .lang-card {
-      /* DEGRADADO REFERENCIA */
       background:
         radial-gradient(380px 140px at 18% 20%, rgba(217,95,33,0.10), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.06));
       border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
-      padding: 1.5rem !important; display: flex; flex-direction: column;
+      /* MOBILE: Padding reducido */
+      padding: 1.2rem !important; 
+      display: flex; flex-direction: column;
       transition: transform 0.2s ease;
     }
     .lang-card:hover { 
       transform: translateY(-3px); 
-      /* HOVER REFERENCIA */
       background:
         radial-gradient(380px 140px at 18% 20%, rgba(217,95,33,0.14), transparent 60%),
         rgba(255,255,255,0.05);
     }
 
-    .lang-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+    .lang-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.7rem; }
     .lang-info h3 { 
-        font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.1rem; 
+        font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.05rem; 
         color: var(--ink-0); margin-bottom: 2px; text-shadow: none; display: block;
     }
-    .lang-level-text { font-size: 0.85rem; color: var(--cyber-yellow); font-weight: 600; text-transform: uppercase;}
+    .lang-level-text { font-size: 0.8rem; color: var(--cyber-yellow); font-weight: 600; text-transform: uppercase;}
 
     .level-bar-bg {
       width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1);
@@ -363,13 +372,13 @@
       background: linear-gradient(90deg, var(--vivid-tangelo), var(--cyber-yellow));
     }
 
-    .inhouse-logo-container { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .inhouse-svg { width: 55px; height: auto; color: var(--vivid-tangelo); filter: drop-shadow(0 0 10px rgba(217,95,33,0.4)); }
-    .inhouse-text { font-family: 'Comfortaa', cursive; font-size: 1.1rem; font-weight: 700; color: var(--ink-0); }
+    .inhouse-logo-container { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .inhouse-svg { width: 50px; height: auto; color: var(--vivid-tangelo); filter: drop-shadow(0 0 10px rgba(217,95,33,0.4)); }
+    .inhouse-text { font-family: 'Comfortaa', cursive; font-size: 1.05rem; font-weight: 700; color: var(--ink-0); }
 
-    footer { padding: 4rem 1.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--ink-3); margin-top: 3rem; }
+    footer { padding: 3rem 1.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--ink-3); margin-top: 2rem; }
 
-    /* RESPONSIVE */
+    /* RESPONSIVE: RESTAURAR ESPACIADO ORIGINAL EN ESCRITORIO */
     @media (min-width: 600px) {
       .project-grid { grid-template-columns: repeat(2, 1fr); }
       .lang-grid { grid-template-columns: repeat(2, 1fr); }
@@ -377,36 +386,50 @@
     }
 
     @media (min-width: 1024px) {
+      :root {
+        --border-radius-lg: 26px; /* Radio original en PC */
+      }
       body { display: flex; }
       header { 
         position: fixed; width: 40vw; height: 100vh; left: 0; top: 0;
         border-right: 1px solid rgba(255,255,255,0.05);
       }
-      .header-text-content { padding: 3.5rem; }
+      .header-text-content { 
+          /* Padding original de escritorio */
+          padding: 3.5rem; 
+      }
       
       main { 
         margin-left: 40vw; width: 60vw; 
         display: flex; justify-content: center; 
+        /* Padding original de escritorio */
         padding: 5rem 4rem; 
       }
       
-      section { padding: 3rem; margin-bottom: 3rem; }
+      section { 
+          /* Padding y margen original de escritorio */
+          padding: 3rem; 
+          margin-bottom: 3rem; 
+      }
       .scroll-bar { left: 40vw; width: 60vw; }
       
       .project-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
       .lang-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
       
-      /* ARREGLO DEFINITIVO GRID ERASMUS EN PC:
-         - De 1024px a 1750px: 2 Columnas (rango ampliado para evitar aplastamiento)
-         - Más de 1750px: 4 Columnas
-      */
+      /* Restaurar paddings internos de tarjetas para PC */
+      .erasmus-card { padding: 1.8rem !important; }
+      .lang-card { padding: 1.5rem !important; }
+      .project-card { padding: 2rem; min-height: 160px; }
+      .flag-svg { width: 44px; height: 30px; }
+
+      /* ARREGLO GRID ERASMUS (PC) */
       .erasmus-grid { 
         grid-template-columns: repeat(2, minmax(0, 1fr)); 
         gap: 1.2rem; 
       }
     }
     
-    /* FIX: Trigger aumentado a 1750px para dar más espacio antes de pasar a 4 cols */
+    /* PANTALLAS EXTRA ANCHAS (>1750px) */
     @media (min-width: 1750px) {
       .erasmus-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -415,6 +438,8 @@
   </style>
 </head>
 <body>
+
+  <div id="fixed-bg"></div>
 
   <div class="scroll-bar" id="scrollBar">
     <h1 id="barTitle" data-i18n="doc_title_name">Miguel Cox Caballero</h1>
@@ -439,7 +464,9 @@
                     <svg class="social-svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                  </a>
                  <a href="https://www.instagram.com/miguelcoxcaballero" target="_blank" class="social-icon-link" aria-label="Instagram">
-                    <svg class="social-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.148-3.224 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></path></svg>
+                    <svg class="social-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                    </svg>
                  </a>
                  <a href="https://www.linkedin.com/in/miguel-cox-caballero-b386b6176/" target="_blank" class="social-icon-link" aria-label="LinkedIn">
                     <svg class="social-svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="currentColor"/></svg>
@@ -655,7 +682,7 @@
             <div class="erasmus-header">
               <svg class="flag-svg" viewBox="0 0 5 3" preserveAspectRatio="xMidYMid slice"><rect width="5" height="3" y="0" x="0" fill="#000"/><rect width="5" height="2" y="1" x="0" fill="#d00"/><rect width="5" height="1" y="2" x="0" fill="#ffce00"/></svg>
               <div class="erasmus-location">
-                  <span class="erasmus-city">Múnich</span>
+                  <span class="erasmus-city" data-i18n="erasmus_6_city">Múnich</span>
                   <span class="erasmus-country-small" data-i18n="erasmus_6_country">ALEMANIA</span>
               </div>
             </div>
@@ -753,7 +780,7 @@
         lang_2_name: 'Inglés', lang_2_level: 'C2 (Cambridge CPE)',
         lang_3_name: 'Francés', lang_3_level: 'B1 (EOI)',
         lang_4_name: 'Alemán', lang_4_level: 'A1 (EOI)',
-        lang_5_name: 'Italiano', lang_5_level: 'A2',
+        lang_5_name: 'Italian', lang_5_level: 'A2',
         lang_6_name: 'Catalán', lang_6_level: 'A1',
 
         proj_h2  : 'Proyectos',
@@ -768,7 +795,7 @@
         erasmus_3_country: 'POLONIA', erasmus_3_desc : 'IA, ciberseguridad y networking con otros profesionales.',
         erasmus_4_country: 'POLONIA', erasmus_4_desc : 'Mindful Trails sobre salud mental y bienestar.',
         erasmus_5_country: 'ITALIA', erasmus_5_desc : 'TechWise Youth sobre IA y comprensión tecnológica entre la juventud.',
-        erasmus_6_country: 'ALEMANIA', erasmus_6_desc : 'PeaceUp! sobre habilidades de resolución de conflictos y CNV.',
+        erasmus_6_city: 'Múnich', erasmus_6_country: 'ALEMANIA', erasmus_6_desc : 'PeaceUp! sobre habilidades de resolución de conflictos y CNV.',
         erasmus_7_country: 'ALEMANIA', erasmus_7_desc : 'Digital Detox sobre uso adecuado de la tecnología.',
         erasmus_8_country: 'HUNGRÍA', erasmus_8_desc : 'Youth Council Exchange: trabajo en equipo y liderazgo.',
 
@@ -778,9 +805,9 @@
         conf_2    : 'Participación en el I Congreso Ibérico de EUROAVIA.',
         
         jornadas_title: 'Jornadas Formativas',
-        jornadas_1: 'XIV Jornadas Formativas del Consejo de Estudiantes de la Universidad de Murcia.',
-        jornadas_2: 'XV Jornadas Formativas del Consejo de Estudiantes de la Universidad de Murcia.',
-        jornadas_3: 'Jornadas de Formación del Consejo de Estudiantes de la Universidad Politécnica de Valencia 2025.',
+        jornadas_1: 'XIV Training Seminars of the Student Council of the University of Murcia.',
+        jornadas_2: 'XV Training Seminars of the Student Council of the University of Murcia.',
+        jornadas_3: 'Training Seminars of the Student Council of the Polytechnic University of Valencia 2025.',
 
         footer_copy  : '© 2025 Miguel Cox Caballero. Todos los derechos reservados.'
       },
@@ -814,7 +841,7 @@
         erasmus_3_country: 'POLAND', erasmus_3_desc : 'AI, cybersecurity and networking with like-minded professionals.',
         erasmus_4_country: 'POLAND', erasmus_4_desc : 'Mindful Trails about mental health and wellbeing.',
         erasmus_5_country: 'ITALY', erasmus_5_desc : 'TechWise Youth about AI and technology understanding.',
-        erasmus_6_country: 'GERMANY', erasmus_6_desc : 'PeaceUp! about conflict solving skills and NVC.',
+        erasmus_6_city: 'Munich', erasmus_6_country: 'GERMANY', erasmus_6_desc : 'PeaceUp! about conflict solving skills and NVC.',
         erasmus_7_country: 'GERMANY', erasmus_7_desc : 'Digital Detox about proper use of technology.',
         erasmus_8_country: 'HUNGARY', erasmus_8_desc : 'Youth Council Exchange: teamwork and leadership.',
 
