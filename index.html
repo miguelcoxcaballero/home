@@ -25,13 +25,15 @@
       --glass-base: rgba(10, 26, 22, 0.62);
       --glass-border: rgba(255, 255, 255, 0.10);
       --glass-shadow: 0 18px 60px rgba(0,0,0,0.55);
-      --glass-blur: 22px;
+      
+      /* Performance: Slightly reduced blur for better FPS */
+      --glass-blur: 16px; 
 
       --ink-0: rgba(255,255,255,0.96);
       --ink-1: rgba(255,255,255,0.78);
       --ink-2: rgba(255,255,255,0.62);
 
-      --border-radius-lg: 20px; /* Reducido ligeramente para móvil */
+      --border-radius-lg: 20px;
       --ios-ease: cubic-bezier(0.25, 1, 0.5, 1);
 
       /* Backgrounds (Variables) */
@@ -58,7 +60,7 @@
       position: relative;
     }
 
-    /* FONDO FIJO (Optimizado para móvil) */
+    /* FONDO FIJO - Performance Optimized */
     #fixed-bg {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
@@ -66,7 +68,10 @@
       background-image: var(--bg-radial-1), var(--bg-radial-2), var(--bg-radial-3), var(--bg-linear);
       background-attachment: scroll;
       pointer-events: none;
+      
+      /* Performance triggers */
       transform: translateZ(0);
+      will-change: transform; 
     }
 
     /* --- BARRA SUPERIOR --- */
@@ -75,8 +80,9 @@
       background-color: var(--vivid-tangelo);
       z-index: 500;
       display: flex; align-items: center; padding: 0 1.5rem; overflow: hidden;
-      transition: height 0.2s linear;
+      transition: height 0.1s linear; /* Faster transition for perceived speed */
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      will-change: height;
     }
     .scroll-bar h1 {
       font-family: 'Poppins', sans-serif; font-size: 1rem;
@@ -88,7 +94,7 @@
     header {
       position: relative; width: 100%; 
       height: 100vh; 
-      height: 100svh; /* Estable en móvil */
+      height: 100svh;
       background-color: transparent;
       padding: 0; overflow: hidden;
     }
@@ -108,7 +114,6 @@
 
     .header-text-content {
         position: absolute; bottom: 0; left: 0; width: 100%;
-        /* MOBILE: Padding ajustado para aprovechar espacio */
         padding: 1.5rem 1.5rem calc(1.5rem + env(safe-area-inset-bottom)) 1.5rem;
         display: flex; flex-direction: column; 
         align-items: flex-start; justify-content: flex-end;
@@ -153,10 +158,9 @@
     }
     .lang-btn:hover { transform: scale(1.05); background: rgba(217,181,0,1); }
 
-    /* --- MAIN & SECCIONES (MOBILE OPTIMIZED) --- */
+    /* --- MAIN & SECCIONES --- */
     main { 
         width: 100%; 
-        /* MOBILE: Padding lateral reducido a 0.6rem para ganar ancho */
         padding: 1.5rem 0.6rem; 
     }
     .content-wrapper { width: 100%; max-width: 1400px; margin: 0 auto; }
@@ -166,13 +170,16 @@
       backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
       border: 1px solid var(--glass-border); border-radius: var(--border-radius-lg);
       box-shadow: var(--glass-shadow);
-      /* MOBILE: Padding interno reducido a 1.25rem */
       padding: 1.25rem; 
-      /* MOBILE: Margen inferior reducido */
       margin-bottom: 1.5rem; 
       overflow: hidden;
       transition: transform 0.3s ease;
+      
+      /* Performance: GPU Acceleration */
+      transform: translateZ(0); 
+      will-change: transform;
     }
+    
     section::before {
       content:""; position:absolute; inset:-2px;
       background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent 40%, rgba(217,181,0,0.04));
@@ -184,8 +191,15 @@
       color: var(--ink-0); position: relative;
       display: inline-block; text-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    section h2 { margin-bottom: 1.5rem; }
-    section > h3 { margin-top: 2.5rem; margin-bottom: 1.5rem; }
+    
+    section h2 { margin-bottom: 1.5rem; margin-top: 0; }
+    
+    /* Fixed Margin for Training Seminars */
+    section > h3 { 
+        margin-top: 2.5rem; 
+        margin-bottom: 1.8rem; /* Corrected spacing */
+        display: block; 
+    }
 
     section h2::after, section > h3::after {
         content: ""; position: absolute; left: 0; bottom: -6px;
@@ -194,8 +208,8 @@
         border-radius: 2px;
     }
 
-    /* LISTAS */
-    .std-list { margin-top: 0.5rem; padding: 0; }
+    /* --- LISTAS ESTÁNDAR --- */
+    .std-list { margin-top: 0.8rem; padding: 0; }
     .std-list li {
       list-style: none; position: relative; padding-left: 20px; margin-bottom: 10px;
       font-size: 1rem; color: var(--ink-1);
@@ -206,18 +220,115 @@
     .std-list li:hover { background: rgba(255,255,255,0.08); transform: translateX(5px); }
     
     .std-list li::before { content: "🏆"; position: absolute; left: 14px; top: 12px; font-size: 1.1rem; }
-    
     .std-list li.gold::before { content: "🥇"; }
     .std-list li.silver::before { content: "🥈"; }
     .std-list li.bronze::before { content: "🥉"; }
     .std-list.conf li::before { content: "📢"; }
     .std-list.jornadas li::before { content: "🎓"; }
 
-    .std-list a {
-      color: inherit; text-decoration: none;
-      transition: color 0.2s;
-    }
+    .std-list a { color: inherit; text-decoration: none; transition: color 0.2s; }
     .std-list a:hover { color: var(--cyber-yellow); }
+
+    /* --- PERFECTED VERTICAL TIMELINE --- */
+    .timeline {
+      position: relative;
+      /* removed padding-left: 10px to ensure perfect absolute positioning alignment */
+      padding: 0; 
+      margin-top: 1.5rem;
+      list-style: none;
+    }
+    
+    /* The Line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      /* Line Left: 12px. Width: 2px. Center = 13px */
+      left: 12px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--vivid-tangelo), var(--cyber-yellow), transparent);
+      border-radius: 2px;
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+      /* Push content to right so it doesn't overlap line */
+      padding-left: 35px; 
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    /* The Dot (Node) */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      /* Dot Left: 6px. Width: 14px. Center = 6 + 7 = 13px. 
+         Aligns perfectly with line center (13px) */
+      left: 6px; 
+      top: 22px; 
+      width: 14px; height: 14px;
+      background-color: var(--black);
+      border: 2px solid var(--vivid-tangelo);
+      border-radius: 50%;
+      z-index: 2;
+      box-shadow: 0 0 8px rgba(217,95,33,0.6);
+      transition: all 0.3s ease;
+    }
+    .timeline-item:hover::before {
+      background-color: var(--vivid-tangelo);
+      box-shadow: 0 0 12px rgba(217,95,33,0.9);
+      transform: scale(1.1);
+    }
+
+    /* Content styling */
+    .timeline-content {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 1.2rem;
+      transition: transform 0.25s var(--ios-ease), background 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .timeline-item:hover .timeline-content {
+      background: rgba(255,255,255,0.07);
+      transform: translateX(5px);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .cv-title { 
+      font-weight: 700; color: var(--white); font-size: 1.05rem; 
+      margin-bottom: 0.3rem; display: block;
+    }
+    .cv-meta {
+      font-size: 0.75rem; color: var(--cyber-yellow);
+      font-weight: 700; margin-bottom: 0.5rem; display: block;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .cv-desc {
+      font-size: 0.9rem; color: var(--ink-2); line-height: 1.4; display: block;
+    }
+
+    /* --- EDUCATION WITH LOGOS --- */
+    .std-list.education li::before { display: none; }
+    
+    .std-list.education li {
+      padding: 15px; 
+      display: flex; align-items: center; gap: 15px;
+    }
+    
+    .edu-logo {
+      width: 55px; height: 55px;
+      object-fit: contain;
+      background-color: #fff;
+      border-radius: 12px;
+      flex-shrink: 0;
+      padding: 4px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .edu-text { display: flex; flex-direction: column; }
+    .edu-text .cv-title { margin-bottom: 0; }
+    .edu-text .cv-meta { margin-top: 5px; margin-bottom: 0; }
 
     /* --- GRID PROYECTOS --- */
     .project-grid {
@@ -230,10 +341,9 @@
     .project-card {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; 
-      /* MOBILE: Menos padding */
       padding: 1.5rem; 
       min-height: 140px;
-      background:
+      background: 
         radial-gradient(380px 140px at 20% 25%, rgba(217,181,0,0.10), transparent 60%),
         radial-gradient(380px 140px at 80% 85%, rgba(217,95,33,0.10), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.06));
@@ -242,7 +352,7 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
     .project-card:hover {
-      background:
+      background: 
         radial-gradient(380px 140px at 20% 25%, rgba(217,181,0,0.14), transparent 60%),
         radial-gradient(380px 140px at 80% 85%, rgba(217,95,33,0.14), transparent 60%),
         rgba(255,255,255,0.06);
@@ -255,9 +365,7 @@
 
     /* --- DISEÑO ERASMUS --- */
     .erasmus-grid {
-      display: grid;
-      grid-template-columns: 1fr; 
-      gap: 0.8rem;
+      display: grid; grid-template-columns: 1fr; gap: 0.8rem;
       list-style: none !important; padding: 0; margin-top: 1.2rem;
       grid-auto-rows: 1fr; 
     }
@@ -266,25 +374,19 @@
 
     .erasmus-card {
       width: 100%; height: 100%;
-      background:
+      background: 
         radial-gradient(420px 180px at 18% 20%, rgba(217,181,0,0.09), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,0.26), rgba(0,0,0,0.10));
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 16px;
-      
-      /* MOBILE: Padding ajustado a 1.2rem para ganar espacio */
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
       padding: 1.2rem !important;
       box-sizing: border-box !important;
-      
       display: flex; flex-direction: column; 
-      justify-content: space-between; 
-      align-items: flex-start;
-      transition: all 0.2s ease;
-      overflow: hidden;
+      justify-content: space-between; align-items: flex-start;
+      transition: all 0.2s ease; overflow: hidden;
     }
     .erasmus-card:hover { 
       transform: translateY(-3px); 
-      background:
+      background: 
         radial-gradient(420px 180px at 18% 20%, rgba(217,181,0,0.12), transparent 60%),
         rgba(255,255,255,0.05);
       border-color: rgba(217,181,0,0.3); 
@@ -296,19 +398,16 @@
     }
     
     .flag-svg {
-      width: 40px; height: 27px; /* Un pelín más pequeña en móvil */
-      border-radius: 5px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4); display: block; object-fit: cover;
-      flex-shrink: 0; margin-top: 3px;
+      width: 40px; height: 27px; 
+      border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); 
+      display: block; object-fit: cover; flex-shrink: 0; margin-top: 3px;
     }
     
     .erasmus-location { display: flex; flex-direction: column; }
-
     .erasmus-city {
       font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 800;
       color: var(--white); letter-spacing: 0.5px; line-height: 1.1;
     }
-
     .erasmus-country-small {
         font-size: 0.7rem; color: var(--cyber-yellow);
         font-weight: 700; text-transform: uppercase;
@@ -323,11 +422,7 @@
     .badge-ye { background: rgba(217,181,0,0.9); color: #000; }
     .badge-tc { background: rgba(217,95,33,0.9); color: #fff; }
 
-    .erasmus-desc { 
-      font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; 
-      margin-top: auto; 
-    }
-    
+    .erasmus-desc { font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; margin-top: auto; }
     .erasmus-figure { margin: 0 0 1.5rem 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
     .erasmus-pic { width: 100%; display: block; }
 
@@ -340,18 +435,17 @@
     .lang-grid li::before { display: none; }
 
     .lang-card {
-      background:
+      background: 
         radial-gradient(380px 140px at 18% 20%, rgba(217,95,33,0.10), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.06));
       border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
-      /* MOBILE: Padding reducido */
       padding: 1.2rem !important; 
       display: flex; flex-direction: column;
       transition: transform 0.2s ease;
     }
     .lang-card:hover { 
       transform: translateY(-3px); 
-      background:
+      background: 
         radial-gradient(380px 140px at 18% 20%, rgba(217,95,33,0.14), transparent 60%),
         rgba(255,255,255,0.05);
     }
@@ -378,7 +472,7 @@
 
     footer { padding: 3rem 1.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--ink-3); margin-top: 2rem; }
 
-    /* RESPONSIVE: RESTAURAR ESPACIADO ORIGINAL EN ESCRITORIO */
+    /* RESPONSIVE */
     @media (min-width: 600px) {
       .project-grid { grid-template-columns: repeat(2, 1fr); }
       .lang-grid { grid-template-columns: repeat(2, 1fr); }
@@ -386,54 +480,36 @@
     }
 
     @media (min-width: 1024px) {
-      :root {
-        --border-radius-lg: 26px; /* Radio original en PC */
-      }
+      :root { --border-radius-lg: 26px; }
       body { display: flex; }
       header { 
         position: fixed; width: 40vw; height: 100vh; left: 0; top: 0;
         border-right: 1px solid rgba(255,255,255,0.05);
       }
-      .header-text-content { 
-          /* Padding original de escritorio */
-          padding: 3.5rem; 
-      }
+      .header-text-content { padding: 3.5rem; }
       
       main { 
         margin-left: 40vw; width: 60vw; 
         display: flex; justify-content: center; 
-        /* Padding original de escritorio */
         padding: 5rem 4rem; 
       }
       
-      section { 
-          /* Padding y margen original de escritorio */
-          padding: 3rem; 
-          margin-bottom: 3rem; 
-      }
+      section { padding: 3rem; margin-bottom: 3rem; }
       .scroll-bar { left: 40vw; width: 60vw; }
       
       .project-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
       .lang-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
       
-      /* Restaurar paddings internos de tarjetas para PC */
       .erasmus-card { padding: 1.8rem !important; }
       .lang-card { padding: 1.5rem !important; }
       .project-card { padding: 2rem; min-height: 160px; }
       .flag-svg { width: 44px; height: 30px; }
 
-      /* ARREGLO GRID ERASMUS (PC) */
-      .erasmus-grid { 
-        grid-template-columns: repeat(2, minmax(0, 1fr)); 
-        gap: 1.2rem; 
-      }
+      .erasmus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
     }
     
-    /* PANTALLAS EXTRA ANCHAS (>1750px) */
     @media (min-width: 1750px) {
-      .erasmus-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
+      .erasmus-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
   </style>
 </head>
@@ -502,6 +578,49 @@
                 3º puesto en la Olimpiada Nacional de Arquitectura Sostenible.
             </a>
           </li>
+        </ul>
+      </section>
+
+      <section id="edu-exp">
+        <h2 data-i18n="exp_title">Experiencia</h2>
+        <ul class="timeline">
+            <li class="timeline-item">
+                <div class="timeline-content">
+                    <span class="cv-title" data-i18n="exp_1_title">Colaborador en Política Universitaria - DEETSIADI (UPV)</span>
+                    <span class="cv-meta" data-i18n="exp_1_meta">Sept. 2025 - Actualidad | Valencia, España</span>
+                </div>
+            </li>
+            <li class="timeline-item">
+                <div class="timeline-content">
+                    <span class="cv-title" data-i18n="exp_2_title">Jefe del Departamento de Radio y Electrónica - Camp Greylock</span>
+                    <span class="cv-meta" data-i18n="exp_2_meta">Jun. 2025 - Ago. 2025 | Massachusetts, EEUU</span>
+                    <span class="cv-desc" data-i18n="exp_2_desc">Jefe de departamento y profesor principal de la actividad.</span>
+                </div>
+            </li>
+            <li class="timeline-item">
+                <div class="timeline-content">
+                    <span class="cv-title" data-i18n="exp_3_title">Representante del Estudiantado (Ingeniería Informática) - Delfi</span>
+                    <span class="cv-meta" data-i18n="exp_3_meta">Sept. 2024 - Jul. 2025 | Murcia, España</span>
+                </div>
+            </li>
+        </ul>
+
+        <h2 data-i18n="edu_title">Educación</h2>
+        <ul class="std-list education">
+            <li>
+                <img src="assets/upv.png" alt="UPV" class="edu-logo">
+                <div class="edu-text">
+                    <span class="cv-title" data-i18n="edu_1_title">Grado en Ingeniería Aeroespacial - Universitat Politècnica de València (UPV)</span>
+                    <span class="cv-meta" data-i18n="edu_1_meta">Sept. 2025 - Actualidad</span>
+                </div>
+            </li>
+            <li>
+                <img src="assets/umu.png" alt="UMU" class="edu-logo">
+                <div class="edu-text">
+                    <span class="cv-title" data-i18n="edu_2_title">Grado en Ingeniería Informática - Universidad de Murcia</span>
+                    <span class="cv-meta" data-i18n="edu_2_meta">Sept. 2024 - Jul. 2025</span>
+                </div>
+            </li>
         </ul>
       </section>
 
@@ -774,6 +893,27 @@
         achi_2   : 'Oro en la Olimpiada Regional de Arquitectura Sostenible.',
         achi_idies: '2º premio en el IX Congreso IDIES por el proyecto "Fabricación de una Antena Hecha a Mano".',
         achi_3   : '3º puesto en la Olimpiada Nacional de Arquitectura Sostenible.',
+        
+        // Education & Experience
+        exp_title: 'Experiencia',
+        edu_title: 'Educación',
+        
+        exp_1_title: 'Colaborador en Política Universitaria - DEETSIADI (UPV)',
+        exp_1_meta: 'Sept. 2025 - Actualidad | Valencia, España',
+        
+        exp_2_title: 'Jefe del Departamento de Radio y Electrónica - Camp Greylock',
+        exp_2_desc: 'Jefe de departamento y profesor principal de la actividad.',
+        exp_2_meta: 'Jun. 2025 - Ago. 2025 | Massachusetts, EEUU',
+
+        exp_3_title: 'Representante del Estudiantado (Ingeniería Informática) - Delfi',
+        exp_3_meta: 'Sept. 2024 - Jul. 2025 | Murcia, España',
+
+        edu_1_title: 'Grado en Ingeniería Aeroespacial - Universitat Politècnica de València (UPV)',
+        edu_1_meta: 'Sept. 2025 - Actualidad',
+        
+        edu_2_title: 'Grado en Ingeniería Informática - Universidad de Murcia',
+        edu_2_meta: 'Sept. 2024 - Jul. 2025',
+
         lang_h2  : 'Idiomas',
         
         lang_1_name: 'Español', lang_1_level: 'Nativo',
@@ -797,7 +937,7 @@
         erasmus_5_country: 'ITALIA', erasmus_5_desc : 'TechWise Youth sobre IA y comprensión tecnológica entre la juventud.',
         erasmus_6_city: 'Múnich', erasmus_6_country: 'ALEMANIA', erasmus_6_desc : 'PeaceUp! sobre habilidades de resolución de conflictos y CNV.',
         erasmus_7_country: 'ALEMANIA', erasmus_7_desc : 'Digital Detox sobre uso adecuado de la tecnología.',
-        erasmus_8_country: 'HUNGRÍA', erasmus_8_desc : 'Youth Council Exchange: trabajo en equipo y liderazgo.',
+        erasmus_8_country: 'HUNGRÍA', erasmus_8_desc : 'Youth Council Exchange: teamwork and leadership.',
 
         conf_h2   : 'Congresos',
         conf_idies: 'Participación en el IX Congreso IDIES.',
@@ -809,7 +949,7 @@
         jornadas_2: 'XV Training Seminars of the Student Council of the University of Murcia.',
         jornadas_3: 'Training Seminars of the Student Council of the Polytechnic University of Valencia 2025.',
 
-        footer_copy  : '© 2025 Miguel Cox Caballero. Todos los derechos reservados.'
+        footer_copy  : '© 2025 Miguel Cox Caballero. All rights reserved.'
       },
       en: {
         doc_title: 'Miguel Cox Caballero', 
@@ -820,6 +960,27 @@
         achi_2   : 'Gold medal in the Regional Sustainable Architecture Olympiad.',
         achi_idies: '2nd Prize in the IX IDIES Congress for the project "Handmade Antenna Fabrication".',
         achi_3   : '3rd place in the National Sustainable Architecture Olympiad.',
+
+        // Education & Experience
+        exp_title: 'Experience',
+        edu_title: 'Education',
+
+        exp_1_title: 'University Policy Collaborator - DEETSIADI (UPV)',
+        exp_1_meta: 'Sept. 2025 - Present | Valencia, Spain',
+        
+        exp_2_title: 'Radio & Electronics Dept. Head - Camp Greylock',
+        exp_2_desc: 'Department Head and main teacher for said activity.',
+        exp_2_meta: 'Jun. 2025 - Aug. 2025 | Massachusetts, USA',
+
+        exp_3_title: 'Student Representative (Computer Engineering) - Delfi',
+        exp_3_meta: 'Sept. 2024 - Jul. 2025 | Murcia, Spain',
+
+        edu_1_title: 'Bachelor of Aerospace Engineering - Universitat Politècnica de València (UPV)',
+        edu_1_meta: 'Sept. 2025 - Present',
+        
+        edu_2_title: 'Bachelor of Software Engineering - University of Murcia',
+        edu_2_meta: 'Sept. 2024 - Jul. 2025',
+
         lang_h2  : 'Languages',
         
         lang_1_name: 'Spanish', lang_1_level: 'Native',
@@ -879,11 +1040,25 @@
       updateLang(current === 'es' ? 'en' : 'es');
     });
 
+    /* --- PERFORMANCE OPTIMIZED SCROLL LISTENER --- */
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      const height = Math.min(y / 10, 48);
-      document.getElementById('scrollBar').style.height = height + 'px';
-      document.getElementById('barTitle').style.opacity = y > 400 ? '1' : '0';
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY;
+          const height = Math.min(y / 10, 48);
+          
+          // Use more performant property updates where possible
+          const bar = document.getElementById('scrollBar');
+          const title = document.getElementById('barTitle');
+          
+          if(bar) bar.style.height = height + 'px';
+          if(title) title.style.opacity = y > 400 ? '1' : '0';
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
     });
 
     updateLang(localStorage.getItem('lang') || 'es');
