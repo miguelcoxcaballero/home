@@ -217,6 +217,8 @@
       padding: 12px 12px 12px 42px; border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.06); transition: transform 0.2s, background 0.2s;
     }
+    
+    /* Interactive lists only (Gold/Silver/Bronze/Conf have links) */
     .std-list li:hover { background: rgba(255,255,255,0.08); transform: translateX(5px); }
     
     .std-list li::before { content: "🏆"; position: absolute; left: 14px; top: 12px; font-size: 1.1rem; }
@@ -232,7 +234,6 @@
     /* --- PERFECTED VERTICAL TIMELINE --- */
     .timeline {
       position: relative;
-      /* removed padding-left: 10px to ensure perfect absolute positioning alignment */
       padding: 0; 
       margin-top: 1.5rem;
       list-style: none;
@@ -258,13 +259,14 @@
     }
     .timeline-item:last-child { margin-bottom: 0; }
 
-    /* The Dot (Node) */
+    /* The Dot (Node) - CENTERED FIX */
     .timeline-item::before {
       content: '';
       position: absolute;
-      /* Dot Left: 6px. Width: 14px. Center = 6 + 7 = 13px. 
-         Aligns perfectly with line center (13px) */
-      left: 6px; 
+      /* Center of line is 12px + 1px = 13px. 
+         We position left at 13px and translate back 50% of the dot's width to center it perfectly. */
+      left: 13px; 
+      transform: translateX(-50%);
       top: 22px; 
       width: 14px; height: 14px;
       background-color: var(--black);
@@ -274,11 +276,8 @@
       box-shadow: 0 0 8px rgba(217,95,33,0.6);
       transition: all 0.3s ease;
     }
-    .timeline-item:hover::before {
-      background-color: var(--vivid-tangelo);
-      box-shadow: 0 0 12px rgba(217,95,33,0.9);
-      transform: scale(1.1);
-    }
+    
+    /* REMOVED timeline hover effect as these are not links */
 
     /* Content styling */
     .timeline-content {
@@ -286,15 +285,9 @@
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 16px;
       padding: 1.2rem;
-      transition: transform 0.25s var(--ios-ease), background 0.25s;
       display: flex; flex-direction: column;
     }
-    .timeline-item:hover .timeline-content {
-      background: rgba(255,255,255,0.07);
-      transform: translateX(5px);
-      border-color: rgba(255,255,255,0.15);
-    }
-
+    
     .cv-title { 
       font-weight: 700; color: var(--white); font-size: 1.05rem; 
       margin-bottom: 0.3rem; display: block;
@@ -315,14 +308,22 @@
       padding: 15px; 
       display: flex; align-items: center; gap: 15px;
     }
+
+    /* Remove Hover from Education items (they are not links) */
+    .std-list.education li:hover {
+        background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+        transform: none;
+    }
     
     .edu-logo {
       width: 55px; height: 55px;
-      object-fit: contain;
-      background-color: #fff;
+      object-fit: cover; 
+      background-color: var(--white);
+      /* FIX: Added explicit white border that sits outside the content box */
+      border: 3px solid var(--white);
       border-radius: 12px;
       flex-shrink: 0;
-      padding: 4px;
+      padding: 0; 
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
@@ -382,15 +383,10 @@
       box-sizing: border-box !important;
       display: flex; flex-direction: column; 
       justify-content: space-between; align-items: flex-start;
-      transition: all 0.2s ease; overflow: hidden;
+      /* REMOVED HOVER TRANSITIONS as these are not links */
+      overflow: hidden;
     }
-    .erasmus-card:hover { 
-      transform: translateY(-3px); 
-      background: 
-        radial-gradient(420px 180px at 18% 20%, rgba(217,181,0,0.12), transparent 60%),
-        rgba(255,255,255,0.05);
-      border-color: rgba(217,181,0,0.3); 
-    }
+    /* REMOVED .erasmus-card:hover style */
 
     .erasmus-header {
       display: flex; align-items: flex-start; gap: 10px;
@@ -441,14 +437,9 @@
       border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
       padding: 1.2rem !important; 
       display: flex; flex-direction: column;
-      transition: transform 0.2s ease;
+      /* REMOVED HOVER TRANSITIONS */
     }
-    .lang-card:hover { 
-      transform: translateY(-3px); 
-      background: 
-        radial-gradient(380px 140px at 18% 20%, rgba(217,95,33,0.14), transparent 60%),
-        rgba(255,255,255,0.05);
-    }
+    /* REMOVED .lang-card:hover style */
 
     .lang-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.7rem; }
     .lang-info h3 { 
@@ -594,7 +585,6 @@
                 <div class="timeline-content">
                     <span class="cv-title" data-i18n="exp_2_title">Jefe del Departamento de Radio y Electrónica - Camp Greylock</span>
                     <span class="cv-meta" data-i18n="exp_2_meta">Jun. 2025 - Ago. 2025 | Massachusetts, EEUU</span>
-                    <span class="cv-desc" data-i18n="exp_2_desc">Jefe de departamento y profesor principal de la actividad.</span>
                 </div>
             </li>
             <li class="timeline-item">
@@ -902,7 +892,6 @@
         exp_1_meta: 'Sept. 2025 - Actualidad | Valencia, España',
         
         exp_2_title: 'Jefe del Departamento de Radio y Electrónica - Camp Greylock',
-        exp_2_desc: 'Jefe de departamento y profesor principal de la actividad.',
         exp_2_meta: 'Jun. 2025 - Ago. 2025 | Massachusetts, EEUU',
 
         exp_3_title: 'Representante del Estudiantado (Ingeniería Informática) - Delfi',
@@ -969,7 +958,6 @@
         exp_1_meta: 'Sept. 2025 - Present | Valencia, Spain',
         
         exp_2_title: 'Radio & Electronics Dept. Head - Camp Greylock',
-        exp_2_desc: 'Department Head and main teacher for said activity.',
         exp_2_meta: 'Jun. 2025 - Aug. 2025 | Massachusetts, USA',
 
         exp_3_title: 'Student Representative (Computer Engineering) - Delfi',
