@@ -88,6 +88,8 @@
       font-family: 'Poppins', sans-serif; font-size: 1rem;
       font-weight: 700; opacity: 0; letter-spacing: 1px; 
       color: #FFFFFF;
+      /* Added fade transition */
+      transition: opacity 0.6s ease;
     }
 
     /* --- HEADER (PERFIL) --- */
@@ -604,6 +606,14 @@
                     <span class="cv-meta" data-i18n="edu_1_meta">Sept. 2025 - Actualidad</span>
                 </div>
             </li>
+            <!-- NUEVA ENTRADA UOC -->
+            <li>
+                <img src="assets/uoc.png" alt="UOC" class="edu-logo">
+                <div class="edu-text">
+                    <span class="cv-title" data-i18n="edu_3_title">Grado en Ingeniería Informática - Universitat Oberta de Catalunya (UOC)</span>
+                    <span class="cv-meta" data-i18n="edu_3_meta">Feb. 2025 - Actualidad</span>
+                </div>
+            </li>
             <li>
                 <img src="assets/umu.png" alt="UMU" class="edu-logo">
                 <div class="edu-text">
@@ -900,6 +910,9 @@
         edu_1_title: 'Grado en Ingeniería Aeroespacial - Universitat Politècnica de València (UPV)',
         edu_1_meta: 'Sept. 2025 - Actualidad',
         
+        edu_3_title: 'Grado en Ingeniería Informática - Universitat Oberta de Catalunya (UOC)',
+        edu_3_meta: 'Feb. 2025 - Actualidad',
+
         edu_2_title: 'Grado en Ingeniería Informática - Universidad de Murcia',
         edu_2_meta: 'Sept. 2024 - Jul. 2025',
 
@@ -965,6 +978,9 @@
 
         edu_1_title: 'Bachelor of Aerospace Engineering - Universitat Politècnica de València (UPV)',
         edu_1_meta: 'Sept. 2025 - Present',
+
+        edu_3_title: 'Bachelor of Computer Engineering - Universitat Oberta de Catalunya (UOC)',
+        edu_3_meta: 'Feb. 2025 - Present',
         
         edu_2_title: 'Bachelor of Software Engineering - University of Murcia',
         edu_2_meta: 'Sept. 2024 - Jul. 2025',
@@ -1034,14 +1050,22 @@
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const y = window.scrollY;
+          // The banner reaches max height (48px) at y=480
           const height = Math.min(y / 10, 48);
           
-          // Use more performant property updates where possible
           const bar = document.getElementById('scrollBar');
           const title = document.getElementById('barTitle');
           
           if(bar) bar.style.height = height + 'px';
-          if(title) title.style.opacity = y > 400 ? '1' : '0';
+          
+          // Logic: Only fade in text if we have passed the "fully deployed" threshold (480px)
+          if(title) {
+            if (y >= 480) {
+               title.style.opacity = '1';
+            } else {
+               title.style.opacity = '0';
+            }
+          }
           
           ticking = false;
         });
