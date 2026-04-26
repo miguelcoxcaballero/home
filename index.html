@@ -287,9 +287,25 @@
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 16px;
       padding: 1.2rem;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 15px;
     }
     
+    .exp-logo {
+      width: 55px; height: 55px;
+      object-fit: cover; 
+      background-color: var(--white);
+      border: 3px solid var(--white);
+      border-radius: 12px;
+      flex-shrink: 0;
+      padding: 0; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .exp-text { display: flex; flex-direction: column; }
+
     .cv-title { 
       font-weight: 700; color: var(--white); font-size: 1.05rem; 
       margin-bottom: 0.3rem; display: block;
@@ -579,20 +595,38 @@
         <ul class="timeline">
             <li class="timeline-item">
                 <div class="timeline-content">
-                    <span class="cv-title" data-i18n="exp_1_title">Colaborador en Política Universitaria - DEETSIADI (UPV)</span>
-                    <span class="cv-meta" data-i18n="exp_1_meta">Sept. 2025 - Actualidad | Valencia, España</span>
+                    <img src="assets/Logo_AEAE.png" alt="AEAE" class="exp-logo">
+                    <div class="exp-text">
+                        <span class="cv-title" data-i18n="exp_0_title">Coordinador de Financiación - Asociación de Estudiantes de Aeronáutica y Espacio (AEAE)</span>
+                        <span class="cv-meta" data-i18n="exp_0_meta">2026 - Actualidad</span>
+                    </div>
                 </div>
             </li>
             <li class="timeline-item">
                 <div class="timeline-content">
-                    <span class="cv-title" data-i18n="exp_2_title">Jefe del Departamento de Radio y Electrónica - Camp Greylock</span>
-                    <span class="cv-meta" data-i18n="exp_2_meta">Jun. 2025 - Ago. 2025 | Massachusetts, EEUU</span>
+                    <img src="assets/deetsiadi.png" alt="DEETSIADI" class="exp-logo">
+                    <div class="exp-text">
+                        <span class="cv-title" data-i18n="exp_1_title">Colaborador en Política Universitaria - DEETSIADI (UPV)</span>
+                        <span class="cv-meta" data-i18n="exp_1_meta">Sept. 2025 - Actualidad | Valencia, España</span>
+                    </div>
                 </div>
             </li>
             <li class="timeline-item">
                 <div class="timeline-content">
-                    <span class="cv-title" data-i18n="exp_3_title">Representante del Estudiantado (Ingeniería Informática) - Delfi</span>
-                    <span class="cv-meta" data-i18n="exp_3_meta">Sept. 2024 - Jul. 2025 | Murcia, España</span>
+                    <img src="assets/greylock.png" alt="Camp Greylock" class="exp-logo">
+                    <div class="exp-text">
+                        <span class="cv-title" data-i18n="exp_2_title">Jefe del Departamento de Radio y Electrónica - Camp Greylock</span>
+                        <span class="cv-meta" data-i18n="exp_2_meta">Jun. 2025 - Ago. 2025 | Massachusetts, EEUU</span>
+                    </div>
+                </div>
+            </li>
+            <li class="timeline-item">
+                <div class="timeline-content">
+                    <img src="assets/delfi.jpg" alt="Delfi" class="exp-logo">
+                    <div class="exp-text">
+                        <span class="cv-title" data-i18n="exp_3_title">Representante del Estudiantado (Ingeniería Informática) - Delfi</span>
+                        <span class="cv-meta" data-i18n="exp_3_meta">Sept. 2024 - Jul. 2025 | Murcia, España</span>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -902,6 +936,9 @@
         exp_title: 'Experiencia',
         edu_title: 'Educación',
         
+        exp_0_title: 'Coordinador de Financiación - Asociación de Estudiantes de Aeronáutica y Espacio (AEAE)',
+        exp_0_meta: '2026 - Actualidad',
+
         exp_1_title: 'Colaborador en Política Universitaria - DEETSIADI (UPV)',
         exp_1_meta: 'Sept. 2025 - Actualidad | Valencia, España',
         
@@ -971,6 +1008,9 @@
         // Education & Experience
         exp_title: 'Experience',
         edu_title: 'Education',
+
+        exp_0_title: 'Funding Coordinator - Spanish Aeronautics and Space Students Association (AEAE)',
+        exp_0_meta: '2026 - Present',
 
         exp_1_title: 'University Policy Collaborator - DEETSIADI (UPV)',
         exp_1_meta: 'Sept. 2025 - Present | Valencia, Spain',
